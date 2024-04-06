@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.58 21.94">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: .7px;
+      }
+
+      .cls-2 {
+        font-family: Georgia-Bold, Georgia;
+        font-size: 3.73px;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        fill: #010101;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g>
+        <circle class="cls-1" cx="11.38" cy="8.35" r="8"/>
+        <path class="cls-3" d="m14.94,10.4c-.38.53-1.16.96-2.03.75-.69-.17-1.27-.73-1.52-1.48.19,1.96.57,2.51.92,2.6.26.06.54-.14,1.01,0,.32.09.56.29.71.45h-5.14c.13-.14.34-.34.66-.45.52-.18.85.07,1.15-.03.31-.11.65-.63.7-2.57-.26.75-.83,1.31-1.52,1.48-.87.21-1.64-.23-2.03-.75-.66-.91-.57-2.72.75-4.05l2.8-3.09v.03s.02-.03.02-.03l2.8,3.09c1.31,1.32,1.41,3.14.75,4.05h0Z"/>
+      </g>
+      <text class="cls-2" transform="translate(0 20.8) scale(.95 1)"><tspan x="0" y="0">BLACKJACK</tspan></text>
+    </g>
+  </g>
+</svg>

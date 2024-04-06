@@ -1,0 +1,71 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+ul {
+    list-style-type: none;
+}
+/* html */
+html {
+    margin: auto;
+    max-width: 900px;
+    background-image: url(/assets/svg-icons/table-background.svg);
+    background-size: cover;
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+/* Header > section */
+/* Alignment */
+header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 1rem;
+}
+.header-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+}
+/* Size */
+header button {
+    width: 6rem;
+    height: 2rem;
+}
+header img {
+    width: 1rem;
+}
+header button,
+.best {
+    border-radius: 7px;
+    border: 1px solid rgb(192, 243, 115);
+    background-color: rgb(175, 235, 85);
+}
+.best {
+    padding: .35rem;
+}
+.new-game {
+    background-color: rgb(135, 223, 3);
+    border-color: greenyellow;
+}
+/* main */
+.initial-layout {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3.3rem;
+    gap: 3.1rem;
+}
+.game-logo {
+    width: 15rem;
+    margin-top: 1rem;
+}
+.play {
+    width: 10rem;
+    height: 5rem;
+    font-size: 2rem;
+    border-radius: 20px;
+    border: 1px solid goldenrod;
+    background-image: linear-gradient(yellow, gold, goldenrod);
+}
