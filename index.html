@@ -5,20 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blackjack</title>
     <link href="/assets/svg-icons/favicon.svg" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Georgian:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link href="reset.css" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
+    <script src="app.js" defer></script>
 </head>
 <body>
     <header>
-        <div class="header-container">
-            <button class="new-game">New Game</button>
-            <div class="best">Best: <img src="/assets/svg-icons/coin.svg"/><span class="highest-bank-amount"> 2500</span></div>
-        </div>
-
-        <div class="header-container">
-            <button class="options-btn">Options <img src="assets/svg-icons/options.svg"/></button>
-            <button class="settings-btn">Settings <img src="assets/svg-icons/settings_off.svg"/></button>
-        </div>
+        <button class="new-game">New Game</button>
+        <div class="best-score">Best: <img src="/assets/svg-icons/coin.svg"/> <span class="highest-bank-amount">0000</span></div>
+        <button class="home-btn"><img src="/assets/svg-icons/home-logo.svg" class="home-logo"></button>
+        <button>Rules</button>
+        <button class="options-btn">Options <img src="/assets/svg-icons/options.svg"/></button>
+        <dialog id="options-dialog-box">
+            <label>
+                <img src="/assets/svg-icons/sound-on.svg" id="sound-on">
+                <img src="/assets/svg-icons/sound-off.svg" id="sound-off">
+            </label>
+            <label>
+                <img src="/assets/svg-icons/music-on.svg" id="music-on">
+                <img src="/assets/svg-icons/music-off.svg" id="music-off">
+            </label>
+            <fieldset>
+                <legend>Number of Decks</legend>
+                <label for="deck1"><input type="radio" id="deck1" name="deck-number" value="1"> 1</label>
+                <label for="deck2"><input type="radio" id="deck2" name="deck-number" value="2"> 2</label>
+                <label for="deck4"><input type="radio" id="deck4" name="deck-number" value="4"> 4</label>
+                <label for="deck6"><input type="radio" id="deck6" name="deck-number" value="6"> 6</label>
+                <label for="deck8"><input type="radio" id="deck8" name="deck-number" value="8"> 8</label>
+            </fieldset>
+            
+            <label for="soft-17-opt">Dealer hits on soft 17: <input type="checkbox" id="soft-17-opt" role="switch"></label>
+            <label for="insurance-opt">insurance: <input type="checkbox" id="insurance-opt" role="switch"></label>
+            <label for="auto-advice-opt">Auto Advice: <input type="checkbox" id="auto-advice-opt" role="switch"></label>
+            <label for="repeat-last-bet-opt">Repeat Last Bet: <input type="checkbox" id="repeat-last-bet-opt" role="switch"></label>
+        </dialog>
     </header>
     <main class="initial-layout">
         <div class="game-logo"><img src="/assets/svg-icons/game-logo.svg"></div>
