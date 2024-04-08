@@ -1,3 +1,11 @@
+/* 
+header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    margin: 1.5rem;
+}
+*/
 *,
 *::before,
 *::after {
@@ -6,44 +14,228 @@
 * {
     font-family: "Noto Serif Georgian", serif;
 }
-ul {
-    list-style-type: none;
-}
-/* html */
 html {
+    margin: auto;
+    min-height: 100%;
+    max-width: 900px;
     border: 2px solid black;
     border-radius: 10px;
-    margin: auto;
-    height: 100%;
-    max-width: 900px;
-    max-height: 700px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
     background-image: url(/assets/svg-icons/table-background.svg);
     background-size: cover;
     font-weight: bold;
 }
+/* General */
+ul {
+    list-style-type: none;
+}
+button {
+    cursor: pointer;
+    /* Hardware acceleration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+}
+button:active {
+    transform: scale(1.03);
+}
 /* Header */
-/* Alignment */
+/* Header element Alignment */
 header {
+    display: grid;
+    grid-template-columns: 12;
+    grid-template-rows: 2;
+    margin-top: 1.5rem;
+}
+.best-score {
+    grid-column: 2 / span 2;
+    grid-row: 1;
+    width: 6.3rem;
+}
+.current-bank {
+    grid-column: 4 / span 2;
+    grid-row: 1;
+    width: 6.7rem;
+}
+.home-btn {
+    grid-column: 6 / span 2;
+    grid-row: 1;
+}
+.rules-btn {
+    grid-column: 8 / span 2;
+    grid-row: 1;
+}
+.settings-dialog-container {
+    grid-column: 10 / span 2;
+    grid-row: 1;
+}
+.settings-dialog-box {
+    top: 13%;
+    left: 60%;
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    margin: 1.5rem;
+    flex-flow: column wrap;
+    align-items:flex-start;
+    gap: .9rem;
+    margin: 0;
+    padding-right: 2rem;
+    width: 18rem;
 }
-
-/* Size */
-header button {
-    width: 6rem;
-    height: 2rem;
+.number-of-decks {
+    margin-left: 2.8em;
 }
+/* Header element Size */
 header img {
     width: 1rem;
 }
 .home-logo {
     width: 1.8rem;
 }
-.best-score {
-    padding: .35rem;
+.current-bank img,
+.best-score img {
+    margin: 0 .13rem;
 }
+/* Header element Effects */
+header button {
+    width: 6rem;
+    height: 2rem;
+
+    font-weight: bold;
+    background-color: rgb(175, 235, 85);
+    background-image: linear-gradient(rgb(155, 219, 58), rgb(177, 241, 80), rgb(117, 167, 42));
+}
+header button,
+.current-bank,
+.best-score {
+    border-radius: 7px;
+    border: 1px solid rgb(119, 161, 55);
+}
+.current-bank,
+.best-score {
+    display: flex;
+    padding: .35rem;
+    background-image: linear-gradient(rgb(22, 154, 172), rgb(10, 202, 202), rgb(17, 153, 216));
+    border-color: rgb(9, 147, 211);
+}
+
+
+/* toggle checkbox */
+input[type="checkbox"].toggle,
+input[type="checkbox"].toggle-sound-music {
+    opacity: 0;
+    position: absolute;
+    left: -90000px;
+    top: -90000px;
+}
+/* Making it accessable */
+input[type="checkbox"].toggle:focus-visible + label::before,
+input[type="checkbox"].toggle-sound-music:focus-visible + label::before {
+    outline: 1px solid black;
+}
+
+input[type="checkbox"].toggle + label {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+input[type="checkbox"].toggle + label::before {
+    content: "";
+    width: 2rem;
+    height: 1rem;
+    background-color: rgb(235, 209, 209);
+    border-radius: 5rem;
+    margin-right: .8rem;
+}
+input[type="checkbox"].toggle + label::after {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:  rgb(235, 209, 209);
+    content: "\2715";
+    font-size: .5rem;
+    left: .1rem;
+    width: .9rem;
+    height: .9rem;
+    background-color: rgb(201, 27, 27);
+    box-shadow: 0px 0px 2.5px 0px rgb(201, 27, 27);
+    border-radius: 5rem;
+    transition: 200ms ease-in-out;
+}
+input[type="checkbox"].toggle:checked + label::before {
+  /*   transform: translateX(100%); */
+    background-color: rgb(179, 248, 179);
+}
+input[type="checkbox"].toggle:checked + label::after {
+    left: .9rem;
+    background-color: rgb(4, 173, 4);
+    box-shadow: 0 0 2.5px 0 rgb(4, 173, 4);
+    animation: check-fade 400ms ease-in-out forwards;
+}
+@keyframes check-fade {
+    0% {
+        opacity: 1;
+        content: "\2715";
+    }
+    50% {
+        opacity: 0;
+        content: "\2715";
+    }
+    100% {
+        opacity: 1;
+        content: "\2713";
+    }
+}
+
+/* Toggle Sound and Music */
+.sound-music {
+    cursor: pointer;
+}
+.label-sound,
+.label-music {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+}
+#sound-off,
+#music-off,
+#sound-on,
+#music-on {
+    grid-row: 1;
+    grid-column: 1;
+}
+#sound-off,
+#music-off {
+    opacity: 0;
+}
+#music-off {
+    margin-left: .01rem;
+}
+
+input[type="checkbox"]#toggle-sound:checked + label[for="toggle-sound"] img#sound-off,
+input[type="checkbox"]#toggle-music:checked + label[for="toggle-music"] img#music-off {
+    animation: sound-music-off 300ms ease forwards;
+}
+
+@keyframes sound-music-off {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 /* main */
 .initial-layout {
     display: flex;
@@ -58,24 +250,7 @@ header img {
     margin-top: 1rem;
 }
 /* Initial page button effects */
-header button,
-.best-score {
-    border-radius: 7px;
-    border: 1px solid rgb(119, 161, 55);
-}
-header button {
-    font-weight: bold;
-    background-color: rgb(175, 235, 85);
-    background-image: linear-gradient(rgb(155, 219, 58), rgb(177, 241, 80), rgb(117, 167, 42));
-}
-.best-score {
-    background-image: linear-gradient(rgb(22, 154, 172), rgb(10, 202, 202), rgb(17, 153, 216));
-    border-color: rgb(9, 147, 211);
-}
-.new-game {
-    background-image: linear-gradient(rgb(135, 223, 3), rgb(154, 255, 3), rgb(108, 177, 4));
-    border-color: rgb(108, 175, 8);
-}
+
 .play {
     font-weight: bold;
     width: 13rem;
@@ -89,12 +264,10 @@ header button {
 .play:hover {
     background-image: linear-gradient(rgb(253, 237, 15), gold, rgb(255, 238, 0));
 }
-button {
-    cursor: pointer;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000;
-}
-button:active {
-    transform: scale(1.03);
+
+
+
+/*  */
+.hidden {
+    display: none;
 }

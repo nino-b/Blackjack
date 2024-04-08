@@ -14,34 +14,110 @@
 </head>
 <body>
     <header>
-        <button class="new-game">New Game</button>
-        <div class="best-score">Best: <img src="/assets/svg-icons/coin.svg"/> <span class="highest-bank-amount">0000</span></div>
-        <button class="home-btn"><img src="/assets/svg-icons/home-logo.svg" class="home-logo"></button>
-        <button>Rules</button>
-        <button class="options-btn">Options <img src="/assets/svg-icons/options.svg"/></button>
-        <dialog id="options-dialog-box">
-            <label>
-                <img src="/assets/svg-icons/sound-on.svg" id="sound-on">
-                <img src="/assets/svg-icons/sound-off.svg" id="sound-off">
+        <section class="current-bank">
+            <h2>Bank:</h2>
+            <img src="/assets/svg-icons/coin.svg" alt="Coin icon"/> 
+            <span class="current-bank-amount" aria-live="polite">2500</span>
+        </section>
+        <aside class="best-score">
+            <h2>Best:</h2>
+            <img src="/assets/svg-icons/coin.svg" alt="Coin icon"/> 
+            <span class="highest-bank-amount" aria-live="polite">0000</span>
+        </aside>
+        <button aria-label="Home" class="home-btn">
+            <img src="/assets/svg-icons/home-logo.svg" alt="Home" class="home-logo">
+        </button>
+        <button class="rules-btn">Rules</button>
+
+     
+        <div class="settings-dialog-container">
+            <button class="settings-btn" aria-haspopup="dialog" aria-expanded="false">
+                Settings <img src="/assets/svg-icons/settings.svg" alt=""/>
+            </button>
+            <dialog class="settings-dialog-box">
+                <input 
+                type="checkbox" 
+                id="toggle-sound" 
+                class="toggle-sound-music sound-music" 
+                aria-label="Toggle sound">
+            <label for="toggle-sound" class="label-sound sound-music">
+                <img 
+                src="/assets/svg-icons/sound-on.svg" 
+                id="sound-on" 
+                class="sound-music" 
+                alt="Sound on">
+            <img 
+                src="/assets/svg-icons/sound-off.svg" 
+                id="sound-off" 
+                class="sound-music" 
+                alt="Sound off">
+                
+                Sound
             </label>
-            <label>
-                <img src="/assets/svg-icons/music-on.svg" id="music-on">
-                <img src="/assets/svg-icons/music-off.svg" id="music-off">
+
+
+        
+            <input 
+                type="checkbox" 
+                id="toggle-music" 
+                class="toggle-sound-music sound-music" 
+                aria-label="Toggle music">
+            <label for="toggle-music" class="label-music sound-music">
+                <img 
+                src="/assets/svg-icons/music-on.svg" 
+                id="music-on" 
+                class="sound-music" 
+                alt="Music on">
+            <img 
+                src="/assets/svg-icons/music-off.svg" 
+                id="music-off" 
+                class="sound-music" 
+                alt="Music off">
+                
+                Music
             </label>
-            <fieldset>
-                <legend>Number of Decks</legend>
-                <label for="deck1"><input type="radio" id="deck1" name="deck-number" value="1"> 1</label>
-                <label for="deck2"><input type="radio" id="deck2" name="deck-number" value="2"> 2</label>
-                <label for="deck4"><input type="radio" id="deck4" name="deck-number" value="4"> 4</label>
-                <label for="deck6"><input type="radio" id="deck6" name="deck-number" value="6"> 6</label>
-                <label for="deck8"><input type="radio" id="deck8" name="deck-number" value="8"> 8</label>
-            </fieldset>
-            
-            <label for="soft-17-opt">Dealer hits on soft 17: <input type="checkbox" id="soft-17-opt" role="switch"></label>
-            <label for="insurance-opt">insurance: <input type="checkbox" id="insurance-opt" role="switch"></label>
-            <label for="auto-advice-opt">Auto Advice: <input type="checkbox" id="auto-advice-opt" role="switch"></label>
-            <label for="repeat-last-bet-opt">Repeat Last Bet: <input type="checkbox" id="repeat-last-bet-opt" role="switch"></label>
-        </dialog>
+ 
+                <fieldset>
+                    <legend class="number-of-decks">Number of Decks</legend>
+                    <label for="deck1"><input type="radio" id="deck1" name="deck-number" value="1"> 1</label>
+                    <label for="deck2"><input type="radio" id="deck2" name="deck-number" value="2"> 2</label>
+                    <label for="deck4"><input type="radio" id="deck4" name="deck-number" value="4"> 4</label>
+                    <label for="deck6"><input type="radio" id="deck6" name="deck-number" value="6"> 6</label>
+                    <label for="deck8"><input type="radio" id="deck8" name="deck-number" value="8"> 8</label>
+                </fieldset>
+                    
+                <input 
+                    type="checkbox" 
+                    id="soft-17-opt" 
+                    role="switch" 
+                    class="toggle">
+                <label for="soft-17-opt">Dealer hits on soft 17 </label>
+
+                <input 
+                    type="checkbox" 
+                    id="insurance-opt" 
+                    role="switch" 
+                    class="toggle">
+                <label for="insurance-opt">insurance </label>
+
+                <input 
+                    type="checkbox" 
+                    id="auto-advice-opt" 
+                    role="switch" 
+                    class="toggle">
+                <label for="auto-advice-opt">Auto Advice </label>
+
+                <input 
+                    type="checkbox" 
+                    id="repeat-last-bet-opt" 
+                    role="switch" 
+                    class="toggle">
+                <label for="repeat-last-bet-opt">Repeat Last Bet </label>
+
+                <button>Close</button>
+            </dialog>
+        </div>
+
     </header>
     <main class="initial-layout">
         <div class="game-logo"><img src="/assets/svg-icons/game-logo.svg"></div>
