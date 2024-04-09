@@ -92,7 +92,32 @@ header {
     margin: 0;
     padding-right: 2rem;
     width: 18rem;
+
+    opacity: 0;
+    transform: scale(0.5);
+    visibility: hidden;
+    animation: open-dialog-box 200ms ease-out forwards;
 }
+@keyframes open-dialog-box {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+        visibility: hidden; 
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+    }
+}
+/* 
+display: flex; makes dialog box always visible.
+This code ensures that dialog box stays hidden until 'settings' button is clicked.
+*/
+.settings-dialog-box:not([open]) {
+    display: none;
+}
+
 /* Header element Size */
 header img {
     width: 1rem;
@@ -241,13 +266,16 @@ input[type="checkbox"].toggle:checked + label::after {
 
 /* Number of Decks */
 .deck-list {
-    margin: .8rem 0 1.5rem 0;
+    margin: .5rem 0 1rem 0;
 }
 .deck-list legend {
-    margin: 0 0 1.5rem 2.8rem;
+    margin: 0 0 1.2rem 2.8rem;
 }
 .deck-list label {
+    display: inline-block;
     margin-left: .13rem;
+    width: 2.2rem;
+    height: 2.2rem;
     padding: .45rem .7rem;
     background-color: rgba(196, 152, 101, 0.685);
     border: 1px solid rgba(196, 152, 101, 0.685);
@@ -258,13 +286,30 @@ input[type="radio"]:first-of-type + label {
     margin-left: .6rem;
 }
 input[type="radio"]:checked + label {
-    background-color: rgb(125, 255, 125);
-    border-color: rgb(116, 233, 116);
-    box-shadow: 0 0 .1rem rgb(90, 185, 90);
-    padding: .6rem .8rem;
+    animation: deck-number-chosen 200ms ease forwards;
 }
 
+@keyframes deck-number-chosen {
+    0% {
+        background-color: rgba(196, 152, 101, 0.685);
+        border: 1px solid rgba(196, 152, 101, 0.685);
+        box-shadow: 0 0 .1rem rgba(196, 152, 101, 0.842);
+        transform: scale(1);
+    }
+    100% {
+        background-color: rgb(125, 255, 125);
+        border-color: rgb(116, 233, 116);
+        box-shadow: 0 0 .1rem rgb(90, 185, 90);
+        
+        transform: scale(1.2);
+    }
+}
 
+/* Close Settings Dialog */
+/* .close-settings-dialog {
+    animation: open-dialog-box 200ms ease-out reverse forwards;
+}
+ */
 
 
 
