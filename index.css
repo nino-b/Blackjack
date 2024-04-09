@@ -30,7 +30,6 @@ ul {
     list-style-type: none;
 }
 button {
-    cursor: pointer;
     /* Hardware acceleration */
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -39,6 +38,20 @@ button {
 button:active {
     transform: scale(1.03);
 }
+button,
+.sound-music,
+input[type="checkbox"].toggle + label,
+input[type="radio"] + label {
+    cursor: pointer;
+}
+input[type="checkbox"]#toggle-sound:focus-visible + label[for="toggle-sound"] img,
+input[type="checkbox"]#toggle-music:focus-visible + label[for="toggle-music"] img,
+input[type="checkbox"].toggle:focus-visible + label::before,
+input[type="checkbox"].toggle-sound-music:focus-visible + label::before,
+input[type="radio"]:focus-visible + label {
+    outline: 1px solid black;
+}
+
 /* Header */
 /* Header element Alignment */
 header {
@@ -80,9 +93,6 @@ header {
     padding-right: 2rem;
     width: 18rem;
 }
-.number-of-decks {
-    margin-left: 2.8em;
-}
 /* Header element Size */
 header img {
     width: 1rem;
@@ -118,25 +128,68 @@ header button,
 }
 
 
-/* toggle checkbox */
+/* Toggle Checkbox */
+/* Clear checkboxes (boxe itself) */
 input[type="checkbox"].toggle,
-input[type="checkbox"].toggle-sound-music {
+input[type="checkbox"].toggle-sound-music,
+input[name="deck-number"] {
     opacity: 0;
     position: absolute;
     left: -90000px;
     top: -90000px;
 }
-/* Making it accessable */
-input[type="checkbox"].toggle:focus-visible + label::before,
-input[type="checkbox"].toggle-sound-music:focus-visible + label::before {
-    outline: 1px solid black;
+
+/* Toggle Sound and Music */
+.label-sound,
+.label-music {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+}
+.label-sound {
+    margin-left: -.2rem;
+}
+.label-music {
+    margin-left: -.1rem;
+}
+#sound-off,
+#music-off,
+#sound-on,
+#music-on {
+    grid-row: 1;
+    grid-column: 1;
+}
+#sound-off,
+#music-off {
+    opacity: 0;
+}
+#sound-on,
+#sound-off {
+    margin-left: .05rem;
+}
+#music-off {
+    margin-left: .05rem;
+}
+input[type="checkbox"]#toggle-sound:checked + label[for="toggle-sound"] img#sound-off,
+input[type="checkbox"]#toggle-music:checked + label[for="toggle-music"] img#music-off {
+    animation: sound-music-off 300ms ease forwards;
 }
 
+@keyframes sound-music-off {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* toggle checkboxe - slider */
 input[type="checkbox"].toggle + label {
     display: flex;
     align-items: center;
     position: relative;
-    cursor: pointer;
 }
 input[type="checkbox"].toggle + label::before {
     content: "";
@@ -163,7 +216,6 @@ input[type="checkbox"].toggle + label::after {
     transition: 200ms ease-in-out;
 }
 input[type="checkbox"].toggle:checked + label::before {
-  /*   transform: translateX(100%); */
     background-color: rgb(179, 248, 179);
 }
 input[type="checkbox"].toggle:checked + label::after {
@@ -187,48 +239,30 @@ input[type="checkbox"].toggle:checked + label::after {
     }
 }
 
-/* Toggle Sound and Music */
-.sound-music {
-    cursor: pointer;
+/* Number of Decks */
+.deck-list {
+    margin: .8rem 0 1.5rem 0;
 }
-.label-sound,
-.label-music {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: repeat(2, 1fr);
+.deck-list legend {
+    margin: 0 0 1.5rem 2.8rem;
 }
-#sound-off,
-#music-off,
-#sound-on,
-#music-on {
-    grid-row: 1;
-    grid-column: 1;
+.deck-list label {
+    margin-left: .13rem;
+    padding: .45rem .7rem;
+    background-color: rgba(196, 152, 101, 0.685);
+    border: 1px solid rgba(196, 152, 101, 0.685);
+    border-radius: .5rem;
+    box-shadow: 0 0 .1rem rgba(196, 152, 101, 0.842);
 }
-#sound-off,
-#music-off {
-    opacity: 0;
+input[type="radio"]:first-of-type + label {
+    margin-left: .6rem;
 }
-#music-off {
-    margin-left: .01rem;
+input[type="radio"]:checked + label {
+    background-color: rgb(125, 255, 125);
+    border-color: rgb(116, 233, 116);
+    box-shadow: 0 0 .1rem rgb(90, 185, 90);
+    padding: .6rem .8rem;
 }
-
-input[type="checkbox"]#toggle-sound:checked + label[for="toggle-sound"] img#sound-off,
-input[type="checkbox"]#toggle-music:checked + label[for="toggle-music"] img#music-off {
-    animation: sound-music-off 300ms ease forwards;
-}
-
-@keyframes sound-music-off {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-
-
-
 
 
 

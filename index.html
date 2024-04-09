@@ -16,16 +16,33 @@
     <header>
         <section class="current-bank">
             <h2>Bank:</h2>
-            <img src="/assets/svg-icons/coin.svg" alt="Coin icon"/> 
-            <span class="current-bank-amount" aria-live="polite">2500</span>
+            <img 
+                src="/assets/svg-icons/coin.svg" 
+                alt="Coin icon"/> 
+            <span 
+                class="current-bank-amount" 
+                aria-live="polite">
+                    
+                2500
+            </span>
         </section>
         <aside class="best-score">
             <h2>Best:</h2>
-            <img src="/assets/svg-icons/coin.svg" alt="Coin icon"/> 
-            <span class="highest-bank-amount" aria-live="polite">0000</span>
+            <img 
+                src="/assets/svg-icons/coin.svg" 
+                alt="Coin icon"/> 
+            <span 
+                class="highest-bank-amount" 
+                aria-live="polite">
+                
+                0000
+            </span>
         </aside>
         <button aria-label="Home" class="home-btn">
-            <img src="/assets/svg-icons/home-logo.svg" alt="Home" class="home-logo">
+            <img 
+                src="/assets/svg-icons/home-logo.svg" 
+                alt="Home" 
+                class="home-logo">
         </button>
         <button class="rules-btn">Rules</button>
 
@@ -77,13 +94,43 @@
                 Music
             </label>
  
-                <fieldset>
-                    <legend class="number-of-decks">Number of Decks</legend>
-                    <label for="deck1"><input type="radio" id="deck1" name="deck-number" value="1"> 1</label>
-                    <label for="deck2"><input type="radio" id="deck2" name="deck-number" value="2"> 2</label>
-                    <label for="deck4"><input type="radio" id="deck4" name="deck-number" value="4"> 4</label>
-                    <label for="deck6"><input type="radio" id="deck6" name="deck-number" value="6"> 6</label>
-                    <label for="deck8"><input type="radio" id="deck8" name="deck-number" value="8"> 8</label>
+                <fieldset class="deck-list">
+                    <legend>Number of Decks</legend>
+
+                    <input 
+                        type="radio" 
+                        id="deck1" 
+                        name="deck-number" 
+                        value="1">
+                    <label for="deck1">1</label>
+
+                    <input 
+                        type="radio" 
+                        id="deck2" 
+                        name="deck-number" 
+                        value="2" checked>
+                    <label for="deck2">2</label>
+
+                    <input 
+                        type="radio" 
+                        id="deck4" 
+                        name="deck-number" 
+                        value="4">
+                    <label for="deck4"> 4</label>
+
+                    <input 
+                        type="radio" 
+                        id="deck6" 
+                        name="deck-number" 
+                        value="6">
+                    <label for="deck6"> 6</label>
+
+                    <input 
+                        type="radio" 
+                        id="deck8" 
+                        name="deck-number" 
+                        value="8">
+                    <label for="deck8">8</label>
                 </fieldset>
                     
                 <input 
