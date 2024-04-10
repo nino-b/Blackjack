@@ -306,10 +306,22 @@ input[type="radio"]:checked + label {
 }
 
 /* Close Settings Dialog */
-/* .close-settings-dialog {
+.settings-dialog-closing {
     animation: open-dialog-box 200ms ease-out reverse forwards;
 }
- */
+@keyframes close-dialog-box {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;  
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+        visibility: hidden; 
+    }
+}
+
 
 
 

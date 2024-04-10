@@ -10,5 +10,8 @@ optionsBtn.addEventListener('click', () => {
 const closeSettingsBtn = document.querySelector('.close-settings-dialog');
 
 closeSettingsBtn.addEventListener('click', () => {
-    optionsDialogBox.close();
+    optionsDialogBox.style.animation = 'close-dialog-box 200ms ease forwards;'
+    setTimeout(() => {
+        optionsDialogBox.close();
+    }, 300);
 });
