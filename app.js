@@ -1,17 +1,39 @@
-/* settings btn */
-const optionsBtn = document.querySelector('.settings-btn');
-const optionsDialogBox = document.querySelector('.settings-dialog-box');
-
-optionsBtn.addEventListener('click', () => {
-    optionsDialogBox.showModal()
-});
-
-/* close-settings-dialog */
-const closeSettingsBtn = document.querySelector('.close-settings-dialog');
-
-closeSettingsBtn.addEventListener('click', () => {
-    optionsDialogBox.style.animation = 'close-dialog-box 200ms ease forwards;'
+/* Close Dialog Box */
+function closeDialogBox(dialogBox) {
+    dialogBox.id = 'dialog-closing';
     setTimeout(() => {
-        optionsDialogBox.close();
-    }, 300);
+        dialogBox.close();
+        dialogBox.id = '';
+    }, 200);
+}
+
+/* Open Settings Box */
+const settingsBtn = document.querySelector('.settings-btn');
+const settingsDialogBox = document.querySelector('.settings-dialog-box');
+
+settingsBtn.addEventListener('click', () => {
+    settingsDialogBox.showModal()
 });
+
+/* Close Settings Dialog */
+const closeSettingsDialog = document.querySelector('.close-settings-dialog-btn');
+closeSettingsDialog.addEventListener('click', () => {
+    closeDialogBox(settingsDialogBox);
+})
+
+
+
+/* Open Rules Dialog Box */
+const rulesBtn = document.querySelector('.rules-btn');
+const rulesDialogBox = document.querySelector('.rules-dialog-box');
+
+rulesBtn.addEventListener('click', () => {
+    rulesDialogBox.showModal();
+})
+
+/* Close Rules Dialog Box */
+
+const closeRulesDialog = document.querySelector('.close-rules-dialog-btn');
+closeRulesDialog.addEventListener('click', () => {
+    closeDialogBox(rulesDialogBox)
+})
