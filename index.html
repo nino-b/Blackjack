@@ -45,38 +45,117 @@
                 class="home-logo">
         </button>
         <div class="rules-dialog-container">
-            <button class="rules-btn" aria-haspopup="dialog" aria-expanded="false">Rules</button>
+            <button 
+            class="rules-btn" 
+            aria-haspopup="dialog" 
+            aria-expanded="false">
+            
+            Rules
+        </button>
             <dialog class="rules-dialog-box">
-                <section class="objective-rules">
-                    <p>The goal is to beat the dealer's hand without going over 21.</p>
-                    <p>Each player starts with two cards. The dealer has one card face up (the upcard) and one card face down (the hole card).</p>
+                <section class="goal">
+                    <h2>Goal</h2>
+                    <p>   
+                        The goal is to beat the dealer's hand without going over 21.
+                    </p>
+                </section>
+                <section class="initial-deal">
+                    <h2>Initial Deal</h2>
+                    <p>
+                        Each player starts with two cards. The dealer has one card face up (the upcard) and one card face down (the hole card).
+                    </p>
                 </section>
                 <section class="card-value-rules">
-                    <h2 class="card-values">Card Values:</h2>
+                    <h2 class="card-values">Card Values</h2>
                     <ul>
-                        <li><i>Number cards</i>: Worth their face value.</li>
-                        <li><i>Face cards (Kings, Queens, Jacks)</i>: Worth 10 points.</li>
-                        <li><i>Aces</i>: Worth 1 or 11 points, whichever benefits the player.</li>
+                        <li>
+                            <i>Number cards</i>: 
+                            <p>
+                                Worth their face value.
+                            </p>
+                        </li>
+                        <li>
+                            <i>Face cards (Kings, Queens, Jacks)</i>: 
+                            <p>
+                                Worth 10 points.
+                            </p>
+                        </li>
+                        <li>
+                            <i>Aces</i>: 
+                            <p>
+                                Worth 1 or 11 points, whichever benefits the player.
+                            </p>
+                        </li>
                     </ul>
                 </section>
                 <section class="playing-rules">
                     <h2>Playing a Round:</h2>
                     <ul>
-                        <li><i>Hit</i>: Take another card from the dealer.</li>
-                        <li><i>Stand</i>: Keep your current hand and end your turn.</li>
-                        <li><i>Double Down</i>: Double your bet, take one more card, and then stand.</li>
-                        <li><i>Split</i>: If your first two cards have the same value, you can split them into two separate hands (requires an additional bet equal to the first).</li>
-                        <li><i>Insurance</i>: If the dealer's upcard is an Ace, players can take "insurance," a side bet up to half the original bet, which pays 2:1 if the dealer has Blackjack.</li>
-                        <li><i>Even Money</i>: If you are dealt an Ace and a 10-value card (totaling 21, a blackjack), and the dealer's upcard is an Ace, you can take "even money",  1:1 payout, instead of risking a push in the hope of a larger win.</li>
+                        <li>
+                            <i>Hit</i>: 
+                            <p>
+                                Take another card from the dealer.
+                            </p>
+                        </li>
+                        <li>
+                            <i>Stand</i>: 
+                            <p>
+                                Keep your current hand and end your turn.
+                            </p>
+                        </li>
+                        <li>
+                            <i>Double Down</i>: 
+                            <p>
+                                Double your bet, take one more card, and then stand.
+                            </p>
+                        </li>
+                        <li>
+                            <i>Split</i>: 
+                            <p>
+                                If your first two cards have the same value, you can split them into two separate hands (requires an additional bet equal to the first).
+                            </p>
+                        </li>
+                        <li>
+                            <i>Insurance</i>: 
+                            <p>
+                                If the dealer's upcard is an Ace, players can take "insurance," a side bet up to half the original bet, which pays 2:1 if the dealer has Blackjack.
+                            </p>
+                        </li>
+                        <li>
+                            <i>Even Money</i>: 
+                            <p>
+                                If you are dealt an Ace and a 10-value card (totaling 21, a blackjack), and the dealer's upcard is an Ace, you can take "even money",  1:1 payout, instead of risking a push in the hope of a larger win.
+                            </p>
+                        </li>
                     </ul>
                 </section>
                 <section class="outcome-rules">
                     <h2>Outcome Scenarios:</h2>
                     <ul>
-                        <li>If you get a "Blackjack" (an Ace and a 10-point card) as your first two cards, you win 1.5 times your bet, unless the dealer also has Blackjack, in which case it's a "push" (tie).</li>
-                        <li>If your hand is closer to 21 than the dealer's, you win your bet.</li>
-                        <li>If the dealer's hand goes over 21, all active players win their bets.</li>
-                        <li>If your hand goes over 21, you "bust" and lose your bet, regardless of the dealer's hand.</li>
+                        <li>
+                            <i>Blackjack</i>: 
+                            <p>
+                                If you get a "Blackjack" (an Ace and a 10-point card) as your first two cards, you win 1.5 times your bet, unless the dealer also has Blackjack, in which case it's a "push" (tie).
+                            </p>
+                        </li>
+                        <li>
+                            <i>Win</i>: 
+                            <p>
+                                If your hand is closer to 21 than the dealer's, you win your bet.
+                            </p>
+                        </li>
+                        <li>
+                            <i>Lose</i>: 
+                            <p>
+                                If the dealer's hand goes over 21, all active players win their bets.
+                            </p>
+                        </li>
+                        <li>
+                            <i>Push</i>: 
+                            <p>
+                                If your hand goes over 21, you "bust" and lose your bet, regardless of the dealer's hand.
+                            </p>
+                        </li>
                     </ul>
                 </section>
                 <button class="close-rules-dialog-btn">Close</button>

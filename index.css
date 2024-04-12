@@ -1,11 +1,4 @@
-/* 
-header {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    margin: 1.5rem;
-}
-*/
+
 *,
 *::before,
 *::after {
@@ -342,12 +335,13 @@ input[type="radio"]:checked + label {
     }
 }
 
+
 /* Rules Dialog Container */
 .close-rules-dialog-btn {
-    margin-left: 30rem;
+    margin-left: 20rem;
 }
 .rules-dialog-box {
-    width: 50rem;
+    width: 35rem;
     height: 25rem;
     font-weight: 600;
 }
@@ -358,27 +352,52 @@ input[type="radio"]:checked + label {
 }
 ::-webkit-scrollbar-track {
     border-radius: .7rem;
-    background-color: rgb(131, 174, 184);
-      
+    background-color: rgba(0, 110, 59, 0.233);  
 }
 ::-webkit-scrollbar-thumb {
     border-radius: .7rem;
-    background-color: rgb(0, 88, 100); 
+    background-color: rgb(10, 110, 90); 
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(17, 153, 126); 
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: rgb(35, 95, 83); 
 }
 
 /* Rules Styles */
-.rules-dialog-box section:not(:first-child),
-.rules-dialog-box section p:first-child,
-.rules-dialog-box section p:nth-child(2) {
-    border-radius: .7rem;
-    margin-bottom: .5rem;
-    padding: .5rem;
-    border: 1px solid;
-    background-image: linear-gradient(rgb(37, 164, 180), rgb(41, 188, 207), rgb(31, 137, 151), rgb(39, 147, 161), rgb(5, 91, 102));
+.rules-dialog-box section {
+    margin: 0 0 1.5rem 1rem;
+    border: 1px dashed rgba(0, 98, 110, 0.322); 
+    padding: .7rem;
+    border-radius: .3rem;
+    box-shadow: 0 0 .5rem rgba(0, 98, 110, 0.322);
+    font-weight: 500;
+    font-size: .95rem; 
+    background-image: linear-gradient(rgba(8, 167, 135, 0.671), rgba(17, 180, 147, 0.637), rgba(16, 168, 138, 0.644), rgba(18, 146, 120, 0.603));
 }
-.rules-dialog-box section p:first-child {
-    background-image: linear-gradient(gold, yellow, gold, yellow);
+.rules-dialog-box h2 {
+    text-align: center;
+    color: rgb(201, 6, 6); 
+    font-weight: bold;
+    margin-bottom: 1rem;
 }
+.rules-dialog-box li,
+.rules-dialog-box > section > p {
+    margin: .2rem .8rem .9rem .8rem;
+}
+.rules-dialog-box li p {
+     margin-top: .4rem;
+}
+.rules-dialog-box li img {
+    max-width: .5rem;
+    margin-right: .45rem;
+}
+.rules-dialog-box li i {
+    font-weight: bold; 
+    color: rgb(119, 62, 16);  
+}
+
 
 
 

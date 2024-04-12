@@ -6,6 +6,17 @@ function closeDialogBox(dialogBox) {
         dialogBox.id = '';
     }, 200);
 }
+function closeDialogFromOutside(dialogBox, e) {
+    const dialogDimensions = dialogBox.getBoundingClientRect();
+    if (
+        e.clientX < dialogDimensions.left ||
+        e.clientX > dialogDimensions.right ||
+        e.clientY < dialogDimensions.top ||
+        e.clientY > dialogDimensions.bottom
+    ) {
+        closeDialogBox(dialogBox);
+    }
+}
 
 /* Open Settings Box */
 const settingsBtn = document.querySelector('.settings-btn');
@@ -19,7 +30,11 @@ settingsBtn.addEventListener('click', () => {
 const closeSettingsDialog = document.querySelector('.close-settings-dialog-btn');
 closeSettingsDialog.addEventListener('click', () => {
     closeDialogBox(settingsDialogBox);
-})
+});
+
+settingsDialogBox.addEventListener('click', event => {
+    closeDialogFromOutside(settingsDialogBox, event)
+});
 
 
 
@@ -29,11 +44,16 @@ const rulesDialogBox = document.querySelector('.rules-dialog-box');
 
 rulesBtn.addEventListener('click', () => {
     rulesDialogBox.showModal();
-})
+});
 
 /* Close Rules Dialog Box */
 
 const closeRulesDialog = document.querySelector('.close-rules-dialog-btn');
 closeRulesDialog.addEventListener('click', () => {
-    closeDialogBox(rulesDialogBox)
-})
+    closeDialogBox(rulesDialogBox);
+});
+
+/* Close Dialog by clicking outside the dialog box */
+rulesDialogBox.addEventListener('click', (event) => {
+ closeDialogFromOutside(rulesDialogBox, event)
+});
