@@ -24,18 +24,17 @@ body {
 ul {
     list-style-type: none;
 }   
-/* Hardware acceleration */
-/*  {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-} */
+.profile-page,
 .current-bank,
 .home-link,
 button {
     border-radius: .5rem;
     border: 1px solid rgb(119, 161, 55);
 }
+.profile-page:hover {
+    text-decoration: underline;
+}
+.profile-page:active,
 .home-link:active,
 button:active {
     transform: scale(1.03);
@@ -53,6 +52,7 @@ input[type="checkbox"].toggle-sound-music:focus-visible + label::before,
 input[type="radio"]:focus-visible + label {
     outline: 1px solid black;
 }
+/* Hardware acceleration */
 dialog {
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -101,28 +101,31 @@ header img {
 }
 .avatar,
 .home-logo {
-    width: 1.8rem;
+    width: 1.7rem;
 }
 .home-link,
+.profile-page,
 header button {
-    width: 6rem;
+    min-width: 6rem;
     height: 2rem;
     font-weight: bold;
     background-image: linear-gradient(rgb(155, 219, 58), rgb(177, 241, 80), rgb(117, 167, 42));
 }
 .profile-page {
     display: flex;
+    padding: 0 .2rem;
 }
 .profile-page-link {
     text-decoration: none;
-    color: wheat;
+    color: black;
     margin: .4rem 0 0 .5rem;
 }
 .current-bank {
     display: flex;
-    padding: .35rem;
-    background-image: linear-gradient(rgba(22, 155, 172, 0.925), rgba(10, 202, 202, 0.959), rgba(17, 153, 216, 0.911));
-    border-color: rgba(9, 147, 211, 0.555);
+    height: 1.95rem;
+    padding: .4rem .3rem .3rem .3rem;
+    background-image: linear-gradient(rgb(22, 155, 172), rgb(10, 202, 202), rgb(17, 153, 216));
+    border-color: rgb(9, 147, 211);
 }
 .home-link {
     display: flex;
@@ -366,7 +369,7 @@ input[type="radio"]:checked + label {
 }
 .rules-dialog h2 {
     text-align: center;
-    color: rgb(170, 15, 15); 
+    color: rgb(194, 8, 8); 
     font-weight: bold;
     margin-bottom: 1rem;
 }
@@ -374,7 +377,7 @@ input[type="radio"]:checked + label {
 .rules-dialog li,
 .rules-dialog > section > p {
     margin: .2rem .8rem .9rem .8rem;
-    color: rgb(78, 41, 10); 
+    color: rgb(34, 17, 4); 
 }
 .rules-dialog li {
     display: grid;
@@ -392,7 +395,7 @@ input[type="radio"]:checked + label {
 .rules-dialog li i {
     grid-column: 1 / span 3;
     font-weight: bold; 
-    color: rgb(129, 64, 11);  
+    color: rgb(141, 63, 0);  
 }
 
 

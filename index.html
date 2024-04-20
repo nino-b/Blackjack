@@ -16,7 +16,8 @@
     <header>
         <section class="profile-page">
             <img src="/assets/svg-icons/home-logo.svg" alt="Avatar image" class="avatar">
-            <a href="profile" class="profile-page-link">Log in</a>
+            <a href="profile" class="profile-page-link" alt="Log in link">Log In</a>
+            <!-- Alt will change with alt="Profile page link" -->
         </section>
         <section class="current-bank">
             <h2>Bank:</h2>
@@ -108,7 +109,7 @@
                         </li>
                     </ul>
                 </section>
-                <button class="close-dialog-btn">Close</button>
+                <button class="close-dialog-btn" data-id="rules" data-action-type="close-dialog">Close</button>
             </dialog>
         </div>
      
@@ -166,7 +167,7 @@
                 <label for="repeat-last-bet-opt">Repeat Last Bet </label>
                 <p class="warning-about-settings">Changes in game apply on next deal!</p>
 
-                <button class="close-dialog-btn">Close</button>
+                <button class="close-dialog-btn" data-id="settings" data-action-type="close-dialog">Close</button>
             </dialog>
         </div>
 
