@@ -1,18 +1,30 @@
 /** */
-//import Router from "./src/Router.js";
-//
-//window.addEventListener('DOMContentLoaded', async () => {
-//    /* loadData(); */
-//    app.router.init();/* <-- Not Correct !!! */
-//})
 'use strict';
 
-import DialogManager from "./src/DialogManager.js";
-const openDialogBtns = document.querySelectorAll('.dialog-btn');
-const dialogBoxes = document.querySelectorAll('.dialog-box');
-const closeDialogBtns = document.querySelectorAll('.close-dialog-btn');
+import Router from "./src/Router";
 
-const datasetCloseAction = 'close-dialog';
-const closingAnimation = 'dialog-closing';
+/** 
+ * Create an application state manager object.
+ * This object is a centralized store for state manager objects.
+*/
+window.app = {};
 
-new DialogManager({openDialogBtns, dialogBoxes, closeDialogBtns}, {datasetCloseAction, closingAnimation});
+/** 
+ * Add Router to the application state manager object
+*/
+app.router = Router;
+
+
+
+/** 
+ * Ensure that JS runs only after the HTML is loaded, 
+ * without waiting for the other resources to be loaded.
+ * This step is important because it ensures that 
+ * DOM components will be manipulated only after they are fully loaded.
+*/
+window.addEventListener('DOMContentLoaded', () => {
+  /** 
+   * Let the router start working.
+   */
+  app.router.init();
+});
