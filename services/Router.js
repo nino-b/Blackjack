@@ -41,6 +41,15 @@ const Router = {
             });
         });
         /** 
+         * Handle URL changes when user clicks 'back' or 'forward' button'.
+         * Because in such cases user navigates through already
+         * existing history states.
+        */
+        window.addEventListener('popstate', event => {
+            Router.go(event.state.route, false)
+        })
+
+        /** 
          * Process the initial URL.
          * If the user opens copied link to the page, else than main page
          * program should open that page, not the initial page, without reloading the page.
@@ -61,19 +70,41 @@ const Router = {
      * @param { boolean } [addToHistory = true] - Flag to determine whther to add the navigation event to the browser's history stack.
     */
     go: (route, addToHistory = true) => {
+
         /** 
          * If adding to the history option is true, 
          * using browser's 'history' API, we add current route to the history
          * and change the current URL without causing page reload.
          * It takes three arguments:
          * '{ route }' - an object associated with the 
-         * new state history entry, created by 'pushState()'.
+         * new state history entry, created by 'pushState()'..
+         * In this case, a string that represents current path.
          * " '' " - title of the new history entry -
          * usually set as null (empty string).
          * 'route' - new history url (optional).
         */
         if (addToHistory) {
             history.pushState({ route }, '', route);
+        }
+        
+        let pageElement = null;
+
+        switch (route) {
+            case '/':
+                pageElement = document.createElement('home-page');
+            case '/rules':
+                pageElement = document.createElement('rules-page');
+                break;
+        }
+        const mainEl = document.querySelector('main');
+
+        if (pageElement) {
+            mainEl.innerHTML = '';
+            mainEl.appendChild(pageElement);
+            window.scrollX = 0;
+            window.scrollY = 0;
+        } else {
+            mainEl.textContent = 'Oops, 404!'
         }
     }
 }

@@ -1,0 +1,17 @@
+/* Rules Page CSS */
+
+body {
+  height: 93vh;
+  width: 70vw;
+  background-image: linear-gradient(#a09c99, 
+                                    #cbcbcb, 
+                                    #c0bcb8, 
+                                    #908c88);
+}
+
+#rules-page-container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}

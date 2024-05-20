@@ -116,10 +116,6 @@ new DialogManager({openDialogBtns, dialogBoxes, closeDialogBtns}, {datasetCloseA
                             <i>Insurance</i>
                             <p>If the dealer's upcard is an Ace, players can take "insurance," a side bet up to half the original bet, which pays 2:1 if the dealer has Blackjack.</p>
                         </li>
-                        <li>
-                            <i>Even Money</i>
-                            <p>If you are dealt an Ace and a 10-value card (totaling 21, a blackjack), and the dealer's upcard is an Ace, you can take "even money",  1:1 payout, instead of risking a push in the hope of a larger win.</p>
-                        </li>
                     </ul>
                 </section>
                 <section class="outcome-rules">

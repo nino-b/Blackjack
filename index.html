@@ -13,9 +13,10 @@
     <script src="app.js" type="module" defer></script>
 </head>
 <body>
-    <div id="bg-container">
-        <div id="table-container">
-            <header>
+    <header>
+        <div id="nav-outer-container">
+            <div id="nav-inner-container" class="bottom">
+                
                 <nav>
                     <ul>
                         <li>
@@ -39,8 +40,34 @@
                         </li>
                     </ul>
                 </nav>
-            </header>
+                <button id="display-nav" class="hidden">
+                    <img src="./assets/body/drop-down.svg">
+                </button>
+            </div>
         </div>
-    </div>
+    </header>
+    <main></main>
+    <!-- ------------------------------------------------------- -->
+    <!-- ------------------------------------------------------- -->
+
+    <template id="account-page-template">
+        <section id="account-page-container"></section>
+    </template>
+
+
+    <template id="history-page-template">
+        <section id="history-page-container"></section>
+    </template>
+
+
+    <template id="game-page-template">
+        <section id="game-page-container"></section>
+    </template>
+    
+    
+    <template id="rules-page-template">
+        <section id="rules-page-container"></section>
+    </template>
+ 
 </body>
 </html>

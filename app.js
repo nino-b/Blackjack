@@ -1,7 +1,8 @@
 /** */
 'use strict';
 
-import Router from "./src/Router";
+import Router from "./services/Router.js";
+import Store from "./services/Store.js";
 
 /** 
  * Create an application state manager object.
@@ -13,6 +14,7 @@ window.app = {};
  * Add Router to the application state manager object
 */
 app.router = Router;
+app.store = Store;
 
 
 
