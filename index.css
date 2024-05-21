@@ -3,76 +3,71 @@
 *::after {
     box-sizing: border-box;
 }
-html, 
-body,
-header,
-#nav-outer-container {
+
+/* General */
+
+header > nav {
     height: 100%;
     width: 100%;
+}
+/* ******************** */
+body {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(./assets/body/bg.jpg);
+}
+
+body,
+#border {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-body {
+
+#border {
     height: 93vh;
     width: 70vw;
-    background-image: url(./assets/body/bg.jpg);
-}
 
-a {
-    text-decoration: none;
-}
-
-/* Game Viewport */
-
-header {
     border-radius: 1.5rem;
     background-image: radial-gradient(black, rgb(52, 52, 52), black);
     box-shadow: 0 0 2rem rgb(0, 0, 0);
 }
-#nav-outer-container {
+
+#bg-container {
     height: 95%;
     width: 95%;
-
-    border-radius: 1.5rem;
-    background-image: url(./assets/body/bg-table-main.svg);
-    background-size: cover;
-    background-position: top;
-    overflow: hidden;
 
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
+
+    border-radius: 1.5rem;
+    background-size: cover;
+    background-position: top;
+    overflow: hidden;
 }
 
-/* Header */ 
+.align-top {
+    grid-row: 1 / auto;
+    grid-column: 1 / span 12;
 
-#nav-inner-container,
-#nav-inner-container ul {
     padding: 1rem 1rem;
-    width: 100%;
 }
-/***************************
- Home page navigation */
-.home-nav-alignment {
-    grid-row: 1 / span 4;
+.align-bottom {
+    grid-row: 10 / auto;
     grid-column: 1 / span 12;
+
+    margin: 3rem 1rem 0 1rem;
+    padding: 3rem 1rem;
 }
-.home-nav-alignment ul {
-    margin-top: 5rem;
-}
-/* Navigation for other pages */
-.bottom {
-    grid-row: 1 / span 2;
-    grid-column: 1 / span 12;
- 
-}
-/* ************************ */
-#nav-inner-container ul {
+
+header {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
     align-items: baseline;
+
+    z-index: 1;
 
     background-image:  linear-gradient(
         45deg, 
@@ -87,12 +82,25 @@ header {
     border-radius: 1.25rem;
 }
 
+header > nav {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+}
 
-/* #nav-inner-container ul elements */
-#nav-inner-container ul button {
+header > nav > ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+
+header > nav > ul button{
     background-color: transparent;
     border: none;
 }
+
+/* ************************ */
 /* Trick: underline widening effect on hover */
 .nav-item {
     /* 
@@ -172,6 +180,10 @@ Nav display btn */
 }
 /****************************** */
 
+main {
+    grid-row: 1 / span 12;
+    grid-column: 1 / span 12;
+}
 
 
 
@@ -196,7 +208,20 @@ Nav display btn */
 
 
 
-/* General */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .hidden {
     display: none;

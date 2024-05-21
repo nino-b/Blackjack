@@ -7,9 +7,14 @@ class HomePage extends BaseComponent {
     this.pathToCSS = URLs.cssURLs.Home;
     this.elementId = '#rules-page-template';
     this.eventName = 'appendhomechange';
-    this.initialSetup(this.pathToCSS, this.elementId, this.eventName);
   }
   render() {
-    this.root.querySelector('#home-page-container').innerHTML = '';
+    const bgContainer = this.root.querySelector('#home-page-container');
+    bgContainer.innerHTML = '';
+    /** 
+     * This code clears out every other class and 
+     * assigns only this current one.
+    */
+    bgContainer.classList = 'align-bottom';
   }
 }

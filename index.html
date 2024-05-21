@@ -13,40 +13,45 @@
     <script src="app.js" type="module" defer></script>
 </head>
 <body>
-    <header>
-        <div id="nav-outer-container">
-            <div id="nav-inner-container" class="bottom">
-                
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="account" class="nav-item">Log In</a>
-                        </li>
-                        <li>
-                            <a href="history" class="nav-item">History</a>
-                        </li>
-                        <li>
-                            <a href="play" class="nav-item play-btn">Play</a>
-                        </li>
-                        <li class="hidden" class="nav-item">
-                            <a href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="rules" class="nav-item">Rules</a>
-                        </li>
-                        <li>
-                            <button class="nav-item">Settings</button>
-                            <dialog></dialog>
-                        </li>
-                    </ul>
-                </nav>
-                <button id="display-nav" class="hidden">
-                    <img src="./assets/body/drop-down.svg">
-                </button>
-            </div>
+    <div id="border">
+        <div id="bg-container">
+            <header class="align-top">
+             <!--    <div id="nav-outer-container">
+                    <div id="nav-inner-container" class="bottom"> -->
+                        
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="account" class="nav-item">Log In</a>
+                                </li>
+                                <li>
+                                    <a href="history" class="nav-item">History</a>
+                                </li>
+                                <li>
+                                    <a href="play" class="nav-item play-btn">Play</a>
+                                </li>
+                                <li class="hidden" class="nav-item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li>
+                                    <a href="rules" class="nav-item">Rules</a>
+                                </li>
+                                <li>
+                                    <button class="nav-item">Settings</button>
+                                    <dialog></dialog>
+                                </li>
+                            </ul>
+                        </nav>
+                        <button id="display-nav" class="hidden">
+                            <img src="./assets/body/drop-down.svg">
+                        </button>
+                   <!-- </div>
+                 </div> -->
+            </header>
+            <main></main>
         </div>
-    </header>
-    <main></main>
+    </div>
+
     <!-- ------------------------------------------------------- -->
     <!-- ------------------------------------------------------- -->
 
@@ -62,6 +67,11 @@
 
     <template id="game-page-template">
         <section id="game-page-container"></section>
+    </template>
+    
+    
+    <template id="home-page-template">
+        <div id="main-container"></div>
     </template>
     
     

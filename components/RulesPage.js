@@ -7,7 +7,6 @@ export default class RulesPage extends BaseComponent {
     this.pathToCSS = URLs.cssURLs.Rules;
     this.elementId = '#rules-page-template';
     this.eventName = 'appendruleschange';
-    this.initialSetup(this.pathToCSS, this.elementId, this.eventName);
   }
   render() {
     const rules = app.store.rules;
@@ -49,7 +48,6 @@ export default class RulesPage extends BaseComponent {
       const lastP = document.createElement('p');
       lastP.textContent = wrappingUp;
     
-
       document.body.header.div.div.classList = 'home-nav-alignment';
     } else {
       console.error(`ERROR: Can't access 'rules' property in the 'Store' to render 'RulesPage' component.`);

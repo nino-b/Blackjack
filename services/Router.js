@@ -91,13 +91,16 @@ const Router = {
 
         switch (route) {
             case '/':
+                console.log('/ matched')
                 pageElement = document.createElement('home-page');
+                break;
             case '/rules':
+                console.log('/rules matched')
                 pageElement = document.createElement('rules-page');
                 break;
         }
         const mainEl = document.querySelector('main');
-
+        console.log('pageElement', pageElement)
         if (pageElement) {
             mainEl.innerHTML = '';
             mainEl.appendChild(pageElement);

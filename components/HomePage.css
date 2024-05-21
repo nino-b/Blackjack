@@ -1,8 +1,20 @@
-Home page navigation */
-.home-nav-alignment {
+/* Home page navigation */
+/* .home-nav-alignment {
     grid-row: 8 / span 4;
     grid-column: 1 / span 12;
 }
 .home-nav-alignment ul {
     margin-top: 5rem;
+} */
+
+
+#main-container {
+    height: 100%;
+    width: 100%;
+
+    background-image: url(./assets/body/bg-table-main.svg);
+
+ /*    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr); */
 }
