@@ -1,6 +1,3 @@
-/** */
-
-
 /**
  * This class encapsulates all common features for Web Component classes.
  * It provides a base for creating custom elements with encapsulated CSS, templates, and event handling.
@@ -24,7 +21,6 @@ export default class BaseComponent extends HTMLElement {
      * @type {string | null} - The name of an event that will fire up specific page display actions.
     */
     this.eventName = null;
-    this.setUpCSS();
   }
   /** 
    * Adds styles to the HTML document.
@@ -78,6 +74,7 @@ export default class BaseComponent extends HTMLElement {
     console.log('Base Component Rendered.');
   }
   connectedCallback() {
+    this.setUpCSS();
     this.setUpTemplate();
     this.setUpEventListener();
     this.render();

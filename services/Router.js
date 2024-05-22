@@ -46,8 +46,8 @@ const Router = {
          * existing history states.
         */
         window.addEventListener('popstate', event => {
-            Router.go(event.state.route, false)
-        })
+            Router.go(event.state.route, false);
+        });
 
         /** 
          * Process the initial URL.
@@ -70,7 +70,6 @@ const Router = {
      * @param { boolean } [addToHistory = true] - Flag to determine whther to add the navigation event to the browser's history stack.
     */
     go: (route, addToHistory = true) => {
-
         /** 
          * If adding to the history option is true, 
          * using browser's 'history' API, we add current route to the history
@@ -91,16 +90,14 @@ const Router = {
 
         switch (route) {
             case '/':
-                console.log('/ matched')
                 pageElement = document.createElement('home-page');
                 break;
             case '/rules':
-                console.log('/rules matched')
                 pageElement = document.createElement('rules-page');
                 break;
         }
         const mainEl = document.querySelector('main');
-        console.log('pageElement', pageElement)
+       
         if (pageElement) {
             mainEl.innerHTML = '';
             mainEl.appendChild(pageElement);
@@ -113,3 +110,6 @@ const Router = {
 }
 
 export default Router;
+
+/* console.log('', )
+console.log everything */

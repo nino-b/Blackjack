@@ -5,7 +5,7 @@ export default class RulesPage extends BaseComponent {
   constructor() {
     super();
     this.pathToCSS = URLs.cssURLs.Rules;
-    this.elementId = '#rules-page-template';
+    this.templateID = '#rules-page-template';
     this.eventName = 'appendruleschange';
   }
   render() {

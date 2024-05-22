@@ -3,6 +3,8 @@
 
 import Router from "./services/Router.js";
 import proxiedStore from "./services/Store.js";
+import HomePage from "./components/HomePage.js";
+import RulesPage from "./components/RulesPage.js";
 
 /** 
  * Create an application state manager object.
