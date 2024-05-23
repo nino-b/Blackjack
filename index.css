@@ -4,7 +4,9 @@
     box-sizing: border-box;
 }
 
-/* General */
+* {
+    font-family: 'Times New Roman', Times, serif;
+}
 
 header > nav {
     height: 100%;
@@ -46,11 +48,28 @@ body,
     background-position: top;
     overflow: hidden;
 }
+/******************************************* */
+/* Page Background images */
+.home,
+.game {
+    background-image: url("./assets/body/bg-table-main.svg");
+}
+.rules {
+    background-image: linear-gradient(#83807d, 
+                                      #bbb8b8, 
+                                      #bfbab7, 
+                                      #969391);
+}
+.history,
+.about {}
+.account {}
+/******************************************* */
 
 .align-top {
     grid-row: 1 / auto;
     grid-column: 1 / span 12;
 
+    margin: .5rem .4rem 0 .4rem;
     padding: 1rem 1rem;
 }
 .align-bottom {
@@ -112,7 +131,7 @@ header > nav > ul button{
     padding: .6rem 1rem;
 
     color: rgba(206, 204, 204, 0.952);
-    font-size: 1.12rem;
+    font-size: 1.3rem;
     cursor: pointer;
 
     border-bottom: 2px solid transparent;
@@ -150,14 +169,6 @@ header > nav > ul button{
 .nav-item:active {
     transform: scale(1.1);
 }
-.play-btn {
-    font-size: 1.6rem;
-    color: gold;
-}
-/* Underline color - golden */
-.play-btn::after {
-    background-color: gold;
-}
 
 /*******************************
 Nav display btn */
@@ -181,8 +192,9 @@ Nav display btn */
 /****************************** */
 
 main {
-    grid-row: 1 / span 12;
+    grid-row: 3 / span 10;
     grid-column: 1 / span 12;
+    padding: .4rem;
 }
 
 

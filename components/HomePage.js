@@ -18,16 +18,13 @@ export default class HomePage extends BaseComponent {
     this.templateID = 'home-page-template';
     this.eventName = 'appendhomechange';
   }
-  render() {
-    const header = document.getElementsByTagName('header').className = 'align-bottom';
-    console.log(header)
-    /** 
-     * This code clears out every other class and 
-     * assigns only this current one.
-    */
-
-    header.className = 'align-bottom';
-    console.log(header)
+  changeBg() {
+    const bgContainer = app.store.bgContainer;
+    bgContainer.classList = 'home';
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.changeBg();
   }
 }
 

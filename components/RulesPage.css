@@ -1,17 +1,40 @@
 /* Rules Page CSS */
 
-body {
-  height: 93vh;
-  width: 70vw;
-  background-image: linear-gradient(#a09c99, 
-                                    #cbcbcb, 
-                                    #c0bcb8, 
-                                    #908c88);
-}
 
 #rules-page-container {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  margin: 1rem;
+
+  overflow: scroll;
+}
+#rules-page-container div {
+  display: block;
+}
+
+
+
+::-webkit-scrollbar {
+  width: .7rem;
+  height: .9rem;
+}
+::-webkit-scrollbar-thumb {
+  background: #686868; /* Color of the scrollbar thumb */
+  border-radius: 2rem; /* Rounded corners */
+  border: 3px solid transparent; /* White border around the thumb */
+}
+
+/* The track (progress bar) of the scrollbar */
+::-webkit-scrollbar-track {
+  background: transparent; /* Color of the track */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb when hovered */
+}
+::-webkit-scrollbar-thumb:active {
+  background: #2e2e2e; /* Color of the scrollbar thumb when hovered */
 }

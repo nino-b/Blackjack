@@ -2,6 +2,9 @@ import RULES from "../data/rules.js";
 
 const Store = {
   rules: RULES,
+  header: document.getElementsByTagName('header')[0],
+  main: document.getElementsByTagName('main')[0],
+  bgContainer: document.getElementById('bg-container'),
 }
 
 const proxiedStore = new Proxy(Store, {

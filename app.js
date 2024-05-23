@@ -20,6 +20,7 @@ app.store = proxiedStore;
 
 
 
+
 /** 
  * Ensure that JS runs only after the HTML is loaded, 
  * without waiting for the other resources to be loaded.

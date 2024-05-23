@@ -67,17 +67,40 @@ export default class BaseComponent extends HTMLElement {
     window.addEventListener(this.eventName, this.render)
   }
   /** 
-   * This will be overridden in specific classes.
-   * It will provide the what should be rendered on the page.
+   * In each instance, it will be enhanced with 
+   * specific functionalities.
   */
   render() {
     console.log('Base Component Rendered.');
+  }
+  /**
+   * It shows where the <header> should be displayed.
+   */
+  alignHeader() {
+    const header = app.store.header;
+
+    if (this.templateID === 'home-page-template') {
+        /** 
+         * This code clears out every other class and 
+         * assigns only this current one.
+        */
+      header.classList = 'align-bottom';
+    } else {
+      if (header.classList.contains('align-bottom')) {
+        /** 
+         * This code clears out every other class and 
+         * assigns only this current one.
+        */
+        header.classList = 'align-top';
+      }
+      return;
+    }
   }
   connectedCallback() {
     this.setUpCSS();
     this.setUpTemplate();
     this.setUpEventListener();
-    this.render();
+    this.alignHeader();
   }
   disconnectedCallback() {
     window.removeEventListener(this.eventName, this.render);

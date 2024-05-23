@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="border">
-        <div id="bg-container">
+        <div id="bg-container" class="home">
             <header class="align-top">
              <!--    <div id="nav-outer-container">
                     <div id="nav-inner-container" class="bottom"> -->
@@ -22,16 +22,13 @@
                         <nav>
                             <ul>
                                 <li>
-                                    <a href="account" class="nav-item">Log In</a>
-                                </li>
-                                <li>
-                                    <a href="history" class="nav-item">History</a>
-                                </li>
-                                <li>
                                     <a href="/" class="nav-item">Home</a>
                                 </li>
                                 <li>
                                     <a href="play" class="nav-item play-btn">Play</a>
+                                </li>
+                                <li>
+                                    <a href="history" class="nav-item">History</a>
                                 </li>
                                 <li>
                                     <a href="rules" class="nav-item">Rules</a>
@@ -42,6 +39,9 @@
                                 </li>
                                 <li>
                                     <a href="/about" class="nav-item">About</a>
+                                </li>
+                                <li>
+                                    <a href="account" class="nav-item">Log In</a>
                                 </li>
                             </ul>
                         </nav>
@@ -57,29 +57,35 @@
 
     <!-- ------------------------------------------------------- -->
     <!-- ------------------------------------------------------- -->
-
-    <template id="account-page-template">
-        <section id="account-page-container"></section>
+    
+    
+    <template id="home-page-template"> <!-- + -->
+        <div id="home-container"></div>
     </template>
-
-
-    <template id="history-page-template">
-        <section id="history-page-container"></section>
-    </template>
-
+    
 
     <template id="game-page-template">
         <section id="game-page-container"></section>
     </template>
     
-    
-    <template id="home-page-template">
-        <div id="home-container"></div>
+
+    <template id="history-page-template">
+        <section id="history-page-container"></section>
     </template>
     
     
-    <template id="rules-page-template">
+    <template id="rules-page-template"> <!-- ! -->
         <section id="rules-page-container"></section>
+    </template>
+    
+    
+    <template id="about-page-template">
+        <section id="about-page-container"></section>
+    </template>
+
+
+    <template id="account-page-template">
+        <section id="account-page-container"></section>
     </template>
  
 </body>

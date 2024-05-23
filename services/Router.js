@@ -34,6 +34,7 @@ const Router = {
                  * 2. 'event.target.getAttribute('href') - will return the pathname.
                 */
                 const href = event.target.getAttribute('href');
+                console.log('href', href)
                 /** 
                  * Update the page content and browser history based on the route.
                 */
@@ -92,7 +93,7 @@ const Router = {
             case '/':
                 pageElement = document.createElement('home-page');
                 break;
-            case '/rules':
+            case 'rules':
                 pageElement = document.createElement('rules-page');
                 break;
         }
@@ -110,6 +111,3 @@ const Router = {
 }
 
 export default Router;
-
-/* console.log('', )
-console.log everything */
