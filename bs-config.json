@@ -1,0 +1,9 @@
+{
+  "server": {
+    "baseDir": "./",
+    "routes": {
+      "/rules": "index.html",
+      "/another-route": "index.html"
+    }
+  }
+}

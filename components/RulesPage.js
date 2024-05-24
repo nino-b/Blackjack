@@ -1,5 +1,6 @@
 import BaseComponent from "./BaseComponent.js";
 import URLs from "../data/urls.js";
+import { createEl, addClass } from "../util/domTools.js";
 
 export default class RulesPage extends BaseComponent {
   constructor() {
@@ -8,94 +9,87 @@ export default class RulesPage extends BaseComponent {
     this.templateID = 'rules-page-template';
     this.eventName = 'appendruleschange';
   }
-template() {
+
+    /* 
+  <section id="rules-page-container">
+    <h1></h1>
+    <p></p>
+    
+    <div class="rule-group-container">
+      <h2>group_name</h2>
+
+      <ul>
+
+        <li>
+          <p>
+            <span>label</span> description.
+          </p>
+        </li>
+
+      </ul>
+    </div>
+
+    <p></p>
+  </section>
+  */
+render() {
   const rules = app.store.rules;
   const ruleSection = this.root.querySelector('#rules-page-container');
-  const firstWordMatch = '/^.*?:/';
 
-  /* Introduction */
-  const h1 = document.createElement('h1');
-  h1.textContent = rules.introduction.introduction_heading;
-  ruleSection.appendChild(h1)
 
-  const introductionP = document.createElement('p');
-  introductionP.textContent = rules.introduction.inroduction_paragraph;
-  ruleSection.appendChild(introductionP);
+  createEl('h1', ruleSection, rules.introduction.introduction_heading);
+  createEl('p', ruleSection, rules.introduction. introduction_paragraph);
 
-  /* Each Rule Section */
+  const ruleContainer = createEl('div', ruleSection);
+  addClass(ruleContainer, 'rule-container');
+
   rules.rules.forEach(ruleGroup => {
-    const ruleDiv = document.createElement('div');
+    /* 
+    <div class="rule-group-container">
+      <h2>group_name</h2>
 
-    const ruleHeading = document.createElement('h2');
-    ruleHeading.textContent = ruleGroup.group_name;
-    ruleDiv.appendChild(ruleHeading);
+      <ul>
 
-    const ruleUl = document.createElement('ul');
+        <li>
+          <p>
+            <span>label</span> description.
+          </p>
+        </li>
 
-    ruleGroup.group_items.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
+      </ul>
+    </div>
+    */
+    const ruleGroupContainer = createEl('div', ruleContainer);
+    addClass(ruleGroupContainer, 'rule-group-container');
 
-      ruleUl.appendChild(li);
+    const ruleTitle = createEl('h2', ruleGroupContainer, ruleGroup.group_name);
+    const ruleList = createEl('ul', ruleGroupContainer);
+
+    ruleGroup.group_items.forEach(rule => {
+      const ruleListItem = createEl('li', ruleList);
+      const ruleListParaghraph = createEl('p', ruleListItem);
+      const ruleListTitle = createEl('span', ruleListParaghraph, rule.label);
+
+      const descriptionText = document.createTextNode(rule.description);
+      ruleListParaghraph.appendChild(descriptionText);
     });
-
-    ruleDiv.appendChild(ruleUl);
-    ruleSection.appendChild(ruleDiv);
   });
 
-  /* Wrapping Up */
-  const wrappingUp = rules.final_words.wrapping_up;
-
-  const lastP = document.createElement('p');
-  lastP.textContent = wrappingUp;
-  ruleSection.appendChild(lastP);
+  const finalWords = rules.wrapping_up.final_words;
+  createEl('p', ruleSection, finalWords);
 }
+
+createUl() {}
 changeBg() {
   const bgContainer = app.store.bgContainer;
   bgContainer.classList = 'rules';
 }
   connectedCallback() {
     super.connectedCallback();
-    this.template();
     this.changeBg();
+    this.render();
   }
 }
 
 
 customElements.define('rules-page', RulesPage);
-
-
-
-// const h1 = document.createElement('h1');
-// h1.textContent = rules.introduction.introduction_heading;
-// 
-// /* Introduction */
-// const introductionP = document.createElement('p');
-// introductionP.textContent = rules.introduction.inroduction_paragraph;
-// 
-// /* Each Rule Section */
-// rules.rules.forEach(ruleGroup => {
-//   const ruleSection = document.createElement('section');
-// 
-//   const ruleHeading = document.createElement('h2');
-//   ruleHeading.textContent = ruleGroup.group_name;
-//   ruleSection.appendChild(ruleHeading);
-// 
-//   const ruleUl = document.createElement('ul');
-// 
-//   ruleGroup.group_items.forEach(item => {
-//     const li = document.createElement('li');
-//     li.textContent = item;
-// 
-//     ruleUl.appendChild(li);
-//   });
-//   
-//   ruleSection.appendChild(ruleUl);
-// 
-// });
-// 
-// /* Wrapping Up */
-// const wrappingUp = rules.final_words.wrapping_up;
-// 
-// const lastP = document.createElement('p');
-// lastP.textContent = wrappingUp;

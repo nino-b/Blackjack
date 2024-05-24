@@ -13,6 +13,7 @@ export default class BaseComponent extends HTMLElement {
      * @type {string | null} - A string that contains path to the CSS file.
     */
     this.pathToCSS = null;
+    this.pathToResetCSS = './reset.css';
     /** 
      * @type {string | null} - An ID of HTML template tag, which contains template for specific page.
     */
@@ -28,27 +29,32 @@ export default class BaseComponent extends HTMLElement {
   setUpCSS() {
     this.styles = document.createElement('style');
     this.root.appendChild(this.styles);
-    this.#loadCSS();
+    this.#applyStyles();
   }
   /** 
    * Asynchronously loads a CSS file.
   */
-  async #loadCSS() {
-    if (!this.pathToCSS) {
-      console.error("CSS path is not defined.");
-      return;
-    }
+  async #applyStyles() {
     try {
-      const response = await fetch(this.pathToCSS);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const css = await response.text();
-    this.styles.textContent = css;
- 
+      const [ resetCSS, stylesCSS ] = await Promise.all([
+        this.#fetchCSS(this.pathToResetCSS),
+        this.#fetchCSS(this.pathToCSS)
+      ]);
+
+      const styles = document.createElement('style');
+      styles.textContent = `${resetCSS}\n${stylesCSS}`;
+      this.root.appendChild(styles);
     } catch (error) {
-      console.error(`ERROR loading CSS: ${error.message} `);
+      console.error('Failed to apply styles:', error);
     }
+  }
+  async #fetchCSS(url) {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${url}`);
+    }
+    return response.text();
   }
   /** 
    * Retrieves a template from HTML and appends it to the Shadow DOM.

@@ -93,8 +93,12 @@ const Router = {
             case '/':
                 pageElement = document.createElement('home-page');
                 break;
-            case 'rules':
+            case '/rules':
                 pageElement = document.createElement('rules-page');
+                break;
+            default:
+                pageElement = document.createElement('h1');
+                pageElement.textContent = 'Oops, 404!';
                 break;
         }
         const mainEl = document.querySelector('main');

@@ -1,40 +1,71 @@
 /* Rules Page CSS */
 
-
-#rules-page-container {
-  height: 100%;
-  width: 100%;
-
-  margin: 1rem;
-
-  overflow: scroll;
-}
-#rules-page-container div {
-  display: block;
-}
-
-
-
 ::-webkit-scrollbar {
   width: .7rem;
   height: .9rem;
 }
 ::-webkit-scrollbar-thumb {
-  background: #686868; /* Color of the scrollbar thumb */
-  border-radius: 2rem; /* Rounded corners */
-  border: 3px solid transparent; /* White border around the thumb */
+  background: #686868; 
+  border-radius: 2rem; 
+  border: 3px solid transparent; 
 }
-
-/* The track (progress bar) of the scrollbar */
 ::-webkit-scrollbar-track {
-  background: transparent; /* Color of the track */
-  border-radius: 10px; /* Rounded corners */
+  background: transparent;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 /* Scrollbar on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Color of the scrollbar thumb when hovered */
+  background: #555; 
 }
 ::-webkit-scrollbar-thumb:active {
-  background: #2e2e2e; /* Color of the scrollbar thumb when hovered */
+  background: #2e2e2e; 
+}
+
+
+
+#rules-page-container {
+  height: 100%;
+  margin: .5rem 3rem 0 3rem;
+  overflow: scroll;
+
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+h1,
+h2,
+.rule-group-container span {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 .4rem .4rem #634848;
+}
+h2 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 .2rem .2rem #645252ca;
+}
+p {
+  font-size: 1.1rem;
+}
+h1 ~ p {
+  margin: 1rem 0;
+}
+
+.rule-group-container {
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid rgba(81, 73, 73, 0.689);
+  box-shadow: 0 .1rem .3rem rgba(80, 75, 75, 0.419);
+}
+.rule-group-container p {
+  margin-bottom: .3rem;
 }

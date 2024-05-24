@@ -42,6 +42,16 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+/* Adding my preferred global styles */
 a {
     text-decoration: none;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+    font-family: 'Times New Roman', Times, serif;
 }
