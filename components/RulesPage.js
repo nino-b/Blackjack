@@ -10,55 +10,69 @@ export default class RulesPage extends BaseComponent {
     this.eventName = 'appendruleschange';
   }
 
-    /* 
-  <section id="rules-page-container">
-    <h1></h1>
-    <p></p>
-    
-    <div class="rule-group-container">
-      <h2>group_name</h2>
+  /* 
+<section id="rules-page-container">
+  <h1></h1>
+  <form>
+    <input type="search" placeholder="Look up a rule">
+    <button>Search</button>
+  </form>
+  <p></p>
+  
+  <div class="rule-group-container">
+    <h2>group_name</h2>
 
-      <ul>
+    <ul>
 
-        <li>
-          <p>
-            <span>label</span> description.
-          </p>
-        </li>
+      <li>
+        <p>
+          <span>label</span> description.
+        </p>
+      </li>
 
-      </ul>
-    </div>
+    </ul>
+  </div>
 
-    <p></p>
-  </section>
+  <p></p>
+</section>
+*/
+  render() {
+    const rules = app.store.rules;
+    const ruleSection = this.root.querySelector('#rules-page-container');
+
+
+    createEl('h1', ruleSection, rules.introduction.introduction_heading);
+
+    const introduction = createEl('p', ruleSection, rules.introduction.introduction_paragraph);
+    addClass(introduction, 'introduction');
+
+    const ruleContainer = createEl('div', ruleSection);
+    addClass(ruleContainer, 'rule-container');
+
+    rules.rules.forEach(ruleGroup => {
+      this.#createRuleGroupDiv(ruleContainer, ruleGroup);
+    });
+
+    const wrappingUp = rules.wrapping_up.final_words;
+    const finalWords = createEl('p', ruleSection, wrappingUp);
+    addClass(finalWords, 'final-words');
+  }
+  /* 
+  <div class="rule-group-container">
+    <h2>group_name</h2>
+
+    <ul>
+
+      <li>
+        <p>
+          <span>label</span> description.
+        </p>
+      </li>
+
+    </ul>
+  </div>
   */
-render() {
-  const rules = app.store.rules;
-  const ruleSection = this.root.querySelector('#rules-page-container');
-
-
-  createEl('h1', ruleSection, rules.introduction.introduction_heading);
-  createEl('p', ruleSection, rules.introduction. introduction_paragraph);
-
-  const ruleContainer = createEl('div', ruleSection);
-  addClass(ruleContainer, 'rule-container');
-
-  rules.rules.forEach(ruleGroup => {
-    /* 
-    <div class="rule-group-container">
-      <h2>group_name</h2>
-
-      <ul>
-
-        <li>
-          <p>
-            <span>label</span> description.
-          </p>
-        </li>
-
-      </ul>
-    </div>
-    */
+  #createRuleGroupDiv(ruleContainer, ruleGroup) {
     const ruleGroupContainer = createEl('div', ruleContainer);
     addClass(ruleGroupContainer, 'rule-group-container');
 
@@ -73,21 +87,19 @@ render() {
       const descriptionText = document.createTextNode(rule.description);
       ruleListParaghraph.appendChild(descriptionText);
     });
-  });
-
-  const finalWords = rules.wrapping_up.final_words;
-  createEl('p', ruleSection, finalWords);
-}
-
-createUl() {}
-changeBg() {
-  const bgContainer = app.store.bgContainer;
-  bgContainer.classList = 'rules';
-}
+    return ruleGroupContainer;
+  }
+  changeBg() {
+    const bgContainer = app.store.bgContainer;
+    bgContainer.classList = 'rules';
+  }
   connectedCallback() {
     super.connectedCallback();
     this.changeBg();
     this.render();
+  }
+  disconnectedCallback() {
+    // Remove event listener from the search box
   }
 }
 

@@ -3,6 +3,7 @@
 
 import Router from "./services/Router.js";
 import proxiedStore from "./services/Store.js";
+import DialogManager from "./services/DialogManager.js";
 import HomePage from "./components/HomePage.js";
 import RulesPage from "./components/RulesPage.js";
 
@@ -18,7 +19,14 @@ window.app = {};
 app.router = Router;
 app.store = proxiedStore;
 
-
+const dialogManager = new DialogManager({
+    openDialogBtns: document.querySelectorAll('.open-dialog-btn'),
+    dialogBoxes: document.querySelectorAll('.dialog-box'),
+    closeDialogBtns: document.querySelectorAll('.close-dialog-btn')
+}, {
+    datasetCloseAction: 'close-dialog',
+    closingAnimation: 'dialog-closing'
+});
 
 
 /** 

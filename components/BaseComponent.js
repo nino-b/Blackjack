@@ -1,3 +1,4 @@
+import { addClass, removeClass } from "../util/domTools.js";
 /**
  * This class encapsulates all common features for Web Component classes.
  * It provides a base for creating custom elements with encapsulated CSS, templates, and event handling.
@@ -85,12 +86,21 @@ export default class BaseComponent extends HTMLElement {
   alignHeader() {
     const header = app.store.header;
 
+    const ul = header.querySelector('nav > ul');
+    const secondLi = ul.querySelectorAll('li')[1];
+    const liClassName = 'play-list-item';
+
+    const playLink = header.querySelector('.play-link');
+    const linkClassName = 'play-link-design';
+
     if (this.templateID === 'home-page-template') {
         /** 
          * This code clears out every other class and 
          * assigns only this current one.
         */
       header.classList = 'align-bottom';
+      addClass(playLink, linkClassName);
+      addClass(secondLi, liClassName);
     } else {
       if (header.classList.contains('align-bottom')) {
         /** 
@@ -98,6 +108,8 @@ export default class BaseComponent extends HTMLElement {
          * assigns only this current one.
         */
         header.classList = 'align-top';
+        removeClass(playLink, linkClassName);
+        removeClass(secondLi, liClassName);
       }
       return;
     }

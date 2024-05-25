@@ -65,21 +65,6 @@ body,
 .account {}
 /******************************************* */
 
-.align-top {
-    grid-row: 1 / auto;
-    grid-column: 1 / span 12;
-
-    margin: .5rem .4rem 0 .4rem;
-    padding: 1rem 1rem;
-}
-.align-bottom {
-    grid-row: 10 / auto;
-    grid-column: 1 / span 12;
-
-    margin: 3rem 1rem 0 1rem;
-    padding: 3rem 1rem;
-}
-
 header {
     grid-row: 1 / span 2;
     grid-column: 1 / span 12;
@@ -173,6 +158,34 @@ header > nav > ul button{
     transform: scale(1.1);
 }
 
+.align-top {
+    grid-row: 1 / auto;
+    grid-column: 1 / span 12;
+
+    margin: .5rem .4rem 0 .4rem;
+    padding: 1rem 1rem;
+}
+.align-bottom {
+    grid-row: 11 / auto;
+    grid-column: 1 / span 12;
+
+    margin: 3rem 1rem 0 1rem;
+    padding: 2rem 1rem;
+}
+.play-link-design {
+    color: gold;
+    font-size: 2rem;
+    text-shadow: 0 .2rem 4rem goldenrod;
+}
+.play-link-design::after {
+    background-color: gold;
+}
+.play-list-item {
+    order: 1;
+    flex-basis: 100%;
+    text-align: center;
+}
+
 /*******************************
 Nav display btn */
 #display-nav {
@@ -199,9 +212,31 @@ main {
     grid-column: 1 / span 12;
     padding: .4rem;
 }
+#dialog-closing {
+    animation: close-dialog-box 100ms ease-out forwards;
+}
+@keyframes close-dialog-box {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;  
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+        visibility: hidden; 
+    }
+}
 
-
-
+.settings-dialog {
+    height: 25rem;
+    width: 20rem;
+    font-size: 1.1rem;
+}
+.settings-dialog img {
+    height: 2rem;
+    width: 2rem;
+}
 
 
 

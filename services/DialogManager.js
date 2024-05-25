@@ -55,7 +55,7 @@ export default class DialogManager {
         this.openDialogBtns.forEach(btn => {
             btn.addEventListener('click', event => {
                 for (const dialogBox of this.dialogBoxes) {
-                    if (dialogBox.dataset.id === (event.target.dataset.id || event.target.parentNode.dataset.id)) {
+                    if (dialogBox.dataset.id === (event.target.dataset.id /* || event.target.parentNode.dataset.id */)) {
                         dialogBox.showModal();
                         return;
                     } 

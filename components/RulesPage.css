@@ -44,20 +44,44 @@ h2,
 }
 
 h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-shadow: 0 .4rem .4rem #634848;
+  font-size: 2.3rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 .4rem .4rem #634848b9;
 }
 h2 {
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   margin-bottom: 1rem;
-  text-shadow: 0 .2rem .2rem #645252ca;
+  text-shadow: 0 .2rem .2rem #6452527c;
 }
 p {
   font-size: 1.1rem;
 }
-h1 ~ p {
-  margin: 1rem 0;
+.introduction,
+.final-words {
+  margin: 2rem 0;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-shadow: 0 .2rem .2rem #5c54506d;
+  color: rgb(56, 29, 29);
+}
+input {
+  width: 15rem;
+  margin-right: 2rem;
+  padding: .4rem .8rem;
+  align-self: flex-end;
+
+  border: 1px solid #4d4845;
+  border-radius: .5rem;
+  background-color: transparent;
+}
+input:focus {
+  scale: 1.01;
+  outline: 1px solid #371b0c92;
+}
+input,
+input::placeholder {
+  font-size: 1.2rem;
+  color: #464545;
 }
 
 .rule-group-container {
@@ -68,4 +92,7 @@ h1 ~ p {
 }
 .rule-group-container p {
   margin-bottom: .3rem;
+}
+.highlight {
+  background-color: yellow;
 }
