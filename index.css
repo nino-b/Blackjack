@@ -7,7 +7,14 @@
 * {
     font-family: 'Times New Roman', Times, serif;
 }
-
+#display-nav,
+.nav-item,
+dialog button,
+.sound-music,
+input[type="checkbox"].toggle + label,
+input[type="radio"] + label {
+    cursor: pointer;
+}
 header > nav {
     height: 100%;
     width: 100%;
@@ -120,7 +127,6 @@ header > nav > ul button{
 
     color: rgba(206, 204, 204, 0.952);
     font-size: 1.3rem;
-    cursor: pointer;
 
     border-bottom: 2px solid transparent;
     transition: border-color 0.3s ease, scale 0.3s ease;
@@ -193,7 +199,6 @@ Nav display btn */
     padding: 0;
     border: none;
     background-color: transparent;
-    cursor: pointer;
     transition: scale 0.3s ease;
 }
 #display-nav img {
@@ -212,6 +217,250 @@ main {
     grid-column: 1 / span 12;
     padding: .4rem;
 }
+
+/********************************************* */
+/* Dialog Box */
+dialog img {
+    width: 1rem;
+    margin: 0 .13rem;
+}
+dialog button {
+    border-radius: .5rem;
+    border: 1px solid rgb(161, 156, 55);
+    padding: .5rem 1.2rem;
+}
+dialog button:hover {
+    transform: scale(1.05);
+}
+dialog button:active {
+    transform: scale(1.1);
+}
+input[type="checkbox"]#toggle-sound:focus-visible + label[for="toggle-sound"] img,
+input[type="checkbox"]#toggle-music:focus-visible + label[for="toggle-music"] img,
+input[type="checkbox"].toggle:focus-visible + label::before,
+input[type="checkbox"].toggle-sound-music:focus-visible + label::before,
+input[type="radio"]:focus-visible + label {
+    outline: 1px solid black;
+}
+/* Hardware acceleration */
+dialog {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* 
+display: flex; makes dialog box always visible.
+This code ensures that dialog box stays hidden until 'settings' or 'rules' button is clicked.
+*/
+dialog:not([open]) {
+    display: none;
+}
+.settings-dialog {
+    background-image: linear-gradient(rgb(77, 75, 75), 
+                                      rgb(135, 135, 134), 
+                                      rgb(75, 74, 73), 
+                                      rgb(63, 63, 63));
+    border: 1px solid transparent;
+    border-radius: .7rem;
+    box-shadow: 0 0 .1rem rgb(86, 85, 85);
+
+    animation: open-dialog-box 150ms ease-in forwards;
+}
+@keyframes open-dialog-box {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+        visibility: hidden; 
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+    }
+}
+
+
+/* Settings Button and dialog box */
+.settings-dialog {
+    top: 18%;
+    left: 50%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items:flex-start;
+    gap: .9rem;
+    margin: 0;
+    padding: 1.5rem 0 1.3rem 2rem ;
+    width: 18.6rem;
+
+    opacity: 0;
+    transform: scale(0.5);
+    visibility: hidden;
+}
+
+/* Toggle Checkbox */
+/* Clear checkboxes (boxe itself) */
+input[type="checkbox"].toggle,
+input[type="checkbox"].toggle-sound-music,
+input[name="deck-number"] {
+    opacity: 0;
+    position: absolute;
+    left: -90000px;
+    top: -90000px;
+}
+
+/* Toggle Sound and Music */
+.label-sound,
+.label-music {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+}
+.label-sound {
+    margin-left: -.2rem;
+}
+.label-music {
+    margin-left: -.1rem;
+}
+#sound-off,
+#music-off,
+#sound-on,
+#music-on {
+    grid-row: 1;
+    grid-column: 1;
+}
+#sound-off,
+#music-off {
+    opacity: 0;
+}
+#sound-on,
+#sound-off {
+    margin-left: .05rem;
+}
+#music-off {
+    margin-left: .05rem;
+}
+input[type="checkbox"]#toggle-sound:checked + label[for="toggle-sound"] img#sound-off,
+input[type="checkbox"]#toggle-music:checked + label[for="toggle-music"] img#music-off {
+    animation: sound-music-off 300ms ease forwards;
+}
+@keyframes sound-music-off {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* toggle checkboxe - slider */
+input[type="checkbox"].toggle + label {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+input[type="checkbox"].toggle + label::before {
+    content: "";
+    width: 2rem;
+    height: 1rem;
+    background-color: rgb(235, 209, 209);
+    border-radius: 5rem;
+    margin-right: .8rem;
+}
+input[type="checkbox"].toggle + label::after {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:  rgb(235, 209, 209);
+    content: "\2715";
+    font-size: .5rem;
+    left: .1rem;
+    width: .9rem;
+    height: .9rem;
+    background-color: rgb(201, 27, 27);
+    background-image: linear-gradient(rgb(255, 0, 0), rgb(218, 19, 19), rgb(207, 20, 20), rgb(243, 15, 15));
+    box-shadow: 0px 0px 2.5px 0px rgb(201, 27, 27);
+    border-radius: 5rem;
+    transition: 200ms ease-in-out;
+}
+input[type="checkbox"].toggle:checked + label::before {
+    background-color: rgb(196, 241, 241);
+}
+input[type="checkbox"].toggle:checked + label::after {
+    left: .9rem;
+    background-image: linear-gradient(rgb(2, 170, 192), rgb(47, 139, 139), rgb(0, 155, 226));
+    box-shadow: 0 0 2.5px 0 rgb(47, 139, 139);
+    animation: check-fade 400ms ease-in-out forwards;
+}
+@keyframes check-fade {
+    0% {
+        opacity: 1;
+        content: "\2715";
+    }
+    50% {
+        opacity: 0;
+        content: "\2715";
+    }
+    100% {
+        opacity: 1;
+        content: "\2713";
+    }
+}
+
+/* Number of Decks */
+.deck-list {
+    margin: .5rem 0 1rem 0;
+}
+.deck-list legend {
+    margin: 0 0 1.2rem 2.8rem;
+}
+.deck-list label {
+    display: inline-block;
+    margin-left: .13rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    padding: .45rem .7rem;
+    background-image: linear-gradient(rgb(6, 179, 144), rgb(17, 180, 148), rgb(16, 168, 138), rgb(18, 146, 121));
+    border: 1px solid rgb(6, 160, 129);
+    border-radius: .5rem;
+    box-shadow: 0 0 .1rem rgb(2, 177, 142);
+}
+input[type="radio"]:first-of-type + label {
+    margin-left: .6rem;
+}
+input[type="radio"]:checked + label {
+    animation: deck-number-chosen 200ms ease forwards;
+}
+
+@keyframes deck-number-chosen {
+    0% {
+        background-image: linear-gradient(rgb(6, 179, 144), rgb(17, 180, 148), rgb(16, 168, 138), rgb(18, 146, 121));
+        border-color: rgb(15, 233, 189);
+        box-shadow: 0 0 .1rem rgb(2, 177, 142);
+        transform: scale(1);
+    }
+    100% {
+        background-image: linear-gradient(rgb(11, 211, 171), rgb(23, 206, 169), rgb(27, 189, 156), rgb(27, 187, 155));
+        border-color: rgb(14, 179, 146);
+        box-shadow: 0 0 .1rem rgb(6, 231, 186);
+        transform: scale(1.2);
+    }
+}
+
+/* Warning about Settings */
+.warning-about-settings {
+    font-size: .7rem;
+}
+
+/* Close Settings Dialog */
+.close-dialog-btn {
+    margin: .8rem 0 .8rem 5rem;
+    background-image: linear-gradient(rgba(131, 153, 104, 0.856), rgba(143, 163, 112, 0.87), rgba(154, 179, 120, 0.87), rgba(107, 122, 83, 0.815));
+    border-color: rgba(148, 168, 116, 0.815);
+    box-shadow: 0 0 1px rgb(99, 141, 79);
+}
 #dialog-closing {
     animation: close-dialog-box 100ms ease-out forwards;
 }
@@ -227,19 +476,6 @@ main {
         visibility: hidden; 
     }
 }
-
-.settings-dialog {
-    height: 25rem;
-    width: 20rem;
-    font-size: 1.1rem;
-}
-.settings-dialog img {
-    height: 2rem;
-    width: 2rem;
-}
-
-
-
 
 
 

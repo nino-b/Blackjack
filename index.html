@@ -33,60 +33,130 @@
                                 <li>
                                     <a href="/rules" class="nav-item">Rules</a>
                                 </li>
-                                <li class="settings-dialog-container">
-                                    <button class="nav-item open-dialog-btn" data-id="settings">Settings</button>
+                                <li class="settings-dialog-container" data-id="settings">
+                                    <button class="nav-item open-dialog-btn" 
+                                            data-id="settings">Settings</button>
                                     
-                                    <dialog class="settings-dialog dialog-box" data-id="settings">
-                                        <input type="checkbox" id="toggle-sound" class="toggle-sound-music sound-music" aria-label="Toggle sound">
-                                        <label for="toggle-sound" class="label-sound sound-music">
-                                            <img src="/assets/svg-icons/sound-on.svg" id="sound-on" class="sound-music" alt="Sound on">
-                                            <img src="/assets/svg-icons/sound-off.svg" id="sound-off" class="sound-music" alt="Sound off">
+                                    <dialog class="settings-dialog dialog-box" 
+                                            data-id="settings">
+
+                                        <input type="checkbox" 
+                                               id="toggle-sound" 
+                                               class="toggle-sound-music sound-music" 
+                                               aria-label="Toggle sound">
+
+                                        <label for="toggle-sound" 
+                                               class="label-sound sound-music">
+
+                                            <img src="/assets/svg-icons/sound-on.svg" 
+                                                 id="sound-on" 
+                                                 class="sound-music" 
+                                                 alt="Sound on">
+
+                                            <img src="/assets/svg-icons/sound-off.svg" 
+                                                 id="sound-off" 
+                                                 class="sound-music" 
+                                                 alt="Sound off">
                                             Sound
                                         </label>
                         
-                                        <input type="checkbox" id="toggle-music" class="toggle-sound-music sound-music" aria-label="Toggle music">
-                                        <label for="toggle-music" class="label-music sound-music">
-                                            <img src="/assets/svg-icons/music-on.svg" id="music-on" class="sound-music" alt="Music on">
-                                            <img src="/assets/svg-icons/music-off.svg" id="music-off" class="sound-music" alt="Music off">
+                                        <input type="checkbox" 
+                                               id="toggle-music" 
+                                               class="toggle-sound-music sound-music" 
+                                               aria-label="Toggle music">
+
+                                        <label for="toggle-music" 
+                                               class="label-music sound-music">
+
+                                            <img src="/assets/svg-icons/music-on.svg" 
+                                                 id="music-on" 
+                                                 class="sound-music" 
+                                                 alt="Music on">
+
+                                            <img src="/assets/svg-icons/music-off.svg"
+                                                 id="music-off" 
+                                                 class="sound-music" 
+                                                 alt="Music off">
                                             Music
                                         </label>
                          
                                         <fieldset class="deck-list">
                                             <legend>Number of Decks</legend>
                         
-                                            <input type="radio" id="deck1" name="deck-number" value="1">
+                                            <input type="radio" 
+                                                   id="deck1" 
+                                                   name="deck-number" 
+                                                   value="1">
+
                                             <label for="deck1">1</label>
                         
-                                            <input type="radio" id="deck2" name="deck-number" value="2" checked>
+                                            <input type="radio" 
+                                                   id="deck2" 
+                                                   name="deck-number" 
+                                                   value="2" checked>
+
                                             <label for="deck2">2</label>
                         
-                                            <input type="radio" id="deck4" name="deck-number" value="4">
+                                            <input type="radio" 
+                                                   id="deck4" 
+                                                   name="deck-number" 
+                                                   value="4">
+
                                             <label for="deck4"> 4</label>
                         
-                                            <input type="radio" id="deck6" name="deck-number" value="6">
+                                            <input type="radio" 
+                                                   id="deck6" 
+                                                   name="deck-number" 
+                                                   value="6">
+
                                             <label for="deck6"> 6</label>
                         
-                                            <input type="radio" id="deck8" name="deck-number" value="8">
+                                            <input type="radio" 
+                                                   id="deck8" 
+                                                   name="deck-number" 
+                                                   value="8">
+
                                             <label for="deck8">8</label>
                                         </fieldset>
                                             
-                                        <input type="checkbox" id="soft-17-opt" role="switch" class="toggle">
+                                        <input type="checkbox" 
+                                               id="soft-17-opt" 
+                                               role="switch" 
+                                               class="toggle">
+
                                         <label for="soft-17-opt">Dealer hits on soft 17 </label>
                         
-                                        <input type="checkbox" id="insurance-opt" role="switch" class="toggle">
+                                        <input type="checkbox" 
+                                               id="insurance-opt" 
+                                               role="switch" 
+                                               class="toggle">
+
                                         <label for="insurance-opt">Insurance </label>
                         
-                                        <input type="checkbox" id="even-money-opt" role="switch" class="toggle">
+                                        <input type="checkbox" 
+                                               id="even-money-opt" 
+                                               role="switch" 
+                                               class="toggle">
+
                                         <label for="even-money-opt">Even Money </label>
                         
-                                        <input type="checkbox" id="auto-advice-opt" role="switch" class="toggle">
+                                        <input type="checkbox" 
+                                               id="auto-advice-opt" 
+                                               role="switch" 
+                                               class="toggle">
+                                               
                                         <label for="auto-advice-opt">Auto Advice </label>
                         
-                                        <input type="checkbox" id="repeat-last-bet-opt" role="switch" class="toggle">
+                                        <input type="checkbox" 
+                                               id="repeat-last-bet-opt" 
+                                               role="switch" 
+                                               class="toggle">
                                         <label for="repeat-last-bet-opt">Repeat Last Bet </label>
                                         <p class="warning-about-settings">Changes in game apply on next deal!</p>
                         
-                                        <button class="close-dialog-btn" data-id="settings" data-action-type="close-dialog">Close</button>
+                                        <button class="close-dialog-btn" 
+                                                data-id="settings" 
+                                                data-action-type="close-dialog">Close</button>
                                     </dialog>
                                 </li>
                                 <li>

@@ -26,14 +26,15 @@ const moduleName = 'DialogManager';
  * });
  */
 export default class DialogManager {
-    constructor({openDialogBtns, dialogBoxes, closeDialogBtns}, {datasetCloseAction, closingAnimation}) {
-        
+    constructor({openDialogBtns, dialogBoxes, closeDialogBtns}, {datasetCloseAction, closingAnimation/* , openingAnimation */}) {
+        console.log('DialogManager started')
         this.openDialogBtns = openDialogBtns;
         this.dialogBoxes = dialogBoxes;
         this.closeDialogBtns = closeDialogBtns;
 
         this.datasetCloseAction = datasetCloseAction;
         this.closingAnimation = closingAnimation;
+        /* this.openingAnimation = openingAnimation; */
 
         this.openDialog();
         this.closeDialog();
@@ -52,11 +53,16 @@ export default class DialogManager {
      * 5. If no match is found, logs a warning with the module name indicating the dialog box was not found.
     */
     openDialog() {
+        console.log('OpenDialog activated')
         this.openDialogBtns.forEach(btn => {
             btn.addEventListener('click', event => {
                 for (const dialogBox of this.dialogBoxes) {
                     if (dialogBox.dataset.id === (event.target.dataset.id /* || event.target.parentNode.dataset.id */)) {
                         dialogBox.showModal();
+                     /*    dialogBox.id = this.openingAnimation;
+                        setTimeout(() => {
+                            dialogBox.id = '';
+                        }, 200); */
                         return;
                     } 
                 }
@@ -82,6 +88,7 @@ export default class DialogManager {
         this.dialogBoxes.forEach(dialog => {
             dialog.addEventListener('click', event => {
                 const dialogDimensions = event.target.getBoundingClientRect();
+                console.log('dialogDimensions: ', dialogDimensions)
                 if (
                     event.clientX < dialogDimensions.left ||
                     event.clientX > dialogDimensions.right ||
@@ -89,6 +96,22 @@ export default class DialogManager {
                     event.clientY > dialogDimensions.bottom || 
                     event.target.dataset.actionType === this.datasetCloseAction
                 ) {
+                    console.log('closeDialog started')
+                    if (event.target.dataset.actionType === this.datasetCloseAction) {
+                        console.log('target', event.target)
+                    }
+                    if ( event.clientX < dialogDimensions.left) {
+                        console.log('target - x -left', event.target)
+                    }
+                    if (event.clientX > dialogDimensions.right) {
+                        console.log('target - x - right', event.target)
+                    }
+                    if (event.clientY < dialogDimensions.top) {
+                        console.log('target - y - top', event.target)
+                    }
+                    if (event.clientY > dialogDimensions.bottom) {
+                        console.log('target y - bottom', event.target)
+                    }
                     this.#closeDialogBox(event.target);
                 }
             });
@@ -127,8 +150,19 @@ export default class DialogManager {
         }
         dialogBox.id = this.closingAnimation;
         setTimeout(() => {
+            console.log('Closing')
             dialogBox.close();
             dialogBox.id = '';
         }, 200);
     }
 }
+
+const dialogManager = new DialogManager({
+    openDialogBtns: document.querySelectorAll('.open-dialog-btn'),
+    dialogBoxes: document.querySelectorAll('.dialog-box'),
+    closeDialogBtns: document.querySelectorAll('.close-dialog-btn')
+}, {
+    datasetCloseAction: 'close-dialog',
+    closingAnimation: 'dialog-closing',
+  /*   openingAnimation: 'dialog-opening' */
+});
