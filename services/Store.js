@@ -5,6 +5,11 @@ const Store = {
   header: document.getElementsByTagName('header')[0],
   main: document.getElementsByTagName('main')[0],
   bgContainer: document.getElementById('bg-container'),
+  store: {
+    openDialogBtns: document.querySelectorAll('.open-dialog-btn'),
+    dialogBoxes: document.querySelectorAll('.dialog-box'),
+    closeDialogBtns: document.querySelectorAll('.close-dialog-btn')
+  }
 }
 
 const proxiedStore = new Proxy(Store, {
@@ -16,14 +21,14 @@ const proxiedStore = new Proxy(Store, {
   */
   set(target, property, value) {
     target[property] = value;
-    if (property == 'rules') {
+    if (property === 'rules') {
       window.dispatchEvent(new Event('appendruleschange'));
-    }
-    if (property == 'cart') {
-      window.dispatchEvent(new Event('appcartchange'));
     }
     return true;
   }
 });
 
 export default proxiedStore;
+
+
+class DOMStore

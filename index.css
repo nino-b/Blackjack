@@ -178,15 +178,15 @@ header > nav > ul button{
     margin: 3rem 1rem 0 1rem;
     padding: 2rem 1rem;
 }
-.play-link-design {
+.game-link-design {
     color: gold;
     font-size: 2rem;
     text-shadow: 0 .2rem 4rem goldenrod;
 }
-.play-link-design::after {
+.game-link-design::after {
     background-color: gold;
 }
-.play-list-item {
+.game-list-item {
     order: 1;
     flex-basis: 100%;
     text-align: center;
@@ -219,29 +219,47 @@ main {
 }
 
 /********************************************* */
-/* Dialog Box */
-dialog img {
-    width: 1rem;
-    margin: 0 .13rem;
-}
-dialog button {
-    border-radius: .5rem;
-    border: 1px solid rgb(161, 156, 55);
-    padding: .5rem 1.2rem;
-}
-dialog button:hover {
-    transform: scale(1.05);
-}
-dialog button:active {
-    transform: scale(1.1);
-}
+
+
+
+
+/* *************************************** */
+/* General */
 input[type="checkbox"]#toggle-sound:focus-visible + label[for="toggle-sound"] img,
 input[type="checkbox"]#toggle-music:focus-visible + label[for="toggle-music"] img,
 input[type="checkbox"].toggle:focus-visible + label::before,
 input[type="checkbox"].toggle-sound-music:focus-visible + label::before,
 input[type="radio"]:focus-visible + label {
-    outline: 1px solid black;
+    outline: 1px solid yellow;
 }
+/* Hide checkboxes (boxes itself) */
+input[type="checkbox"].toggle,
+input[type="checkbox"].toggle-sound-music,
+input[name="deck-number"] {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+}
+
+/* Dialog Box */
+.settings-dialog {
+    top: 12%;
+    left: 60%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items:flex-start;
+    gap: .9rem;
+    margin: 0;
+    padding: 1.5rem 0 1.3rem 2rem ;
+    width: 18.6rem;
+
+    color: rgb(240, 236, 236);
+    opacity: 0;
+    transform: scale(0.5);
+    visibility: hidden;
+}
+
+/* Dialog Opening and Closing Animations */
 /* Hardware acceleration */
 dialog {
     transform: translateZ(0);
@@ -257,13 +275,13 @@ dialog:not([open]) {
     display: none;
 }
 .settings-dialog {
-    background-image: linear-gradient(rgb(77, 75, 75), 
-                                      rgb(135, 135, 134), 
-                                      rgb(75, 74, 73), 
-                                      rgb(63, 63, 63));
+    background-image: linear-gradient(rgb(27, 26, 26), 
+                                      rgb(45, 45, 44), 
+                                      rgb(35, 34, 34), 
+                                      rgb(25, 24, 24));
     border: 1px solid transparent;
     border-radius: .7rem;
-    box-shadow: 0 0 .1rem rgb(86, 85, 85);
+    box-shadow: 0 0 .1rem rgb(45, 44, 44);
 
     animation: open-dialog-box 150ms ease-in forwards;
 }
@@ -278,188 +296,6 @@ dialog:not([open]) {
         transform: scale(1);
         visibility: visible;
     }
-}
-
-
-/* Settings Button and dialog box */
-.settings-dialog {
-    top: 18%;
-    left: 50%;
-    display: flex;
-    flex-flow: column wrap;
-    align-items:flex-start;
-    gap: .9rem;
-    margin: 0;
-    padding: 1.5rem 0 1.3rem 2rem ;
-    width: 18.6rem;
-
-    opacity: 0;
-    transform: scale(0.5);
-    visibility: hidden;
-}
-
-/* Toggle Checkbox */
-/* Clear checkboxes (boxe itself) */
-input[type="checkbox"].toggle,
-input[type="checkbox"].toggle-sound-music,
-input[name="deck-number"] {
-    opacity: 0;
-    position: absolute;
-    left: -90000px;
-    top: -90000px;
-}
-
-/* Toggle Sound and Music */
-.label-sound,
-.label-music {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: repeat(2, 1fr);
-}
-.label-sound {
-    margin-left: -.2rem;
-}
-.label-music {
-    margin-left: -.1rem;
-}
-#sound-off,
-#music-off,
-#sound-on,
-#music-on {
-    grid-row: 1;
-    grid-column: 1;
-}
-#sound-off,
-#music-off {
-    opacity: 0;
-}
-#sound-on,
-#sound-off {
-    margin-left: .05rem;
-}
-#music-off {
-    margin-left: .05rem;
-}
-input[type="checkbox"]#toggle-sound:checked + label[for="toggle-sound"] img#sound-off,
-input[type="checkbox"]#toggle-music:checked + label[for="toggle-music"] img#music-off {
-    animation: sound-music-off 300ms ease forwards;
-}
-@keyframes sound-music-off {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-
-/* toggle checkboxe - slider */
-input[type="checkbox"].toggle + label {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-input[type="checkbox"].toggle + label::before {
-    content: "";
-    width: 2rem;
-    height: 1rem;
-    background-color: rgb(235, 209, 209);
-    border-radius: 5rem;
-    margin-right: .8rem;
-}
-input[type="checkbox"].toggle + label::after {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:  rgb(235, 209, 209);
-    content: "\2715";
-    font-size: .5rem;
-    left: .1rem;
-    width: .9rem;
-    height: .9rem;
-    background-color: rgb(201, 27, 27);
-    background-image: linear-gradient(rgb(255, 0, 0), rgb(218, 19, 19), rgb(207, 20, 20), rgb(243, 15, 15));
-    box-shadow: 0px 0px 2.5px 0px rgb(201, 27, 27);
-    border-radius: 5rem;
-    transition: 200ms ease-in-out;
-}
-input[type="checkbox"].toggle:checked + label::before {
-    background-color: rgb(196, 241, 241);
-}
-input[type="checkbox"].toggle:checked + label::after {
-    left: .9rem;
-    background-image: linear-gradient(rgb(2, 170, 192), rgb(47, 139, 139), rgb(0, 155, 226));
-    box-shadow: 0 0 2.5px 0 rgb(47, 139, 139);
-    animation: check-fade 400ms ease-in-out forwards;
-}
-@keyframes check-fade {
-    0% {
-        opacity: 1;
-        content: "\2715";
-    }
-    50% {
-        opacity: 0;
-        content: "\2715";
-    }
-    100% {
-        opacity: 1;
-        content: "\2713";
-    }
-}
-
-/* Number of Decks */
-.deck-list {
-    margin: .5rem 0 1rem 0;
-}
-.deck-list legend {
-    margin: 0 0 1.2rem 2.8rem;
-}
-.deck-list label {
-    display: inline-block;
-    margin-left: .13rem;
-    width: 2.2rem;
-    height: 2.2rem;
-    padding: .45rem .7rem;
-    background-image: linear-gradient(rgb(6, 179, 144), rgb(17, 180, 148), rgb(16, 168, 138), rgb(18, 146, 121));
-    border: 1px solid rgb(6, 160, 129);
-    border-radius: .5rem;
-    box-shadow: 0 0 .1rem rgb(2, 177, 142);
-}
-input[type="radio"]:first-of-type + label {
-    margin-left: .6rem;
-}
-input[type="radio"]:checked + label {
-    animation: deck-number-chosen 200ms ease forwards;
-}
-
-@keyframes deck-number-chosen {
-    0% {
-        background-image: linear-gradient(rgb(6, 179, 144), rgb(17, 180, 148), rgb(16, 168, 138), rgb(18, 146, 121));
-        border-color: rgb(15, 233, 189);
-        box-shadow: 0 0 .1rem rgb(2, 177, 142);
-        transform: scale(1);
-    }
-    100% {
-        background-image: linear-gradient(rgb(11, 211, 171), rgb(23, 206, 169), rgb(27, 189, 156), rgb(27, 187, 155));
-        border-color: rgb(14, 179, 146);
-        box-shadow: 0 0 .1rem rgb(6, 231, 186);
-        transform: scale(1.2);
-    }
-}
-
-/* Warning about Settings */
-.warning-about-settings {
-    font-size: .7rem;
-}
-
-/* Close Settings Dialog */
-.close-dialog-btn {
-    margin: .8rem 0 .8rem 5rem;
-    background-image: linear-gradient(rgba(131, 153, 104, 0.856), rgba(143, 163, 112, 0.87), rgba(154, 179, 120, 0.87), rgba(107, 122, 83, 0.815));
-    border-color: rgba(148, 168, 116, 0.815);
-    box-shadow: 0 0 1px rgb(99, 141, 79);
 }
 #dialog-closing {
     animation: close-dialog-box 100ms ease-out forwards;
@@ -478,8 +314,200 @@ input[type="radio"]:checked + label {
 }
 
 
+/* Sound and music */
+dialog img {
+    width: 1.7rem;
+    margin: 0 .13rem;
+}
+/* Toggle Sound and Music */
+
+.label-sound,
+.label-music {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+}
+#sound-off,
+#music-off,
+#sound-on,
+#music-on {
+    grid-row: 1;
+    grid-column: 1;
+}
+#sound-off,
+#music-off {
+    opacity: 0;
+}
+#sound-on,
+#music-on {
+    width: 1.7rem;
+    margin: 0 .13rem;
+}
+#sound-off,
+#music-off {
+    width: 1.9rem;
+    margin: 0 .05rem;
+}
+input[type="checkbox"]#toggle-sound:checked + label[for="toggle-sound"] img#sound-off,
+input[type="checkbox"]#toggle-music:checked + label[for="toggle-music"] img#music-off {
+    animation: sound-music-off 300ms ease forwards;
+}
+@keyframes sound-music-off {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 
+/* Deck Numbers */
+.deck-list {
+    margin: .5rem 0 1rem 0;
+}
+.deck-list legend {
+    margin: 0 0 1.2rem 2.8rem;
+}
+.deck-list label {
+    display: inline-block;
+    margin-left: .13rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    padding: .45rem .7rem;
+    background-image: linear-gradient(rgba(197, 52, 30, 0.959), 
+                                      rgba(194, 51, 43, 0.941), 
+                                      rgba(188, 51, 51, 0.951), 
+                                      rgba(161, 33, 33, 0.938));
+    border: 1px solid rgb(160, 6, 6);
+    border-radius: .5rem;
+    box-shadow: 0 0 .1rem rgb(177, 2, 2);
+}
+input[type="radio"]:first-of-type + label {
+    margin-left: .6rem;
+}
+input[type="radio"]:checked + label {
+    animation: deck-number-chosen 200ms ease forwards;
+}
+
+@keyframes deck-number-chosen {
+    0% {
+        background-image: linear-gradient(rgba(197, 52, 30, 0.959), 
+                                          rgba(194, 51, 43, 0.941), 
+                                          rgba(188, 51, 51, 0.951), 
+                                          rgba(161, 33, 33, 0.938));
+        border-color: rgb(160, 6, 6);
+        box-shadow: 0 0 .1rem rgb(177, 2, 2);
+        transform: scale(1);
+    }
+    100% {
+        background-image: linear-gradient(rgba(61, 197, 59, 0.934), 
+                                          rgba(52, 201, 72, 0.927), 
+                                          rgba(60, 189, 56, 0.932), 
+                                          rgba(49, 148, 44, 0.941));
+        border-color: rgb(41, 183, 33);
+        box-shadow: 0 0 .1rem rgb(33, 240, 40);
+        transform: scale(1.2);
+    }
+}
+
+/* Special Choices */
+/* toggle checkboxe - slider */
+input[type="checkbox"].toggle + label {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+input[type="checkbox"].toggle + label::before {
+    content: "";
+    width: 2rem;
+    height: 1rem;
+    background-image: linear-gradient(rgb(228, 173, 173),
+                                      rgb(235, 198, 198),
+                                      rgb(200, 161, 161),
+                                      rgb(173, 125, 125));
+    border-radius: 5rem;
+    margin-right: .8rem;
+}
+input[type="checkbox"].toggle + label::after {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:  rgb(235, 209, 209);
+    content: "\2715";
+    font-size: .5rem;
+    left: .1rem;
+    width: .9rem;
+    height: .9rem;
+    background-color: rgb(201, 27, 27);
+    background-image: linear-gradient(rgb(206, 2, 2), 
+                                      rgb(195, 19, 19), 
+                                      rgb(185, 11, 11), 
+                                      rgb(167, 9, 9));
+    box-shadow: 0px 0px 2.5px 0px rgb(201, 27, 27);
+    border-radius: 5rem;
+    transition: 200ms ease-in-out;
+}
+input[type="checkbox"].toggle:checked + label::before {
+    background-image: linear-gradient(rgba(186, 237, 196, 0.896),
+                                      rgba(215, 243, 214, 0.916),
+                                      rgba(174, 216, 174, 0.937),
+                                      rgba(135, 185, 142, 0.979));
+}
+input[type="checkbox"].toggle:checked + label::after {
+    left: .9rem;
+    background-image: linear-gradient(rgb(9, 163, 17), 
+                                      rgb(22, 180, 54), 
+                                      rgb(14, 158, 38), 
+                                      rgb(9, 122, 18));
+    box-shadow: 0 0 2.5px 0 rgb(47, 139, 59);
+    animation: check-fade 400ms ease-in-out forwards;
+}
+@keyframes check-fade {
+    0% {
+        opacity: 1;
+        content: "\2715";
+    }
+    50% {
+        opacity: 0;
+        content: "\2715";
+    }
+    100% {
+        opacity: 1;
+        content: "\2713";
+    }
+}
+
+/* Settings' Comment */
+.warning-about-settings {
+    color: rgb(218, 215, 215);
+}
+
+
+/* Close Button */
+.close-dialog-btn {
+    margin: .8rem 0 .8rem 5rem;
+    background-image: linear-gradient(rgba(132, 163, 146, 0.845), 
+                                      rgba(170, 210, 184, 0.849), 
+                                      rgba(138, 160, 143, 0.864), 
+                                      rgba(66, 87, 72, 0.847));
+    border-color: rgba(154, 155, 152, 0.815);
+    box-shadow: 0 0 1px rgb(134, 135, 134);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+dialog button {
+    border-radius: .5rem;
+    border: 1px solid rgb(142, 142, 142);
+    padding: .5rem 1.2rem;
+}
+dialog button:hover {
+    transform: scale(1.05);
+}
+dialog button:active {
+    transform: scale(1.1);
+}
 
 
 

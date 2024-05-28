@@ -25,9 +25,8 @@ const moduleName = 'DialogManager';
  *     closingAnimation: 'dialog-closing'
  * });
  */
-export default class DialogManager {
+class DialogManager {
     constructor({openDialogBtns, dialogBoxes, closeDialogBtns}, {datasetCloseAction, closingAnimation/* , openingAnimation */}) {
-        console.log('DialogManager started')
         this.openDialogBtns = openDialogBtns;
         this.dialogBoxes = dialogBoxes;
         this.closeDialogBtns = closeDialogBtns;
@@ -53,7 +52,6 @@ export default class DialogManager {
      * 5. If no match is found, logs a warning with the module name indicating the dialog box was not found.
     */
     openDialog() {
-        console.log('OpenDialog activated')
         this.openDialogBtns.forEach(btn => {
             btn.addEventListener('click', event => {
                 for (const dialogBox of this.dialogBoxes) {
@@ -80,15 +78,14 @@ export default class DialogManager {
      * The method performs following steps:
      * 1. Iterates over NodeList of dialog boxes.
      * 2. Attaches a 'click' event listener to each dialog box.
-     * 3. On 'click', calculates dialog's position relative to the viewport.
+     * 3. On 'click', calculates closest dialog's position relative to the viewport.
      * 4. Chcks if the 'click' was outside the dialog box's boundaries or clicked element is designated to close the dialog (this.datasetCloseAction = 'close-dialog' button).
      * 5. If either condition is true, invokes the `#closeDialogBox` method with the target element.
     */
     closeDialog() {
         this.dialogBoxes.forEach(dialog => {
             dialog.addEventListener('click', event => {
-                const dialogDimensions = event.target.getBoundingClientRect();
-                console.log('dialogDimensions: ', dialogDimensions)
+                const dialogDimensions = event.target.closest('dialog').getBoundingClientRect();
                 if (
                     event.clientX < dialogDimensions.left ||
                     event.clientX > dialogDimensions.right ||
@@ -96,27 +93,12 @@ export default class DialogManager {
                     event.clientY > dialogDimensions.bottom || 
                     event.target.dataset.actionType === this.datasetCloseAction
                 ) {
-                    console.log('closeDialog started')
-                    if (event.target.dataset.actionType === this.datasetCloseAction) {
-                        console.log('target', event.target)
-                    }
-                    if ( event.clientX < dialogDimensions.left) {
-                        console.log('target - x -left', event.target)
-                    }
-                    if (event.clientX > dialogDimensions.right) {
-                        console.log('target - x - right', event.target)
-                    }
-                    if (event.clientY < dialogDimensions.top) {
-                        console.log('target - y - top', event.target)
-                    }
-                    if (event.clientY > dialogDimensions.bottom) {
-                        console.log('target y - bottom', event.target)
-                    }
                     this.#closeDialogBox(event.target);
                 }
             });
         });
     }
+    
 
     /** 
      * Closes the dialog box that contains the specified element.
@@ -166,3 +148,5 @@ const dialogManager = new DialogManager({
     closingAnimation: 'dialog-closing',
   /*   openingAnimation: 'dialog-opening' */
 });
+
+export default dialogManager;

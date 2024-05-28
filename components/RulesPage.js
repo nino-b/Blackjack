@@ -1,13 +1,13 @@
 import BaseComponent from "./BaseComponent.js";
 import URLs from "../data/urls.js";
-import { createEl, addClass } from "../util/domTools.js";
+import { createEl, addClass } from "../util/domUtils.js";
 
 export default class RulesPage extends BaseComponent {
   constructor() {
     super();
     this.pathToCSS = URLs.cssURLs.Rules;
     this.templateID = 'rules-page-template';
-    this.eventName = 'appendruleschange';
+    this.eventName = 'append_rules_change';
   }
 
   /* 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #24b210;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <path class="cls-2" d="m30,0C13.43,0,0,13.43,0,30s13.43,30,30,30,30-13.43,30-30S46.57,0,30,0Z"/>
+    <g id="Page-1">
+      <g id="icon">
+        <path id="Shape" class="cls-1" d="m44.95,51.28l-3.36-3.33c7.48-10.15,7.48-25.68,0-35.83l3.36-3.33c8.74,12.11,8.74,30.39,0,42.5Zm-8.51-34.04l-3.36,3.34c4.01,5.33,4.01,13.58,0,18.91l3.36,3.34c5.27-7.29,5.27-18.3,0-25.59Zm-8.59-8.74l-11.18,10.92h-8.16v21.37h8.17l11.17,10.7V8.5h0Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

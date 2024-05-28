@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Georgian:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link href="reset.css" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
-    <script src="app.js" type="module" defer></script>
+    <script src="main.js" type="module" defer></script>
 </head>
 <body>
     <div id="border">
@@ -25,10 +25,10 @@
                                     <a href="/" class="nav-item">Home</a>
                                 </li>
                                 <li>
-                                    <a href="play" class="nav-item play-link">Play</a>
+                                    <a href="/game" class="nav-item game-link">Play</a>
                                 </li>
                                 <li>
-                                    <a href="history" class="nav-item">History</a>
+                                    <a href="/history" class="nav-item">History</a>
                                 </li>
                                 <li>
                                     <a href="/rules" class="nav-item">Rules</a>
@@ -39,7 +39,6 @@
                                     
                                     <dialog class="settings-dialog dialog-box" 
                                             data-id="settings">
-
                                         <input type="checkbox" 
                                                id="toggle-sound" 
                                                class="toggle-sound-music sound-music" 
@@ -48,12 +47,12 @@
                                         <label for="toggle-sound" 
                                                class="label-sound sound-music">
 
-                                            <img src="/assets/svg-icons/sound-on.svg" 
+                                            <img src="/assets/body/sound_on.svg" 
                                                  id="sound-on" 
                                                  class="sound-music" 
                                                  alt="Sound on">
 
-                                            <img src="/assets/svg-icons/sound-off.svg" 
+                                            <img src="/assets/body/sound_off.svg" 
                                                  id="sound-off" 
                                                  class="sound-music" 
                                                  alt="Sound off">
@@ -68,14 +67,13 @@
                                         <label for="toggle-music" 
                                                class="label-music sound-music">
 
-                                            <img src="/assets/svg-icons/music-on.svg" 
+                                            <img src="/assets/body/music_on.svg" 
                                                  id="music-on" 
                                                  class="sound-music" 
                                                  alt="Music on">
 
-                                            <img src="/assets/svg-icons/music-off.svg"
+                                            <img src="/assets/body/music_off.svg"
                                                  id="music-off" 
-                                                 class="sound-music" 
                                                  alt="Music off">
                                             Music
                                         </label>
@@ -163,7 +161,7 @@
                                     <a href="/about" class="nav-item">About</a>
                                 </li>
                                 <li>
-                                    <a href="account" class="nav-item">Log In</a>
+                                    <a href="/account" class="nav-item">Log In</a>
                                 </li>
                             </ul>
                         </nav>
@@ -192,11 +190,28 @@
     
 
     <template id="history-page-template">
-        <section id="history-page-container"></section>
+        <section id="history-page-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Game Outcome</th>
+                        <th>Your Hand</th>
+                        <th>Dealer Hand</th>
+                        <th>Bet</th>
+                        <th>Payout</th>
+                        <th>Bank</th>
+                        <th>
+                            <button>Filter</button>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </section>
     </template>
     
     
-    <template id="rules-page-template"> <!-- ! -->
+    <template id="rules-page-template"> <!-- + -->
         <section id="rules-page-container"></section>
     </template>
     
