@@ -8,7 +8,7 @@ const URLs = {
     Home: "/components/HomePage.css",
     Register: "/components/RegisterDialog.css",
     Rules: "/components/RulesPage.css",
-    Reset: "/reset.css",/* Global */
+    Reset: "/reset.css",/* Defined in the Root Directory */
     Settings: "/components/SettingsDialog.css",
   },
   dataURLs: {

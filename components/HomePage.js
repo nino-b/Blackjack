@@ -18,13 +18,8 @@ export default class HomePage extends BaseComponent {
     this.templateID = 'home-page-template';
     this.eventName = 'appendhomechange';
   }
-  changeBg() {
-    const bgContainer = app.store.bgContainer;
-    bgContainer.classList = 'home';
-  }
   connectedCallback() {
     super.connectedCallback();
-    this.changeBg();
   }
 }
 

@@ -1,4 +1,3 @@
-import { addClass, removeClass } from "../util/domUtils.js";
 /**
  * This class encapsulates all common features for Web Component classes.
  * It provides a base for creating custom elements with encapsulated CSS, templates, and event handling.
@@ -80,49 +79,10 @@ export default class BaseComponent extends HTMLElement {
   render() {
     console.log('Base Component Rendered.');
   }
-  /**
-   * It shows where the <header> should be displayed.
-   */
-  alignHeader() {
-    const header = app.store.header;
-    console.log('header', header)
-
-    const ul = header.querySelector('nav > ul');
-    const secondLi = ul.querySelectorAll('li')[1];
-    const liClassName = 'play-list-item';
-
-    const playLink = header.querySelector('.play-link');
-    const linkClassName = 'play-link-design';
-
-    if (this.templateID === 'home-page-template') {
-        /** 
-         * This code clears out every other class and 
-         * assigns only this current one.
-        */
-      console.log('header', header)
-      if (!(header.classList.contains('align-bottom'))) {
-        header.classList = 'align-bottom';
-        addClass(playLink, linkClassName);
-        addClass(secondLi, liClassName);
-      }
-    } else {
-      if (header.classList.contains('align-bottom')) {
-        /** 
-         * This code clears out every other class and 
-         * assigns only this current one.
-        */
-        header.classList = 'align-top';
-        removeClass(playLink, linkClassName);
-        removeClass(secondLi, liClassName);
-      }
-      return;
-    }
-  }
   connectedCallback() {
     this.setUpCSS();
     this.setUpTemplate();
     this.setUpEventListener();
-    this.alignHeader();
   }
   disconnectedCallback() {
     window.removeEventListener(this.eventName, this.render);

@@ -57,19 +57,15 @@ body,
 }
 /******************************************* */
 /* Page Background images */
-.home,
-.game {
+.table-page-bg {
     background-image: url("./assets/body/bg-table-main.svg");
 }
-.rules {
+.gradient-page-bg {
     background-image: linear-gradient(#83807d, 
                                       #bbb8b8, 
                                       #bfbab7, 
                                       #969391);
 }
-.history,
-.about {}
-.account {}
 /******************************************* */
 
 header {
@@ -109,7 +105,7 @@ header > nav > ul {
     align-items: baseline;
 }
 
-header > nav > ul button{
+header > nav > ul button {
     background-color: transparent;
     border: none;
 }
@@ -178,6 +174,7 @@ header > nav > ul button{
     margin: 3rem 1rem 0 1rem;
     padding: 2rem 1rem;
 }
+/* Start Game link */
 .game-link-design {
     color: gold;
     font-size: 2rem;

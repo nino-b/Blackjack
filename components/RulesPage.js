@@ -89,13 +89,8 @@ export default class RulesPage extends BaseComponent {
     });
     return ruleGroupContainer;
   }
-  changeBg() {
-    const bgContainer = app.store.bgContainer;
-    bgContainer.classList = 'rules';
-  }
   connectedCallback() {
     super.connectedCallback();
-    this.changeBg();
     this.render();
   }
   disconnectedCallback() {

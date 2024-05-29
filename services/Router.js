@@ -1,15 +1,36 @@
+import pageState from "../data/pageState.js";
+import { DOMStore } from "../data/domStore.js";
+import { addClass, removeClass, updateElementClass } from "../util/domUtils.js";
 
+/**
+ * A class to handle client-side routing in a single-page application.
+ */
 class Router {
-    constructor() {
+    /**
+    * Creates an instance of the Router and initializes event listeners.
+    * @param {array} pageState - An array that holds page state objects.
+    * @param {object} DOMStore - An object that holds DOM references that are immidiately necessary 
+    * and don't require lazy loading.
+    */
+    constructor(pageState, DOMStore) {
+        this.pageState = pageState;
+        this.DOMStore = DOMStore;
+
         this.setupLinkListeners();
         this.setupPopStateListener();
         this.processInitialUrl();
     }
     /**
      * Set up event listeners for navigation links to prevent default behavior and route internally.
+     * 
+     * Using bind in this context is necessary to ensure that 
+     * the this context inside the handleClick method refers to the instance of the Router class, 
+     * not the element that triggered the event. 
+     * In JavaScript, event handlers are called with 'this' set to the element that triggered the event. 
+     * By using bind(this), we explicitly set the this context of the handleClick method to the instance of the Router class.
     */
     setupLinkListeners() {
-        document.querySelectorAll('a.nav-item').forEach(a => {
+        this.DOMStore.navItems.forEach(a => {
             a.addEventListener('click', this.handleClick.bind(this));
         });
     }
@@ -37,18 +58,41 @@ class Router {
         this.go(location.pathname);
     }
     /**
-     * Process the URL, update the history, and update the page content.
+     * Processes the URL, 
+     * retrieves a state object for this specific route,
+     * updates the history, and updates the page content.
+     * 
      * @param {string} route - The path to navigate to within the application.
      * @param {boolean} [addToHistory=true] - Flag to determine whether to add the navigation event to the browser's history stack.
-    */
+     * @throws {Error} If the route is invalid.
+     */
     go(route, addToHistory = true) {
-        if (addToHistory) {
-            history.pushState({ route }, '', route);
+        const stateObj = this.pageState[route];
+        if (!stateObj) {
+            throw new Error(`Invalid route. Unable to create a page because of invalid route.`)
         }
 
-        const pageElement = this.createPageElement(route);
-
-        const mainEl = document.querySelector('main');
+        if (addToHistory) {
+            this.updateHistory(stateObj);
+        }
+        const pageElement = this.createPageElement(stateObj);
+        this.updatePageContent(pageElement);
+    }
+    /**
+    * Updates the browser's history with the given route.
+    * 
+    * @param {object} state - The object that holds page state values: route, attributes, custom DOM element name.
+    */
+    updateHistory(state) {
+        history.pushState(state, '', state.route);
+    }
+    /**
+    * Updates the page content with the provided element.
+    * 
+    * @param {HTMLElement} pageElement - The page element to display.
+    */
+    updatePageContent(pageElement) {
+        const mainEl = DOMStore.main;
         if (pageElement) {
             mainEl.innerHTML = '';
             mainEl.appendChild(pageElement);
@@ -57,36 +101,45 @@ class Router {
             mainEl.textContent = 'Oops, 404!';
         }
     }
-    
     /**
-     * Create the appropriate page element based on the given route.
-     * @param {string} route - The route to determine which page element to create.
-     * @returns {HTMLElement} - The created page element.
-     */
-    createPageElement(route) {
-        switch (route) {
-            case '/':
-                return document.createElement('home-page');
-            case '/rules':
-                return document.createElement('rules-page');
-            case '/history':
-                return document.createElement('history-page');
-            /*   
-            case '/game':
-                return document.createElement('game-page');
-            case '/about':
-                return document.createElement('about-page');
-            case '/account':
-                return document.createElement('account-page');
-            */
-            default:
-                const errorElement = document.createElement('h1');
-                errorElement.textContent = 'Oops, 404!';
-                return errorElement;
+    * Creates a page element based on the given route.
+    * Gives page-specific styles to a newly created page.
+    * 
+    * @param {object} stateObj - An object that holds state specific parameters.
+    * @returns {HTMLElement} The newly created page element.
+    * @throws {Error} If the route is invalid.
+    */
+    createPageElement(stateObj) {
+        const pageElement = document.createElement(stateObj.customDOMEl);
+
+        const header = this.DOMStore.header;
+        const headerClassAttr = stateObj.attributes.header;
+
+        const bgContainer = this.DOMStore.bgContainer;
+        const bgContainerClassAttr = stateObj.attributes.pageBg;
+
+        const gameLinkRef = this.DOMStore.gameLink;
+        const gameBtnStyleClass = 'game-link-design';
+
+        const gameListItem = this.DOMStore.gameListItem;
+        const gameListStyleClass = 'game-list-item;'
+
+        updateElementClass(header, headerClassAttr);
+        updateElementClass(bgContainer, bgContainerClassAttr);
+
+        if (stateObj.attributes.gameLinkDesign) {
+            addClass(gameLinkRef, gameBtnStyleClass);
+            addClass(gameListItem, gameListStyleClass);
+            
+        } else if (gameLinkRef.classList.contains(gameBtnStyleClass)) {
+            removeClass(gameLinkRef, gameBtnStyleClass);
+            removeClass(gameListItem, gameListStyleClass);
         }
+
+        return pageElement;
     }
 }
 
-const router = new Router();
+const router = new Router(pageState, DOMStore);
 
 export default router;

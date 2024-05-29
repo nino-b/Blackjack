@@ -55,8 +55,17 @@ function removeClass(el, class_name) {
 function toggleClass(el, class_name) {
   el.classList.toggle(class_name);
 }
+function updateElementClass(element, newClass) {
+  if (!element.classList.contains(newClass)) {
+      /**
+       * Remove all previous classes and assign a new one
+      */
+      element.className = '';
+      addClass(element, newClass);
+  }
+}
 
 export { 
   createEl, removeEl, 
-  addClass, removeClass, toggleClass
+  addClass, removeClass, toggleClass, updateElementClass
  };

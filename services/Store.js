@@ -2,9 +2,6 @@ import RULES from "../data/rules.js";
 
 const Store = {
   rules: RULES,
-  header: document.getElementsByTagName('header')[0],
-  main: document.getElementsByTagName('main')[0],
-  bgContainer: document.getElementById('bg-container'),
   store: {
     openDialogBtns: document.querySelectorAll('.open-dialog-btn'),
     dialogBoxes: document.querySelectorAll('.dialog-box'),
@@ -22,13 +19,10 @@ const proxiedStore = new Proxy(Store, {
   set(target, property, value) {
     target[property] = value;
     if (property === 'rules') {
-      window.dispatchEvent(new Event('appendruleschange'));
+      window.dispatchEvent(new Event('append_rules_change'));
     }
     return true;
   }
 });
 
 export default proxiedStore;
-
-
-class DOMStore
