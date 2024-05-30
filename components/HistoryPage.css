@@ -1,7 +1,86 @@
 
 #history-page-container {
   height: 100%;
-  width: 100%;
-
-  background-image: linear-gradient(red, yellow, blue);
+  margin: .5rem;
 }
+#table-container {
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 .2rem .2rem #5c545035;
+}
+table {
+  width: 100%;
+  border-collapse: collapse; /* Ensure no double borders */
+  background-image: linear-gradient(rgba(190, 190, 190, 0.959), 
+                                    rgba(190, 187, 181, 0.966), 
+                                    rgba(155, 154, 153, 0.959), 
+                                    rgba(105, 104, 103, 0.968));
+  text-shadow: 0 .2rem .2rem #5c545072;
+}
+th,
+td {
+  align-content: center;
+  text-align: center;
+}
+th {
+  background-image: linear-gradient(rgba(52, 38, 38, 0.978), 
+                                    rgba(60, 31, 31, 0.966), 
+                                    rgba(46, 29, 29, 0.959), 
+                                    rgba(39, 19, 19, 0.968));
+
+  color: rgb(171, 170, 170);
+}
+tr {
+  margin: 1rem;
+  color: rgb(35, 19, 19);
+  border-bottom: 1px solid rgba(81, 73, 73, 0.689);
+}
+
+#filter-table-btn {
+  display: flex;
+  align-items: center;
+
+  margin: 0 0 1rem 1rem;
+  padding: .5rem 1.4rem;
+
+  border: 1px solid grey;
+  box-shadow: 0 0 .3rem #5c545072;
+  border-radius: .5rem;
+  background-image: linear-gradient(rgb(135, 132, 132),
+                                    rgb(164, 162, 162),
+                                    rgb(156, 155, 155),
+                                    rgb(114, 111, 111));
+  font-size: 1rem;
+  transition: scale 0.3s ease;
+}
+#filter-table-btn:hover {
+  transform: scale(1.025);
+}
+#filter-table-btn:active {
+  transform: scale(1.1);
+}
+#filter-table-btn img {
+  width: 1.1rem;
+  margin-left: .2rem;
+}
+
+
+/* ************************************ */
+/* Media Queries */
+
+/* @media screen and (min-width: 1280px) {
+  th, td {
+    padding: 1rem;
+  }
+}
+@media screen and (min-width: 760px) {
+  th, td {
+    padding: .4vw;
+  }
+}
+@media screen and (min-width: 1280px) {
+  th, td {
+    padding: 1rem;
+  }
+}  */

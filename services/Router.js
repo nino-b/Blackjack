@@ -122,7 +122,7 @@ class Router {
         const gameBtnStyleClass = 'game-link-design';
 
         const gameListItem = this.DOMStore.gameListItem;
-        const gameListStyleClass = 'game-list-item;'
+        const gameListStyleClass = 'game-list-item';
 
         updateElementClass(header, headerClassAttr);
         updateElementClass(bgContainer, bgContainerClassAttr);

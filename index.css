@@ -190,7 +190,8 @@ header > nav > ul button {
 }
 
 /*******************************
-Nav display btn */
+Nav display btn
+ */
 #display-nav {
     width: 3.5rem;
     padding: 0;
@@ -210,9 +211,9 @@ Nav display btn */
 /****************************** */
 
 main {
-    grid-row: 3 / span 10;
+    grid-row: 2 / span 11;
     grid-column: 1 / span 12;
-    padding: .4rem;
+    padding: 1rem .4rem .4rem .4rem;
 }
 
 /********************************************* */

@@ -16,160 +16,141 @@
     <div id="border">
         <div id="bg-container" class="home">
             <header class="align-top">
-             <!--    <div id="nav-outer-container">
-                    <div id="nav-inner-container" class="bottom"> -->
-                        
-                        <nav>
-                            <ul>
-                                <li>
-                                    <a href="/" class="nav-item">Home</a>
-                                </li>
-                                <li class="game-li-item">
-                                    <a href="/game" class="nav-item game-link">Play</a>
-                                </li>
-                                <li>
-                                    <a href="/history" class="nav-item">History</a>
-                                </li>
-                                <li>
-                                    <a href="/rules" class="nav-item">Rules</a>
-                                </li>
-                                <li class="settings-dialog-container" data-id="settings">
-                                    <button class="nav-item open-dialog-btn" 
-                                            data-id="settings">Settings</button>
-                                    
-                                    <dialog class="settings-dialog dialog-box" 
-                                            data-id="settings">
-                                        <input type="checkbox" 
-                                               id="toggle-sound" 
-                                               class="toggle-sound-music sound-music" 
-                                               aria-label="Toggle sound">
-
-                                        <label for="toggle-sound" 
-                                               class="label-sound sound-music">
-
-                                            <img src="/assets/body/sound_on.svg" 
-                                                 id="sound-on" 
-                                                 class="sound-music" 
-                                                 alt="Sound on">
-
-                                            <img src="/assets/body/sound_off.svg" 
-                                                 id="sound-off" 
-                                                 class="sound-music" 
-                                                 alt="Sound off">
-                                            Sound
-                                        </label>
-                        
-                                        <input type="checkbox" 
-                                               id="toggle-music" 
-                                               class="toggle-sound-music sound-music" 
-                                               aria-label="Toggle music">
-
-                                        <label for="toggle-music" 
-                                               class="label-music sound-music">
-
-                                            <img src="/assets/body/music_on.svg" 
-                                                 id="music-on" 
-                                                 class="sound-music" 
-                                                 alt="Music on">
-
-                                            <img src="/assets/body/music_off.svg"
-                                                 id="music-off" 
-                                                 alt="Music off">
-                                            Music
-                                        </label>
-                         
-                                        <fieldset class="deck-list">
-                                            <legend>Number of Decks</legend>
-                        
-                                            <input type="radio" 
-                                                   id="deck1" 
-                                                   name="deck-number" 
-                                                   value="1">
-
-                                            <label for="deck1">1</label>
-                        
-                                            <input type="radio" 
-                                                   id="deck2" 
-                                                   name="deck-number" 
-                                                   value="2" checked>
-
-                                            <label for="deck2">2</label>
-                        
-                                            <input type="radio" 
-                                                   id="deck4" 
-                                                   name="deck-number" 
-                                                   value="4">
-
-                                            <label for="deck4"> 4</label>
-                        
-                                            <input type="radio" 
-                                                   id="deck6" 
-                                                   name="deck-number" 
-                                                   value="6">
-
-                                            <label for="deck6"> 6</label>
-                        
-                                            <input type="radio" 
-                                                   id="deck8" 
-                                                   name="deck-number" 
-                                                   value="8">
-
-                                            <label for="deck8">8</label>
-                                        </fieldset>
-                                            
-                                        <input type="checkbox" 
-                                               id="soft-17-opt" 
-                                               role="switch" 
-                                               class="toggle">
-
-                                        <label for="soft-17-opt">Dealer hits on soft 17 </label>
-                        
-                                        <input type="checkbox" 
-                                               id="insurance-opt" 
-                                               role="switch" 
-                                               class="toggle">
-
-                                        <label for="insurance-opt">Insurance </label>
-                        
-                                        <input type="checkbox" 
-                                               id="even-money-opt" 
-                                               role="switch" 
-                                               class="toggle">
-
-                                        <label for="even-money-opt">Even Money </label>
-                        
-                                        <input type="checkbox" 
-                                               id="auto-advice-opt" 
-                                               role="switch" 
-                                               class="toggle">
-                                               
-                                        <label for="auto-advice-opt">Auto Advice </label>
-                        
-                                        <input type="checkbox" 
-                                               id="repeat-last-bet-opt" 
-                                               role="switch" 
-                                               class="toggle">
-                                        <label for="repeat-last-bet-opt">Repeat Last Bet </label>
-                                        <p class="warning-about-settings">Changes in game apply on next deal!</p>
-                        
-                                        <button class="close-dialog-btn" 
-                                                data-id="settings" 
-                                                data-action-type="close-dialog">Close</button>
-                                    </dialog>
-                                </li>
-                                <li>
-                                    <a href="/about" class="nav-item">About</a>
-                                </li>
-                                <li>
-                                    <a href="/account" class="nav-item">Log In</a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <button id="display-nav" class="hidden">
-                            <img src="./assets/body/drop-down.svg">
-                        </button>
-                   <!-- </div>
-                 </div> -->
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/" class="nav-item">Home</a>
+                        </li>
+                        <li class="game-li-item">
+                            <a href="/game" class="nav-item game-link">Play</a>
+                        </li>
+                        <li>
+                            <a href="/history" class="nav-item">History</a>
+                        </li>
+                        <li>
+                            <a href="/rules" class="nav-item">Rules</a>
+                        </li>
+                        <li class="settings-dialog-container" data-id="settings">
+                            <button class="nav-item open-dialog-btn" 
+                                    data-id="settings">Settings</button>
+                            
+                            <dialog class="settings-dialog dialog-box" 
+                                    data-id="settings">
+                                <input type="checkbox" 
+                                       id="toggle-sound" 
+                                       class="toggle-sound-music sound-music" 
+                                       aria-label="Toggle sound">
+                
+                                <label for="toggle-sound" 
+                                       class="label-sound sound-music">
+                    
+                                    <img src="/assets/body/sound_on.svg" 
+                                         id="sound-on" 
+                                         class="sound-music" 
+                                         alt="Sound on">
+                    
+                                    <img src="/assets/body/sound_off.svg" 
+                                         id="sound-off" 
+                                         class="sound-music" 
+                                         alt="Sound off">
+                                    Sound
+                                </label>
+                
+                                <input type="checkbox" 
+                                       id="toggle-music" 
+                                       class="toggle-sound-music sound-music" 
+                                       aria-label="Toggle music">
+                
+                                <label for="toggle-music" 
+                                       class="label-music sound-music">
+                                    <img src="/assets/body/music_on.svg" 
+                                         id="music-on" 
+                                         class="sound-music" 
+                                         alt="Music on">
+                                    <img src="/assets/body/music_off.svg"
+                                         id="music-off" 
+                                         alt="Music off">
+                                    Music
+                                </label>
+                
+                                <fieldset class="deck-list">
+                                    <legend>Number of Decks</legend>
+                
+                                    <input type="radio" 
+                                           id="deck1" 
+                                           name="deck-number" 
+                                           value="1">
+                                    <label for="deck1">1</label>
+                                    <input type="radio" 
+                                           id="deck2" 
+                                           name="deck-number" 
+                                           value="2" checked>
+                                    <label for="deck2">2</label>
+                
+                                    <input type="radio" 
+                                           id="deck4" 
+                                           name="deck-number" 
+                                           value="4">
+                                    <label for="deck4"> 4</label>
+                
+                                    <input type="radio" 
+                                           id="deck6" 
+                                           name="deck-number" 
+                                           value="6">
+                                    <label for="deck6"> 6</label>
+                
+                                    <input type="radio" 
+                                           id="deck8" 
+                                           name="deck-number" 
+                                           value="8">
+                                    <label for="deck8">8</label>
+                                </fieldset>
+                                <input type="checkbox" 
+                                       id="soft-17-opt" 
+                                       role="switch" 
+                                       class="toggle">
+                                <label for="soft-17-opt">Dealer hits on soft 17 </label>
+                                <input type="checkbox" 
+                                       id="insurance-opt" 
+                                       role="switch" 
+                                       class="toggle">
+                                <label for="insurance-opt">Insurance </label>
+                                <input type="checkbox" 
+                                       id="even-money-opt" 
+                                       role="switch" 
+                                       class="toggle">
+                                <label for="even-money-opt">Even Money </label>
+                                
+                                <input type="checkbox" 
+                                       id="auto-advice-opt" 
+                                       role="switch" 
+                                       class="toggle">
+                                       
+                                <label for="auto-advice-opt">Auto Advice </label>
+                
+                                <input type="checkbox" 
+                                       id="repeat-last-bet-opt" 
+                                       role="switch" 
+                                       class="toggle">
+                                <label for="repeat-last-bet-opt">Repeat Last Bet </label>
+                                <p class="warning-about-settings">Changes in game apply on next deal!</p>
+                
+                                <button class="close-dialog-btn" 
+                                        data-id="settings" 
+                                        data-action-type="close-dialog">Close</button>
+                            </dialog>
+                        </li>
+                        <li>
+                            <a href="/about" class="nav-item">About</a>
+                        </li>
+                        <li>
+                            <a href="/account" class="nav-item">Log In</a>
+                        </li>
+                    </ul>
+                </nav>
+                <button id="display-nav" class="hidden">
+                    <img src="./assets/body/drop-down.svg">
+                </button>
             </header>
             <main></main>
         </div>
@@ -179,7 +160,7 @@
     <!-- ------------------------------------------------------- -->
     
     
-    <template id="home-page-template">
+    <template id="home-page-template"> <!-- + - -->
         <div id="home-container"></div>
     </template>
     
@@ -191,22 +172,41 @@
 
     <template id="history-page-template">
         <section id="history-page-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Game Outcome</th>
-                        <th>Your Hand</th>
-                        <th>Dealer Hand</th>
-                        <th>Bet</th>
-                        <th>Payout</th>
-                        <th>Bank</th>
-                        <th>
-                            <button>Filter</button>
-                        </th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="filter-dialog-container"
+                 data-id="table-filter">
+                <button id="filter-table-btn">Filter<img src="/assets/body/filter.svg"></button>
+
+                <dialog class="filter-dialog-box">
+                    <form method="dialog">
+
+                        <fieldset></fieldset>
+                    </form>
+
+
+                    <button class="close-dialog-btn" 
+                    data-id="table-filter" 
+                    data-action-type="close-dialog">Close</button>
+                </dialog>
+            </div>
+       
+            <div id="table-container">
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Game Outcome</th>
+                            <th>Your Hand</th>
+                            <th>Dealer Hand</th>
+                            <th>Main Bet</th>
+                            <th>Insurance Bet</th>
+                            <th>Main Payout</th>
+                            <th>Insurance Payout</th>
+                            <th>Even Money Payout</th>
+                            <th>Bank</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </section>
     </template>
     
