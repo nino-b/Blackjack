@@ -202,12 +202,6 @@ Nav display btn
 #display-nav img {
     width: 100%;
 }
-#display-nav:hover {
-    transform: scale(1.05);
-}
-#display-nav:active{
-    transform: scale(1.1);
-}
 /****************************** */
 
 main {
@@ -500,14 +494,6 @@ dialog button {
     border: 1px solid rgb(142, 142, 142);
     padding: .5rem 1.2rem;
 }
-dialog button:hover {
-    transform: scale(1.05);
-}
-dialog button:active {
-    transform: scale(1.1);
-}
-
-
 
 
 

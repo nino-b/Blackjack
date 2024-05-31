@@ -55,3 +55,12 @@ a {
 * {
     font-family: 'Times New Roman', Times, serif;
 }
+button {
+    cursor: pointer;
+}
+button:hover {
+    scale: 1.05;
+}
+button:active {
+    scale: 1.1;
+}

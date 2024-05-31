@@ -24,31 +24,43 @@ export default class HistoryPage extends BaseComponent {
   */
   render() {
     this.table = lazyLoadEl('#history-table', this.table, this.root);
+    const fragment = document.createDocumentFragment();
+
     this.history.forEach(historyObj => {
       const numberOfHands = historyObj.hands.length;
 
-      const firstRow = createEl('tr', this.table);
+      const firstRow = createEl('tr', fragment);
       createEl('td', firstRow, historyObj.date, {rowspan: numberOfHands});
 
       this.displayHandData(firstRow, historyObj.hands[0])
 
       for (let i = 1; i < numberOfHands; i++) {
-        const handRow = createEl('tr', this.table);
+        const handRow = createEl('tr', fragment);
         this.displayHandData(handRow, historyObj.hands[i]);
       }
-
+      
       createEl('td', firstRow, historyObj.bank, {rowspan: numberOfHands});
+      this.table.appendChild(fragment);
     });
   }
   /**
  * Displays hand data in the given table row by creating and appending cells for each hand property.
+ * 
+ * Wrapping an element in 'div' enables those elements to stack on top each other.
  *
  * @param {HTMLElement} row - The table row element to append hand data cells to.
  * @param {Object} hand - An object representing the hand data with various properties.
  */
   displayHandData(row, hand) {
     for (const el in hand) {
-      createEl('td', row, hand[el]);
+      if (typeof hand[el] === "object") {
+        const rowEl = createEl('td', row);
+        for (const prop in hand[el]) {
+          createEl('div', rowEl, hand[el][prop]);
+        }
+      } else {
+        createEl('td', row, hand[el]);
+      }
     }
   }
   connectedCallback() {

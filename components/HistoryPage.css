@@ -1,56 +1,123 @@
+::-webkit-scrollbar {
+  width: .7rem;
+  height: .9rem;
+}
+::-webkit-scrollbar-thumb {
+  background: #686868; 
+  border-radius: 2rem; 
+  border: 3px solid transparent; 
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
 
-#history-page-container {
-  height: 100%;
-  margin: .5rem;
+/* Scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
-#table-container {
-  border: 1px solid transparent;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 0 .2rem .2rem #5c545035;
+::-webkit-scrollbar-thumb:active {
+  background: #2e2e2e; 
 }
+
+/* General */
+#table-body-container,
 table {
   width: 100%;
-  border-collapse: collapse; /* Ensure no double borders */
-  background-image: linear-gradient(rgba(190, 190, 190, 0.959), 
-                                    rgba(190, 187, 181, 0.966), 
-                                    rgba(155, 154, 153, 0.959), 
-                                    rgba(105, 104, 103, 0.968));
-  text-shadow: 0 .2rem .2rem #5c545072;
 }
 th,
 td {
   align-content: center;
-  text-align: center;
 }
-th {
+
+/* Table */
+#history-page-container {
+  height: 100%;
+  margin: 0 1rem 1rem 1rem;
+  overflow: scroll;
+}
+#table-container {
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  box-shadow: 0 0 .2rem .2rem #5c545035;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse; /* Ensure no double borders */
+  background-image: linear-gradient(rgba(151, 131, 131, 0.811), 
+                                    rgba(203, 181, 181, 0.782), 
+                                    rgba(176, 151, 151, 0.742), 
+                                    rgba(150, 124, 124, 0.763));
+  text-shadow: 0 .2rem .2rem #5c545072;
+}
+
+/* Table Head */
+th button {
+  height: 5rem;
+  width: 100%;
+  position: relative;
+  
   background-image: linear-gradient(rgba(52, 38, 38, 0.978), 
                                     rgba(60, 31, 31, 0.966), 
                                     rgba(46, 29, 29, 0.959), 
                                     rgba(39, 19, 19, 0.968));
-
   color: rgb(171, 170, 170);
+  font-size: 1rem;
+  border: none;
+  transform: scale .3s ease forwards;
 }
+th button:hover {
+  background-image: linear-gradient(rgba(52, 38, 38, 0.884), 
+                                    rgba(60, 31, 31, 0.871), 
+                                    rgba(46, 29, 29, 0.875), 
+                                    rgba(39, 19, 19, 0.863));
+}
+th button:active {
+  background-image: linear-gradient(rgba(44, 32, 32, 0.978), 
+                                    rgba(49, 25, 25, 0.966), 
+                                    rgba(38, 24, 24, 0.959), 
+                                    rgba(34, 17, 17, 0.968));
+}
+.reorder div {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+}
+/* Table Rows */
 tr {
-  margin: 1rem;
   color: rgb(35, 19, 19);
   border-bottom: 1px solid rgba(81, 73, 73, 0.689);
 }
+td {
+  text-align: start;
+  padding: .7rem;
+  color: rgb(19, 12, 12);
+}
+td div {
+  text-align: end;
+}
 
+/* Filter Button */
 #filter-table-btn {
   display: flex;
   align-items: center;
 
-  margin: 0 0 1rem 1rem;
+  margin: 0 0 1rem 2rem;
   padding: .5rem 1.4rem;
 
-  border: 1px solid grey;
-  box-shadow: 0 0 .3rem #5c545072;
+  border: 1px solid rgb(112, 95, 95);
+  box-shadow: 0 0 .3rem #65505072;
   border-radius: .5rem;
-  background-image: linear-gradient(rgb(135, 132, 132),
-                                    rgb(164, 162, 162),
-                                    rgb(156, 155, 155),
-                                    rgb(114, 111, 111));
+  background-image: linear-gradient(rgb(83, 54, 54),
+                                    rgb(156, 121, 121),
+                                    rgb(152, 112, 112),
+                                    rgb(68, 45, 45));
   font-size: 1rem;
   transition: scale 0.3s ease;
 }
@@ -64,23 +131,3 @@ tr {
   width: 1.1rem;
   margin-left: .2rem;
 }
-
-
-/* ************************************ */
-/* Media Queries */
-
-/* @media screen and (min-width: 1280px) {
-  th, td {
-    padding: 1rem;
-  }
-}
-@media screen and (min-width: 760px) {
-  th, td {
-    padding: .4vw;
-  }
-}
-@media screen and (min-width: 1280px) {
-  th, td {
-    padding: 1rem;
-  }
-}  */

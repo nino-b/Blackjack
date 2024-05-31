@@ -174,9 +174,9 @@
         <section id="history-page-container">
             <div class="filter-dialog-container"
                  data-id="table-filter">
-                <button id="filter-table-btn">Filter<img src="/assets/body/filter.svg"></button>
+                <button id="filter-table-btn" class="open-dialog-btn">Filter<img src="/assets/body/filter.svg"></button>
 
-                <dialog class="filter-dialog-box">
+                <dialog class="filter-dialog dialog-box">
                     <form method="dialog">
 
                         <fieldset></fieldset>
@@ -193,16 +193,76 @@
                 <table id="history-table">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Game Outcome</th>
-                            <th>Your Hand</th>
-                            <th>Dealer Hand</th>
-                            <th>Main Bet</th>
-                            <th>Insurance Bet</th>
-                            <th>Main Payout</th>
-                            <th>Insurance Payout</th>
-                            <th>Even Money Payout</th>
-                            <th>Bank</th>
+                            <th>
+                                <button>
+                                    Date 
+                                    <div class="reorder" data-order-id="date">
+                                        <div class="original-order">↕️</div>
+                                        <div class="ascending-order" hidden>⬆</div>
+                                        <div class="descending-order" hidden>⬇</div>
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button>
+                                    Game Outcome
+                                    <div class="reorder" data-order-id="game-outcome">
+                                        <div class="original-order">↕️</div>
+                                        <div class="ascending-order" hidden>⬆</div>
+                                        <div class="descending-order" hidden>⬇</div>
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button>
+                                    Your Hand
+                                    <div class="reorder" data-order-id="player-hand">
+                                        <div class="original-order">↕️</div>
+                                        <div class="ascending-order" hidden>⬆</div>
+                                        <div class="descending-order" hidden>⬇</div>
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button>
+                                    Dealer Hand
+                                    <div class="reorder" data-order-id="dealer-hand">
+                                        <div class="original-order">↕️</div>
+                                        <div class="ascending-order" hidden>⬆</div>
+                                        <div class="descending-order" hidden>⬇</div>
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button>
+                                    Bet
+                                    <div class="reorder" data-order-id="bet">
+                                        <div class="original-order">↕️</div>
+                                        <div class="ascending-order" hidden>⬆</div>
+                                        <div class="descending-order" hidden>⬇</div>
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button>
+                                    Payout
+                                    <div class="reorder" data-order-id="payout">
+                                        <div class="original-order">↕️</div>
+                                        <div class="ascending-order" hidden>⬆</div>
+                                        <div class="descending-order" hidden>⬇</div>
+                                    </div>
+                                </button>
+                            </th>
+                            <th>
+                                <button>
+                                    Bank
+                                    <div class="reorder" data-order-id="bank">
+                                        <div class="original-order">↕️</div>
+                                        <div class="ascending-order" hidden>⬆</div>
+                                        <div class="descending-order" hidden>⬇</div>
+                                    </div>
+                                </button>
+                            </th>
                         </tr>
                     </thead>
                 </table>
