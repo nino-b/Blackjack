@@ -172,14 +172,35 @@
 
     <template id="history-page-template">
         <section id="history-page-container">
+            <h1>History</h1>
             <div class="filter-dialog-container"
                  data-id="table-filter">
                 <button id="filter-table-btn" class="open-dialog-btn">Filter<img src="/assets/body/filter.svg"></button>
 
                 <dialog class="filter-dialog dialog-box">
                     <form method="dialog">
+                        <label for="start-date">Start Date:</label>
+                        <input type="date" id="start-date" name="start-date">
+                        
+                        <label for="end-date">End Date:</label>
+                        <input type="date" id="end-date" name="end-date">
 
-                        <fieldset></fieldset>
+                        <label for="game-outcome">Game Outcome:</label>
+                        <select id="game-outcome" name="game-outcome">
+                            <option value="" selected>Any</option>
+                            <option value="blackjack">Blackjack</option>
+                            <option value="win">You Won</option>
+                            <option value="lose">You Lost</option>
+                            <option value="push">Push</option>
+                        </select>
+
+                        <label for="insurance-taken">Insurance Taken: </label>
+                        <input type="checkbox" name="insurance-taken" id="insurance-taken">
+                        
+                        <label for="even-money-taken">Even Money Taken: </label>
+                        <input type="checkbox" name="even-money-taken" id="even-money-taken">
+
+                        <button type="submit" id="submit-filter-param">Filter</button>
                     </form>
 
 

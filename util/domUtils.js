@@ -96,8 +96,16 @@ function lazyLoadEl(el, elVar, shadowDOM) {
   return elVar;
 }
 
+function fetchDOMEl(identifier) {
+  return document.querySelector(identifier);
+}
+function fetchAllInstances(identifier) {
+  return Array.from(document.querySelectorAll(identifier));
+
+}
+
 export { 
   createEl, removeEl, 
   addClass, removeClass, toggleClass, updateElementClass,
-  lazyLoadEl
+  lazyLoadEl, fetchDOMEl, fetchAllInstances
  };

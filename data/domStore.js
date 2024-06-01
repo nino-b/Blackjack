@@ -1,3 +1,4 @@
+import { fetchAllInstances } from "../util/domUtils.js";
 
 const DOMStore = {
   header: document.getElementsByTagName('header')[0],
@@ -8,4 +9,14 @@ const DOMStore = {
   gameLink: document.querySelector('.game-link') 
 };
 
-export { DOMStore };
+const dialogConfig = {
+  openDialogBtns: fetchAllInstances('.open-dialog-btn'),
+  dialogBoxes: fetchAllInstances('.dialog-box'),
+  closeDialogBtns: fetchAllInstances('.close-dialog-btn'),
+  datasetCloseAction: 'close-dialog',
+  closingAnimation: 'dialog-closing',
+};
+
+
+
+export { DOMStore, dialogConfig };

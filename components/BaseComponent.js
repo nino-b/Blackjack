@@ -1,3 +1,6 @@
+import DialogManager from "../services/DialogManager.js";
+import { dialogConfig } from "../data/domStore.js";
+
 /**
  * This class encapsulates all common features for Web Component classes.
  * It provides a base for creating custom elements with encapsulated CSS, templates, and event handling.
@@ -83,6 +86,8 @@ export default class BaseComponent extends HTMLElement {
     this.setUpCSS();
     this.setUpTemplate();
     this.setUpEventListener();
+    const dialogManager = new DialogManager(dialogConfig);
+    console.log(dialogManager)
   }
   disconnectedCallback() {
     window.removeEventListener(this.eventName, this.render);

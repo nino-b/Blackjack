@@ -1,28 +1,3 @@
-::-webkit-scrollbar {
-  width: .7rem;
-  height: .9rem;
-}
-::-webkit-scrollbar-thumb {
-  background: #686868; 
-  border-radius: 2rem; 
-  border: 3px solid transparent; 
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
-/* Scrollbar on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
-::-webkit-scrollbar-thumb:active {
-  background: #2e2e2e; 
-}
-
 /* General */
 #table-body-container,
 table {
@@ -31,6 +6,15 @@ table {
 th,
 td {
   align-content: center;
+}
+
+/* h1 */
+h1 {
+  text-align: center;
+
+  font-weight: bold;
+  font-size: 2.3rem;
+  text-shadow: 0 .4rem .4rem #634848b9;
 }
 
 /* Table */
@@ -47,8 +31,7 @@ td {
 }
 
 table {
-  width: 100%;
-
+/*   width: 100%; */
   border-collapse: collapse; /* Ensure no double borders */
   background-image: linear-gradient(rgba(151, 131, 131, 0.811), 
                                     rgba(203, 181, 181, 0.782), 
@@ -70,7 +53,7 @@ th button {
   color: rgb(171, 170, 170);
   font-size: 1rem;
   border: none;
-  transform: scale .3s ease forwards;
+  transition: background-image .3s ease forwards;
 }
 th button:hover {
   background-image: linear-gradient(rgba(52, 38, 38, 0.884), 
@@ -79,11 +62,12 @@ th button:hover {
                                     rgba(39, 19, 19, 0.863));
 }
 th button:active {
-  background-image: linear-gradient(rgba(44, 32, 32, 0.978), 
-                                    rgba(49, 25, 25, 0.966), 
-                                    rgba(38, 24, 24, 0.959), 
-                                    rgba(34, 17, 17, 0.968));
+  background-image: linear-gradient(rgba(44, 32, 32, 0.911), 
+                                    rgba(49, 25, 25, 0.91), 
+                                    rgba(38, 24, 24, 0.886), 
+                                    rgba(34, 17, 17, 0.847));
 }
+
 .reorder div {
   position: absolute;
   bottom: 10%;
@@ -121,12 +105,12 @@ td div {
   font-size: 1rem;
   transition: scale 0.3s ease;
 }
-#filter-table-btn:hover {
+/* #filter-table-btn:hover {
   transform: scale(1.025);
 }
 #filter-table-btn:active {
   transform: scale(1.1);
-}
+} */
 #filter-table-btn img {
   width: 1.1rem;
   margin-left: .2rem;

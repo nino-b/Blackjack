@@ -2,6 +2,7 @@ import BaseComponent from "./BaseComponent.js";
 import URLs from "../data/urls.js";
 import history from "../data/history.js";
 import { createEl, lazyLoadEl } from "../util/domUtils.js";
+import dialogManager from "../services/DialogManager.js";
 
 
 export default class HistoryPage extends BaseComponent {

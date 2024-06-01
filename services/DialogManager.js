@@ -1,3 +1,5 @@
+import { dialogConfig } from "../data/domStore.js";
+
 const moduleName = 'DialogManager';
 
 
@@ -25,15 +27,14 @@ const moduleName = 'DialogManager';
  *     closingAnimation: 'dialog-closing'
  * });
  */
-class DialogManager {
-    constructor({openDialogBtns, dialogBoxes, closeDialogBtns}, {datasetCloseAction, closingAnimation/* , openingAnimation */}) {
+export default class DialogManager {
+    constructor({openDialogBtns, dialogBoxes, closeDialogBtns, datasetCloseAction, closingAnimation}) {
         this.openDialogBtns = openDialogBtns;
         this.dialogBoxes = dialogBoxes;
         this.closeDialogBtns = closeDialogBtns;
 
         this.datasetCloseAction = datasetCloseAction;
         this.closingAnimation = closingAnimation;
-        /* this.openingAnimation = openingAnimation; */
 
         this.openDialog();
         this.closeDialog();
@@ -57,10 +58,6 @@ class DialogManager {
                 for (const dialogBox of this.dialogBoxes) {
                     if (dialogBox.dataset.id === (event.target.dataset.id /* || event.target.parentNode.dataset.id */)) {
                         dialogBox.showModal();
-                     /*    dialogBox.id = this.openingAnimation;
-                        setTimeout(() => {
-                            dialogBox.id = '';
-                        }, 200); */
                         return;
                     } 
                 }
@@ -139,14 +136,6 @@ class DialogManager {
     }
 }
 
-const dialogManager = new DialogManager({
-    openDialogBtns: document.querySelectorAll('.open-dialog-btn'),
-    dialogBoxes: document.querySelectorAll('.dialog-box'),
-    closeDialogBtns: document.querySelectorAll('.close-dialog-btn')
-}, {
-    datasetCloseAction: 'close-dialog',
-    closingAnimation: 'dialog-closing',
-  /*   openingAnimation: 'dialog-opening' */
-});
+const dialogManager = new DialogManager(dialogConfig);
 
-export default dialogManager;
+export { dialogManager };
