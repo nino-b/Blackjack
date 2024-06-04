@@ -1,4 +1,5 @@
-import { dialogConfig } from "../data/domStore.js";
+import { getAllDOMElements } from "../util/domUtils.js";
+import { dialogSelectors, dialogAttributes } from "../data/domStore.js";
 
 const moduleName = 'DialogManager';
 
@@ -28,13 +29,13 @@ const moduleName = 'DialogManager';
  * });
  */
 export default class DialogManager {
-    constructor({openDialogBtns, dialogBoxes, closeDialogBtns, datasetCloseAction, closingAnimation}) {
-        this.openDialogBtns = openDialogBtns;
-        this.dialogBoxes = dialogBoxes;
-        this.closeDialogBtns = closeDialogBtns;
+    constructor(DOMRef, attributes) {
+        this.openDialogBtns = DOMRef.openDialogBtns;
+        this.dialogBoxes = DOMRef.dialogBoxes;
+        this.closeDialogBtns = DOMRef.closeDialogBtns;
 
-        this.datasetCloseAction = datasetCloseAction;
-        this.closingAnimation = closingAnimation;
+        this.datasetCloseAction = attributes.datasetCloseAction;
+        this.closingAnimation = attributes.closingAnimation;
 
         this.openDialog();
         this.closeDialog();
@@ -129,13 +130,11 @@ export default class DialogManager {
         }
         dialogBox.id = this.closingAnimation;
         setTimeout(() => {
-            console.log('Closing')
             dialogBox.close();
             dialogBox.id = '';
         }, 200);
     }
 }
 
-const dialogManager = new DialogManager(dialogConfig);
-
-export { dialogManager };
+const domRef = getAllDOMElements(dialogSelectors);
+const dialogManager = new DialogManager(domRef, dialogAttributes);

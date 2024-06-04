@@ -259,13 +259,6 @@ dialog {
     perspective: 1000px;
 }
 
-/* 
-display: flex; makes dialog box always visible.
-This code ensures that dialog box stays hidden until 'settings' or 'rules' button is clicked.
-*/
-dialog:not([open]) {
-    display: none;
-}
 .settings-dialog {
     background-image: linear-gradient(rgb(27, 26, 26), 
                                       rgb(45, 45, 44), 
@@ -274,37 +267,7 @@ dialog:not([open]) {
     border: 1px solid transparent;
     border-radius: .7rem;
     box-shadow: 0 0 .1rem rgb(45, 44, 44);
-
-    animation: open-dialog-box 150ms ease-in forwards;
 }
-@keyframes open-dialog-box {
-    0% {
-        opacity: 0;
-        transform: scale(0.5);
-        visibility: hidden; 
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-        visibility: visible;
-    }
-}
-#dialog-closing {
-    animation: close-dialog-box 100ms ease-out forwards;
-}
-@keyframes close-dialog-box {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-        visibility: visible;  
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.5);
-        visibility: hidden; 
-    }
-}
-
 
 /* Sound and music */
 dialog img {

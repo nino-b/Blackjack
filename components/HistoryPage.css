@@ -1,4 +1,7 @@
 /* General */
+input:focus-visible + label::before{
+  outline: 1px solid rgb(69, 10, 10);
+}
 #table-body-container,
 table {
   width: 100%;
@@ -8,6 +11,14 @@ td {
   align-content: center;
 }
 
+th button,
+#submit-filter-form  {
+  color: rgb(171, 170, 170);
+}
+
+.history-page-container {
+  position: relative;
+}
 /* h1 */
 h1 {
   text-align: center;
@@ -50,7 +61,6 @@ th button {
                                     rgba(60, 31, 31, 0.966), 
                                     rgba(46, 29, 29, 0.959), 
                                     rgba(39, 19, 19, 0.968));
-  color: rgb(171, 170, 170);
   font-size: 1rem;
   border: none;
   transition: background-image .3s ease forwards;
@@ -105,13 +115,194 @@ td div {
   font-size: 1rem;
   transition: scale 0.3s ease;
 }
-/* #filter-table-btn:hover {
-  transform: scale(1.025);
-}
-#filter-table-btn:active {
-  transform: scale(1.1);
-} */
 #filter-table-btn img {
   width: 1.1rem;
   margin-left: .2rem;
+}
+
+/* Filter Dialog */
+/* General */
+label[for="game-outcome"],
+#game-outcome,
+label[for="even-money-taken"],
+label[for="insurance-taken"] {
+  align-self: center;
+}
+
+#insurance-taken,
+#even-money-taken {
+  width: 1.5rem;
+}
+
+#end-date,
+#start-date,
+#game-outcome {
+  border: 1px solid transparent;
+  border-radius: .4rem;
+}
+
+/* Filter Dialog */
+.filter-dialog {
+  position: absolute;
+  top: 38%;
+  left: 20%;
+  
+  width: 20rem;
+  margin: 0;
+
+  background-image: linear-gradient(rgb(126, 85, 85),
+                                    rgb(165, 134, 134),
+                                    rgb(167, 128, 128),
+                                    rgb(111, 76, 76));
+border: 1px solid transparent;
+border-radius: .7rem;
+box-shadow: 0 0 .1rem rgb(45, 44, 44);
+}
+
+.filter-dialog form {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+}
+
+form h2 {
+  grid-column: 1 / span 4;
+  grid-row: 1;
+  margin: auto;
+
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+legend {
+  margin-bottom: .5rem;
+  font-weight: bold;
+}
+form fieldset {
+  grid-column: 1 / span 6;
+  grid-row: 2;
+
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between
+}
+label[for="game-outcome"] {
+  grid-column: 1 / span 3;
+  grid-row: 3;
+}
+#game-outcome {
+  grid-column: 3 / span 3;
+  grid-row: 3;
+  margin-left: 2rem;
+
+  height: 1.5rem;
+}
+label[for="insurance-taken"] {
+  grid-column: 1 / span 4;
+  grid-row: 4;
+}
+#insurance-taken {
+  grid-column: 4;
+  grid-row: 4;
+}
+label[for="even-money-taken"] {
+  grid-column: 1 / span 4;
+  grid-row: 5;
+}
+#even-money-taken {
+  grid-column: 4;
+  grid-row: 5;
+}
+#submit-filter-form {
+  grid-column: 4 / span 2;
+  grid-row: 6;
+
+  width: 4rem;
+  height: 2rem;
+
+  font-size: 1rem;
+  border: 1px solid transparent;
+  border-radius: .5rem;
+  background-image: linear-gradient(rgba(52, 38, 38, 0.978), 
+                                    rgba(60, 31, 31, 0.966), 
+                                    rgba(46, 29, 29, 0.959), 
+                                    rgba(39, 19, 19, 0.968));
+  box-shadow: 0 0 .3rem #1b0b0b;                
+}
+
+/* Checkbox */
+/* Hide checkboxes (boxes itself) */
+input[type="checkbox"].toggle {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+}
+
+
+/* toggle checkboxe - slider */
+input[type="checkbox"].toggle + label {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  position: relative;
+}
+input[type="checkbox"].toggle + label::before {
+  content: "";
+  width: 2rem;
+  height: 1rem;
+  background-image: linear-gradient(rgb(228, 173, 173),
+                                    rgb(235, 198, 198),
+                                    rgb(200, 161, 161),
+                                    rgb(173, 125, 125));
+  border-radius: 5rem;
+  border-color: rgb(0, 0, 0);
+  margin-left: .8rem;
+}
+input[type="checkbox"].toggle + label::after {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:  rgb(235, 209, 209);
+  content: "\2715";
+  font-size: .5rem;
+  right: 1rem; /*  */
+  width: .9rem;
+  height: .9rem;
+  background-color: rgb(201, 27, 27);
+  background-image: linear-gradient(rgb(206, 2, 2), 
+                                    rgb(195, 19, 19), 
+                                    rgb(185, 11, 11), 
+                                    rgb(167, 9, 9));
+  box-shadow: 0px 0px 2.5px 0px rgb(201, 27, 27);
+  border-radius: 5rem;
+  transition: 200ms ease-in-out;
+}
+input[type="checkbox"].toggle:checked + label::before {
+  background-image: linear-gradient(rgba(186, 237, 196, 0.896),
+                                    rgba(215, 243, 214, 0.916),
+                                    rgba(174, 216, 174, 0.937),
+                                    rgba(135, 185, 142, 0.979));
+}
+input[type="checkbox"].toggle:checked + label::after {
+  right: .1rem; /*  */
+  background-image: linear-gradient(rgb(9, 163, 17), 
+                                    rgb(22, 180, 54), 
+                                    rgb(14, 158, 38), 
+                                    rgb(9, 122, 18));
+  box-shadow: 0 0 2.5px 0 rgb(47, 139, 59);
+  animation: check-fade 400ms ease-in-out forwards;
+}
+@keyframes check-fade {
+  0% {
+      opacity: 1;
+      content: "\2715";
+  }
+  50% {
+      opacity: 0;
+      content: "\2715";
+  }
+  100% {
+      opacity: 1;
+      content: "\2713";
+  }
 }

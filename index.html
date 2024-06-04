@@ -178,35 +178,41 @@
                 <button id="filter-table-btn" class="open-dialog-btn">Filter<img src="/assets/body/filter.svg"></button>
 
                 <dialog class="filter-dialog dialog-box">
-                    <form method="dialog">
-                        <label for="start-date">Start Date:</label>
-                        <input type="date" id="start-date" name="start-date">
-                        
-                        <label for="end-date">End Date:</label>
-                        <input type="date" id="end-date" name="end-date">
+                    <form method="dialog" id="filter-form">
+                        <h2>Filtering Parameters:</h2>
+                        <fieldset>
+                            <legend>Time Range:</legend>
+                            <div>
+                                <label for="start-date">From:</label>
+                                <input type="date" id="start-date" name="start-date">
+                            </div>
+                            
+                            <div>
+                                <label for="end-date">To:</label>
+                                <input type="date" id="end-date" name="end-date">
+                            </div>
+                        </fieldset>
 
                         <label for="game-outcome">Game Outcome:</label>
                         <select id="game-outcome" name="game-outcome">
                             <option value="" selected>Any</option>
-                            <option value="blackjack">Blackjack</option>
-                            <option value="win">You Won</option>
-                            <option value="lose">You Lost</option>
-                            <option value="push">Push</option>
+                            <option value="Blackjack">Blackjack</option>
+                            <option value="You Won">You Won</option>
+                            <option value="You Lost">You Lost</option>
+                            <option value="Push">Push</option>
                         </select>
 
+                        <input type="checkbox" name="split-hands" id="split-hands" class="toggle">
+                        <label for="split-hands">Split Hands: </label>
+
+                        <input type="checkbox" name="insurance-taken" id="insurance-taken" class="toggle">
                         <label for="insurance-taken">Insurance Taken: </label>
-                        <input type="checkbox" name="insurance-taken" id="insurance-taken">
-                        
+
+                        <input type="checkbox" name="even-money-taken" id="even-money-taken" class="toggle">
                         <label for="even-money-taken">Even Money Taken: </label>
-                        <input type="checkbox" name="even-money-taken" id="even-money-taken">
 
-                        <button type="submit" id="submit-filter-param">Filter</button>
+                        <button type="submit" id="submit-filter-form">Filter</button>
                     </form>
-
-
-                    <button class="close-dialog-btn" 
-                    data-id="table-filter" 
-                    data-action-type="close-dialog">Close</button>
                 </dialog>
             </div>
        
@@ -226,8 +232,8 @@
                             </th>
                             <th>
                                 <button>
-                                    Game Outcome
-                                    <div class="reorder" data-order-id="game-outcome">
+                                    Dealer Hand
+                                    <div class="reorder" data-order-id="dealer-hand">
                                         <div class="original-order">↕️</div>
                                         <div class="ascending-order" hidden>⬆</div>
                                         <div class="descending-order" hidden>⬇</div>
@@ -246,8 +252,8 @@
                             </th>
                             <th>
                                 <button>
-                                    Dealer Hand
-                                    <div class="reorder" data-order-id="dealer-hand">
+                                    Game Outcome
+                                    <div class="reorder" data-order-id="game-outcome">
                                         <div class="original-order">↕️</div>
                                         <div class="ascending-order" hidden>⬆</div>
                                         <div class="descending-order" hidden>⬇</div>

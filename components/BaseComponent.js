@@ -1,5 +1,6 @@
 import DialogManager from "../services/DialogManager.js";
-import { dialogConfig } from "../data/domStore.js";
+import { dialogSelectors, dialogAttributes } from "../data/domStore.js";
+import { getAllDOMElements } from "../util/domUtils.js";
 
 /**
  * This class encapsulates all common features for Web Component classes.
@@ -86,8 +87,9 @@ export default class BaseComponent extends HTMLElement {
     this.setUpCSS();
     this.setUpTemplate();
     this.setUpEventListener();
-    const dialogManager = new DialogManager(dialogConfig);
-    console.log(dialogManager)
+
+    const domRef = getAllDOMElements(dialogSelectors, this.root);
+    const dialogManager = new DialogManager(domRef, dialogAttributes);
   }
   disconnectedCallback() {
     window.removeEventListener(this.eventName, this.render);

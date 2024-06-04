@@ -21,11 +21,18 @@ function createEl(el, parent = null, content = null, attributes = null) {
       throw new Error (`Invalid parameter. 'attributes' argument must be an object!`)
     }
     for (const key in attributes) {
-      element.setAttribute(key, attributes[key]);
+      if (key.startsWith('data')) {
+        const dataKey = key.slice(4);
+        element.dataset[dataKey] = attributes[key];
+      } else {
+        element.setAttribute(key, attributes[key]);
+      }
     }
   }
   return element;
 }
+
+
 /**
  * Removes the specified element from the DOM.
  * @param {Element} el - The DOM element to be removed.
@@ -82,30 +89,24 @@ function updateElementClass(element, newClass) {
   }
 }
 
-/**
- * Lazy loads a DOM element by querying it only if the provided variable is null.
- * @param {string} el - The selector string used to retrieve the element from the DOM.
- * @param {Element|null} elVar - The variable that stores the reference to the DOM element.
- * Initially, this variable should be set to null.
- * @returns {Element|null} - The DOM element if found, or null if the element does not exist.
- */
-function lazyLoadEl(el, elVar, shadowDOM) {
-  if (elVar === null) {
-    elVar = shadowDOM.querySelector(el);
+
+function getDOMElements(identifierList, context = document) {
+  const result = {};
+  for (const identifier in identifierList) {
+    result[identifier] = context.querySelector(identifierList[identifier]);
   }
-  return elVar;
+  return result;
 }
-
-function fetchDOMEl(identifier) {
-  return document.querySelector(identifier);
-}
-function fetchAllInstances(identifier) {
-  return Array.from(document.querySelectorAll(identifier));
-
+function getAllDOMElements(identifierList, context = document) {
+  const result = {};
+  for (const identifier in identifierList) {
+    result[identifier] = context.querySelectorAll(identifierList[identifier]);
+  }
+  return result;
 }
 
 export { 
   createEl, removeEl, 
   addClass, removeClass, toggleClass, updateElementClass,
-  lazyLoadEl, fetchDOMEl, fetchAllInstances
+  getDOMElements, getAllDOMElements
  };
