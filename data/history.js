@@ -1,630 +1,525 @@
 const history = [
   {
     dateTime: {
-      date: "30/05/2024",
+      date: "05/06/2024",
       time: "11:25",
     },
     dealerHand: {
-      cards: "A♣️ Q♠️"
+      cards: "8♣️ 9♠️"
     },
-    playerHands: [
-      {
-        cards: "8♥️ 3♣️ 6♦️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 100",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 200",
-          insurance: null,
-          evenMoney: null,
-        }
-      }
-    ],
-    bank: 2100
-  },
-  {
-    dateTime: {
-      date: "30/05/2024",
-      time: "12:15",
-    },
-    dealerHand: {
-      cards: "K♠️ 9♦️"
-    },
-    playerHands: [
-      {
-        cards: "5♣️ 10♥️ 4♦️",
-        outcome: 'You Lost',
-        bet: {
-          main: "Main: 150",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 0",
-          insurance: null,
-          evenMoney: null,
-        }
-      }
-    ],
-    bank: 1950
-  },
-  {
-    dateTime: {
-      date: "30/05/2024",
-      time: "13:45",
-    },
-    dealerHand: {
-      cards: "2♠️ 3♣️ 7♥️"
-    },
-    playerHands: [
-      {
-        cards: "9♠️ 8♦️",
-        outcome: 'Push',
-        bet: {
-          main: "Main: 200",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 200",
-          insurance: null,
-          evenMoney: null,
-        }
-      }
-    ],
-    bank: 1950
-  },
-  {
-    dateTime: {
-      date: "31/05/2024",
-      time: "10:00",
-    },
-    dealerHand: {
-      cards: "J♣️ 10♦️"
-    },
-    playerHands: [
-      {
-        cards: "A♥️ 9♠️",
-        outcome: 'Blackjack',
-        bet: {
-          main: "Main: 300",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 450",
-          insurance: null,
-          evenMoney: null,
-        }
+    hand: {
+      cards: "8♥️ 4♣️ 6♦️",
+      outcome: "You Won",
+      isSplit: "Yes",
+      bet: {
+        main: "Main: 100",
+        insurance: null,
       },
-      {
-        cards: "8♥️ 9♠️",
-        outcome: 'You Lost',
-        bet: {
-          main: "Main: 300",
-          insurance: null,
-        },
-        payout: {
-          main: "0",
-          insurance: null,
-          evenMoney: null,
-        }
+      payout: {
+        main: "Main: 200",
+        insurance: null,
+        evenMoney: null,
+      }
+    },
+    bank: {
+      amount: 2200
+    }
+  },
+  {
+    dateTime: {
+      date: "05/06/2024",
+      time: "11:00",
+    },
+    dealerHand: {
+      cards: "8♣️ 9♠️"
+    },
+    hand: {
+      cards: "8♥️ 5♣️ J♦️",
+      outcome: "You Lost",
+      isSplit: "Yes",
+      bet: {
+        main: "Main: 100",
+        insurance: null,
       },
-      {
-        cards: "10♥️ 9♠️",
-        outcome: 'You Lost',
-        bet: {
-          main: "Main: 300",
-          insurance: null,
-        },
-        payout: {
-          main: "0",
-          insurance: null,
-          evenMoney: null,
-        }
+      payout: {
+        main: "Main: 0",
+        insurance: null,
+        evenMoney: null,
       }
-    ],
-    bank: 2100
+    },
+    bank: {
+      amount: 2100
+    }
   },
   {
     dateTime: {
-      date: "31/05/2024",
-      time: "11:30",
+      date: "04/06/2024",
+      time: "11:00",
     },
     dealerHand: {
-      cards: "4♠️ 5♣️"
+      cards: "A♣️ 9♠️"
     },
-    playerHands: [
-      {
-        cards: "J♥️ 3♦️ 2♠️",
-        outcome: 'You Lost',
-        bet: {
-          main: "Main: 100",
-          insurance: "Insurance: 50",
-        },
-        payout: {
-          main: "Main: 0",
-          insurance: "Insurance: 100",
-          evenMoney: null,
-        }
+    hand: {
+      cards: "8♥️ J♦️",
+      outcome: "You Lost",
+      isSplit: "No",
+      bet: {
+        main: "Main: 100",
+        insurance: "Insurance: 50",
+      },
+      payout: {
+        main: "Main: 0",
+        insurance: "Insurance: 0",
+        evenMoney: null,
       }
-    ],
-    bank: 2050
+    },
+    bank: {
+      amount: 2100
+    }
   },
   {
     dateTime: {
-      date: "31/05/2024",
-      time: "12:45",
-    },
-    dealerHand: {
-      cards: "Q♦️ 2♠️"
-    },
-    playerHands: [
-      {
-        cards: "7♥️ 8♠️ 6♣️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 200",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 400",
-          insurance: null,
-          evenMoney: null,
-        }
-      }
-    ],
-    bank: 2250
-  },
-  {
-    dateTime: {
-      date: "01/06/2024",
-      time: "14:10",
-    },
-    dealerHand: {
-      cards: "A♠️ 9♣️"
-    },
-    playerHands: [
-      {
-        cards: "10♠️ 10♥️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 150",
-          insurance: "Insurance: 50",
-        },
-        payout: {
-          main: "Main: 300",
-          insurance: "Insurance: 100",
-          evenMoney: null,
-        }
-      }
-    ],
-    bank: 2600
-  },
-  {
-    dateTime: {
-      date: "01/06/2024",
-      time: "15:30",
-    },
-    dealerHand: {
-      cards: "7♦️ 8♣️"
-    },
-    playerHands: [
-      {
-        cards: "2♠️ 5♣️ 9♥️",
-        outcome: 'You Lost',
-        bet: {
-          main: "Main: 100",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 0",
-          insurance: null,
-          evenMoney: null,
-        }
-      }
-    ],
-    bank: 2500
-  },
-  {
-    dateTime: {
-      date: "02/06/2024",
+      date: "04/06/2024",
       time: "10:45",
     },
     dealerHand: {
-      cards: "K♥️ 6♠️"
+      cards: "7♦️ 10♣️"
     },
-    playerHands: [
-      {
-        cards: "Q♣️ 5♥️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 200",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 400",
-          insurance: null,
-          evenMoney: null,
-        }
+    hand: {
+      cards: "9♣️ 8♠️",
+      outcome: "Push",
+      isSplit: "No",
+      bet: {
+        main: "Main: 50",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 50",
+        insurance: null,
+        evenMoney: null,
       }
-    ],
-    bank: 2900
+    },
+    bank: {
+      amount: 2100
+    }
+  },
+  {
+    dateTime: {
+      date: "04/06/2024",
+      time: "10:30",
+    },
+    dealerHand: {
+      cards: "K♣️ 6♠️"
+    },
+    hand: {
+      cards: "A♥️ 10♦️",
+      outcome: "You Won",
+      isSplit: "No",
+      bet: {
+        main: "Main: 100",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 150",
+        insurance: null,
+        evenMoney: null,
+      }
+    },
+    bank: {
+      amount: 2150
+    }
+  },
+  {
+    dateTime: {
+      date: "03/06/2024",
+      time: "15:15",
+    },
+    dealerHand: {
+      cards: "Q♠️ 7♦️"
+    },
+    hand: {
+      cards: "J♣️ 6♣️ 5♠️",
+      outcome: "You Lost",
+      isSplit: "No",
+      bet: {
+        main: "Main: 75",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 0",
+        insurance: null,
+        evenMoney: null,
+      }
+    },
+    bank: {
+      amount: 2000
+    }
+  },
+  {
+    dateTime: {
+      date: "03/06/2024",
+      time: "14:00",
+    },
+    dealerHand: {
+      cards: "5♣️ K♦️"
+    },
+    hand: {
+      cards: "6♠️ 7♣️ 9♦️",
+      outcome: "You Won",
+      isSplit: "No",
+      bet: {
+        main: "Main: 50",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 100",
+        insurance: null,
+        evenMoney: null,
+      }
+    },
+    bank: {
+      amount: 2050
+    }
   },
   {
     dateTime: {
       date: "02/06/2024",
-      time: "12:00",
-    },
-    dealerHand: {
-      cards: "8♠️ 4♦️"
-    },
-    playerHands: [
-      {
-        cards: "A♦️ 9♣️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 150",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 300",
-          insurance: null,
-          evenMoney: null,
-        }
-      }
-    ],
-    bank: 3200
-  },
-  {
-    dateTime: {
-      date: "03/06/2024",
-      time: "14:20",
-    },
-    dealerHand: {
-      cards: "2♣️ 9♥️"
-    },
-    playerHands: [
-      {
-        cards: "3♦️ 6♠️ 7♥️",
-        outcome: 'Push',
-        bet: {
-          main: "Main: 100",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 100",
-          insurance: null,
-          evenMoney: null,
-        }
-      }
-    ],
-    bank: 3200
-  },
-  {
-    dateTime: {
-      date: "03/06/2024",
       time: "16:45",
     },
     dealerHand: {
-      cards: "Q♦️ 5♣️"
+      cards: "8♠️ 2♣️"
     },
-    playerHands: [
-      {
-        cards: "8♠️ 8♣️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 250",
-          insurance: "Insurance: 50",
-        },
-        payout: {
-          main: "Main: 500",
-          insurance: "Insurance: 100",
-          evenMoney: null,
-        }
+    hand: {
+      cards: "K♥️ 9♣️",
+      outcome: "You Won",
+      isSplit: "No",
+      bet: {
+        main: "Main: 100",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 150",
+        insurance: null,
+        evenMoney: null,
       }
-    ],
-    bank: 3500
+    },
+    bank: {
+      amount: 2100
+    }
   },
   {
     dateTime: {
-      date: "04/06/2024",
-      time: "11:30",
-    },
-    dealerHand: {
-      cards: "6♦️ 3♠️"
-    },
-    playerHands: [
-      {
-        cards: "4♣️ 4♦️ 5♠️",
-        outcome: 'You Lost',
-        bet: {
-          main: "Main: 200",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 0",
-          insurance: null,
-          evenMoney: null,
-        }
-      }
-    ],
-    bank: 3300
-  },
-  {
-    dateTime: {
-      date: "04/06/2024",
-      time: "13:00",
-    },
-    dealerHand: {
-      cards: "A♠️ 7♥️"
-    },
-    playerHands: [
-      {
-        cards: "10♦️ 10♣️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 300",
-          insurance: "Insurance: 50",
-        },
-        payout: {
-          main: "Main: 600",
-          insurance: "Insurance: 100",
-          evenMoney: null,
-        }
-      }
-    ],
-    bank: 4000
-  },
-  {
-    dateTime: {
-      date: "05/06/2024",
+      date: "02/06/2024",
       time: "15:30",
     },
     dealerHand: {
-      cards: "5♣️ 5♦️"
+      cards: "9♠️ 9♦️"
     },
-    playerHands: [
-      {
-        cards: "9♥️ 7♠️",
-        outcome: 'You Lost',
-        bet: {
-          main: "Main: 100",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 0",
-          insurance: null,
-          evenMoney: null,
-        }
+    hand: {
+      cards: "7♠️ 8♣️",
+      outcome: "Push",
+      isSplit: "No",
+      bet: {
+        main: "Main: 50",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 50",
+        insurance: null,
+        evenMoney: null,
       }
-    ],
-    bank: 3900
+    },
+    bank: {
+      amount: 2050
+    }
   },
   {
     dateTime: {
-      date: "05/06/2024",
-      time: "17:45",
-    },
-    dealerHand: {
-      cards: "J♠️ 9♣️"
-    },
-    playerHands: [
-      {
-        cards: "Q♥️ K♠️",
-        outcome: 'Push',
-        bet: {
-          main: "Main: 200",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 200",
-          insurance: null,
-          evenMoney: null,
-        }
-      }
-    ],
-    bank: 3900
-  },
-  {
-    dateTime: {
-      date: "06/06/2024",
+      date: "01/06/2024",
       time: "10:00",
     },
     dealerHand: {
-      cards: "6♣️ 8♠️"
+      cards: "J♠️ 7♦️"
     },
-    playerHands: [
-      {
-        cards: "4♦️ 5♠️ 7♣️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 150",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 300",
-          insurance: null,
-          evenMoney: null,
-        }
+    hand: {
+      cards: "Q♣️ 6♣️",
+      outcome: "You Lost",
+      isSplit: "No",
+      bet: {
+        main: "Main: 75",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 0",
+        insurance: null,
+        evenMoney: null,
       }
-    ],
-    bank: 4050
+    },
+    bank: {
+      amount: 1950
+    }
   },
   {
     dateTime: {
-      date: "06/06/2024",
-      time: "11:30",
+      date: "31/05/2024",
+      time: "17:20",
     },
     dealerHand: {
-      cards: "K♣️ 3♠️"
+      cards: "3♦️ Q♣️"
     },
-    playerHands: [
-      {
-        cards: "A♦️ J♠️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 200",
-          insurance: "Insurance: 50",
-        },
-        payout: {
-          main: "Main: 400",
-          insurance: "Insurance: 100",
-          evenMoney: "Even Money: 100",
-        }
+    hand: {
+      cards: "K♠️ 8♦️",
+      outcome: "You Won",
+      isSplit: "No",
+      bet: {
+        main: "Main: 50",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 100",
+        insurance: null,
+        evenMoney: null,
       }
-    ],
-    bank: 4550
+    },
+    bank: {
+      amount: 2000
+    }
   },
   {
     dateTime: {
-      date: "07/06/2024",
-      time: "14:20",
+      date: "31/05/2024",
+      time: "16:05",
     },
     dealerHand: {
-      cards: "9♥️ 7♦️"
+      cards: "7♠️ J♦️"
     },
-    playerHands: [
-      {
-        cards: "A♠️ Q♣️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 300",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 600",
-          insurance: null,
-          evenMoney: "Even Money: 150",
-        }
+    hand: {
+      cards: "10♠️ 6♥️",
+      outcome: "You Lost",
+      isSplit: "No",
+      bet: {
+        main: "Main: 100",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 0",
+        insurance: null,
+        evenMoney: null,
       }
-    ],
-    bank: 5150
+    },
+    bank: {
+      amount: 1900
+    }
   },
   {
     dateTime: {
-      date: "08/06/2024",
-      time: "16:45",
+      date: "30/05/2024",
+      time: "14:45",
     },
     dealerHand: {
-      cards: "6♠️ 4♦️"
+      cards: "6♦️ 10♠️"
     },
-    playerHands: [
-      {
-        cards: "A♥️ K♦️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 250",
-          insurance: "Insurance: 50",
-        },
-        payout: {
-          main: "Main: 500",
-          insurance: "Insurance: 100",
-          evenMoney: "Even Money: 125",
-        }
+    hand: {
+      cards: "7♣️ 9♠️",
+      outcome: "You Won",
+      isSplit: "No",
+      bet: {
+        main: "Main: 100",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 150",
+        insurance: null,
+        evenMoney: null,
       }
-    ],
-    bank: 5800
+    },
+    bank: {
+      amount: 2050
+    }
   },
   {
     dateTime: {
-      date: "09/06/2024",
+      date: "29/05/2024",
+      time: "12:30",
+    },
+    dealerHand: {
+      cards: "5♣️ K♠️"
+    },
+    hand: {
+      cards: "8♣️ 7♦️",
+      outcome: "Push",
+      isSplit: "No",
+      bet: {
+        main: "Main: 50",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 50",
+        insurance: null,
+        evenMoney: null,
+      }
+    },
+    bank: {
+      amount: 2050
+    }
+  },
+  {
+    dateTime: {
+      date: "28/05/2024",
+      time: "11:15",
+    },
+    dealerHand: {
+      cards: "J♠️ 9♥️"
+    },
+    hand: {
+      cards: "Q♣️ 8♣️",
+      outcome: "You Lost",
+      isSplit: "No",
+      bet: {
+        main: "Main: 100",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 0",
+        insurance: null,
+        evenMoney: null,
+      }
+    },
+    bank: {
+      amount: 1950
+    }
+  },
+  {
+    dateTime: {
+      date: "27/05/2024",
       time: "10:00",
     },
     dealerHand: {
-      cards: "Q♠️ 5♥️"
+      cards: "6♠️ 5♥️"
     },
-    playerHands: [
-      {
-        cards: "A♣️ 10♦️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 200",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 400",
-          insurance: null,
-          evenMoney: "Even Money: 100",
-        }
+    hand: {
+      cards: "9♦️ 7♥️",
+      outcome: "You Won",
+      isSplit: "No",
+      bet: {
+        main: "Main: 50",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 100",
+        insurance: null,
+        evenMoney: null,
       }
-    ],
-    bank: 6300
+    },
+    bank: {
+      amount: 2000
+    }
   },
   {
     dateTime: {
-      date: "10/06/2024",
-      time: "13:00",
+      date: "26/05/2024",
+      time: "18:20",
     },
     dealerHand: {
-      cards: "8♦️ 2♠️"
+      cards: "Q♥️ 2♠️"
     },
-    playerHands: [
-      {
-        cards: "A♥️ Q♥️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 300",
-          insurance: "Insurance: 50",
-        },
-        payout: {
-          main: "Main: 600",
-          insurance: "Insurance: 100",
-          evenMoney: "Even Money: 150",
-        }
+    hand: {
+      cards: "J♦️ 8♠️",
+      outcome: "Push",
+      isSplit: "No",
+      bet: {
+        main: "Main: 75",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 75",
+        insurance: null,
+        evenMoney: null,
       }
-    ],
-    bank: 6900
+    },
+    bank: {
+      amount: 2000
+    }
   },
   {
     dateTime: {
-      date: "11/06/2024",
+      date: "25/05/2024",
+      time: "17:00",
+    },
+    dealerHand: {
+      cards: "8♣️ 7♦️"
+    },
+    hand: {
+      cards: "10♥️ 9♣️",
+      outcome: "You Won",
+      isSplit: "No",
+      bet: {
+        main: "Main: 100",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 150",
+        insurance: null,
+        evenMoney: null,
+      }
+    },
+    bank: {
+      amount: 2050
+    }
+  },
+  {
+    dateTime: {
+      date: "24/05/2024",
+      time: "16:00",
+    },
+    dealerHand: {
+      cards: "J♠️ 8♠️"
+    },
+    hand: {
+      cards: "6♦️ 6♠️ 7♣️",
+      outcome: "You Lost",
+      isSplit: "No",
+      bet: {
+        main: "Main: 50",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 0",
+        insurance: null,
+        evenMoney: null,
+      }
+    },
+    bank: {
+      amount: 1900
+    }
+  },
+  {
+    dateTime: {
+      date: "23/05/2024",
       time: "15:30",
     },
     dealerHand: {
-      cards: "5♣️ J♠️"
+      cards: "5♦️ 10♣️"
     },
-    playerHands: [
-      {
-        cards: "A♠️ J♣️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 200",
-          insurance: null,
-        },
-        payout: {
-          main: "Main: 400",
-          insurance: null,
-          evenMoney: "Even Money: 100",
-        }
+    hand: {
+      cards: "9♥️ 8♣️",
+      outcome: "You Won",
+      isSplit: "No",
+      bet: {
+        main: "Main: 100",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 150",
+        insurance: null,
+        evenMoney: null,
       }
-    ],
-    bank: 7400
-  },
-  {
-    dateTime: {
-      date: "12/06/2024",
-      time: "17:45",
     },
-    dealerHand: {
-      cards: "9♠️ 6♣️"
-    },
-    playerHands: [
-      {
-        cards: "A♥️ K♣️",
-        outcome: 'You Won',
-        bet: {
-          main: "Main: 150",
-          insurance: "Insurance: 50",
-        },
-        payout: {
-          main: "Main: 300",
-          insurance: "Insurance: 100",
-          evenMoney: "Even Money: 75",
-        }
-      }
-    ],
-    bank: 7800
+    bank: {
+      amount: 2050
+    }
   }
 ];
+
 
 export default history;
