@@ -109,7 +109,7 @@ const history = [
       time: "10:30",
     },
     dealerHand: {
-      cards: "K♣️ 6♠️"
+      cards: "A♣️ K♠️"
     },
     hand: {
       cards: "A♥️ 10♦️",
@@ -120,9 +120,9 @@ const history = [
         insurance: null,
       },
       payout: {
-        main: "Main: 150",
+        main: "Main: 0",
         insurance: null,
-        evenMoney: null,
+        evenMoney: "Even Money: 200",
       }
     },
     bank: {

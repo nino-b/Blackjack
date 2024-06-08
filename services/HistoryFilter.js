@@ -1,4 +1,4 @@
-import { addClass } from "../util/domUtils.js";
+import { addClass, removeClass } from "../util/domUtils.js";
 
 
 export default class HistoryFilter {
@@ -11,7 +11,8 @@ export default class HistoryFilter {
     const [day, month, year] = dateStr.split('/').map(Number);
     return new Date(year, month - 1, day);
   }
-  isDateInRange(checkDateStr, startDateStr, endDateStr) {      
+  isDateInRange(checkDateStr, startDateStr, endDateStr) {   
+    if (!startDateStr && !endDateStr) return true;   
     let startDate = null;
     let endDate = null;
 
@@ -43,6 +44,9 @@ export default class HistoryFilter {
       if (!tr.dataset.date) {
         return false;
       }
+      if (tr.classList.contains('hidden')) {
+        removeClass(tr, 'hidden');
+      }
   
       const filters = [
         { key: 'date', startKey: 'start-date', endKey: 'end-date', check: this.isDateInRange.bind(this) },
@@ -52,16 +56,23 @@ export default class HistoryFilter {
         { key: 'splitHands', startKey: 'split-hands' }
       ];
   
-      return filters.every(filter => {
+      return filters.forEach(filter => {
         const { key, startKey, endKey, check } = filter;
   
         if (endKey && (data[startKey] || data[endKey])) {
           if (!(check(tr.dataset[key], data[startKey], data[endKey]))) {
+            console.log('filter', filter)
+            console.log('data', data);
+            console.log('data[startKey]', data[startKey]);
+            console.log('tr.dataset[key]', tr.dataset[key]);
             addClass(tr, 'hidden');
           }
         }
-  
-        if (data[startKey] && data[startKey] !== tr.dataset[key] || !data[startKey]) {
+
+
+        if (data[startKey] && data[startKey] !== tr.dataset[key]) {
+          console.log('check')
+
           addClass(tr, 'hidden');
         }
         });

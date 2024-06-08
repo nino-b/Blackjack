@@ -164,8 +164,8 @@ header > nav > ul button {
     grid-row: 1 / auto;
     grid-column: 1 / span 12;
 
-    margin: .5rem .4rem 0 .4rem;
-    padding: 1rem 1rem;
+    margin: 0.2rem .4rem 0 .4rem;
+    padding: 0 1rem;
 }
 .align-bottom {
     grid-row: 11 / auto;

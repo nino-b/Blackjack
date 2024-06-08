@@ -9,7 +9,6 @@ export default class HistoryFormSubmitHandler {
     this.root = root;
     this.form = null;
 
-    console.log('callback', callback)
     this.setupSubmitListener(callback);
   }
   /**

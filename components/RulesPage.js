@@ -10,32 +10,6 @@ export default class RulesPage extends BaseComponent {
     this.eventName = 'append_rules_change';
   }
 
-  /* 
-<section id="rules-page-container">
-  <h1></h1>
-  <form>
-    <input type="search" placeholder="Look up a rule">
-    <button>Search</button>
-  </form>
-  <p></p>
-  
-  <div class="rule-group-container">
-    <h2>group_name</h2>
-
-    <ul>
-
-      <li>
-        <p>
-          <span>label</span> description.
-        </p>
-      </li>
-
-    </ul>
-  </div>
-
-  <p></p>
-</section>
-*/
   render() {
     const rules = app.store.rules;
     const ruleSection = this.root.querySelector('#rules-page-container');
@@ -57,21 +31,6 @@ export default class RulesPage extends BaseComponent {
     const finalWords = createEl('p', ruleSection, wrappingUp);
     addClass(finalWords, 'final-words');
   }
-  /* 
-  <div class="rule-group-container">
-    <h2>group_name</h2>
-
-    <ul>
-
-      <li>
-        <p>
-          <span>label</span> description.
-        </p>
-      </li>
-
-    </ul>
-  </div>
-  */
   #createRuleGroupDiv(ruleContainer, ruleGroup) {
     const ruleGroupContainer = createEl('div', ruleContainer);
     addClass(ruleGroupContainer, 'rule-group-container');
