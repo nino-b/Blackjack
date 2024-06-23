@@ -1,4 +1,5 @@
-import { addClass, removeClass } from "../util/domUtils.js";
+import addClass from "../util/DOMUtils/addClass";
+import removeClass from "../util/DOMUtils/removeClass";
 
 
 export default class HistoryFilter {
@@ -61,18 +62,17 @@ export default class HistoryFilter {
   
         if (endKey && (data[startKey] || data[endKey])) {
           if (!(check(tr.dataset[key], data[startKey], data[endKey]))) {
-            console.log('filter', filter)
+/*             console.log('filter', filter)
             console.log('data', data);
             console.log('data[startKey]', data[startKey]);
-            console.log('tr.dataset[key]', tr.dataset[key]);
+            console.log('tr.dataset[key]', tr.dataset[key]); */
             addClass(tr, 'hidden');
           }
         }
 
 
         if (data[startKey] && data[startKey] !== tr.dataset[key]) {
-          console.log('check')
-
+/*           console.log('check') */
           addClass(tr, 'hidden');
         }
         });

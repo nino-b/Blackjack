@@ -1,4 +1,4 @@
-import { createEl } from "../util/domUtils.js";
+import createEl from "../util/DOMUtils/createEl";
 
 /**
  * This class contains functionalities that are necessary to render the history table.

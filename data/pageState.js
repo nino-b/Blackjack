@@ -13,6 +13,8 @@ const pageState = {
     route: "/game",
     attributes: {
       header: "align-top",
+      displayHeaderNav:  "display-header-nav",
+      dropDown: 'display',
       pageBg: "table-page-bg"
     },
     customDOMEl: "game-page",

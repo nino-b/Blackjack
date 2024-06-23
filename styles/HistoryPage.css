@@ -38,29 +38,15 @@ table {
 }
 
 /* Table Head */
-th button {
+th {
   height: 5rem;
-  width: 100%;
-  position: relative;
-  
   background-image: linear-gradient(rgba(52, 38, 38, 0.978), 
                                     rgba(60, 31, 31, 0.966), 
                                     rgba(46, 29, 29, 0.959), 
                                     rgba(39, 19, 19, 0.968));
+  color: rgb(199, 193, 193);
   font-size: 1rem;
   border: none;
-  transition: background-image .3s ease forwards;
-}
-th button:hover {
-  background-image: linear-gradient(rgba(52, 38, 38, 0.884), 
-                                    rgba(60, 31, 31, 0.871), 
-                                    rgba(46, 29, 29, 0.875), 
-                                    rgba(39, 19, 19, 0.863));
-}
-.reorder div {
-  position: absolute;
-  bottom: 10%;
-  right: 10%;
 }
 /* h1 */
 h1 {

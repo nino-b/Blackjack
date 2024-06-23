@@ -1,24 +1,40 @@
+import queryElementGroup from "../util/DOMUtils/queryElementGroup";
+import queryElement from "../util/DOMUtils/queryElement";
 
-const DOMStore = {
-  header: document.getElementsByTagName('header')[0],
-  main: document.getElementsByTagName('main')[0],
-  bgContainer: document.getElementById('bg-container'),
-  navItems: document.querySelectorAll('a.nav-item'),
-  gameListItem: document.querySelector('.game-li-item'),
-  gameLink: document.querySelector('.game-link') 
-};
+const elementGroups = {
+  navItems: queryElementGroup('a.nav-item'),
+}
+
+
+const elements = {
+  header: queryElement('header'),
+  main: queryElement('main'),
+  bgContainer: queryElement('#bg-container'),
+  gameListItem: queryElement('.game-li-item'),
+  gameLink: queryElement('.game-link'),
+  displayNavBtn: queryElement('#display-nav'),
+  arrowImage: queryElement('#display-nav img'),
+}
+
+
+
+const dialogRef = {
+  openDialogBtns: queryElementGroup('.open-dialog-btn'),
+  dialogBoxes: queryElementGroup('.dialog-box'),
+  closeDialogBtns: queryElementGroup('.close-dialog-btn'),
+}
 
 
 const dialogSelectors = {
   openDialogBtns: '.open-dialog-btn',
   dialogBoxes: '.dialog-box',
-  closeDialogBtns: '.close-dialog-btn',
-};
+  closeDialogBtns: '.close-dialog-btn'
+}
 
 const dialogAttributes = {
-  datasetCloseAction: 'close-dialog',
-  closingAnimation: 'dialog-closing',
-};
+  datasetCloseAction: 'close-dialog', 
+  closingAnimation: 'close-dialog-animation'
+}
 
 
 
@@ -27,4 +43,8 @@ const dialogAttributes = {
 
 
 
-export { DOMStore, dialogSelectors, dialogAttributes };
+
+
+export { elementGroups, elements, dialogRef,
+         dialogSelectors, dialogAttributes
+ };

@@ -1,0 +1,38 @@
+{
+  "name": "blackjack",
+  "version": "1.0.0",
+  "description": "'Blackjack Game'",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nino-b/Blackjack.git"
+  },
+  "keywords": [
+    "'blackjack\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[\u001b\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[D\u001b[D\u001b[D\u001b[D"
+  ],
+  "author": "Nino Burtchuladze",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nino-b/Blackjack/issues"
+  },
+  "homepage": "https://github.com/nino-b/Blackjack#readme",
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.12.0",
+    "parcel": "^2.12.0"
+  },
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.css": ["@parcel/transformer-inline-string", "..."]
+  },
+  "reporters": [
+    "...",
+    "parcel-reporter-static-files-copy"
+  ],
+  "staticFiles": {
+    "staticPath": "static"
+  }
+}

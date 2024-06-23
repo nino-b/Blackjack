@@ -23,7 +23,7 @@ header > nav {
 body {
     width: 100vw;
     height: 100vh;
-    background-image: url(./assets/body/bg.jpg);
+    background-image: url(../assets/body/bg.jpg);
 }
 
 body,
@@ -43,6 +43,7 @@ body,
 }
 
 #bg-container {
+    position: relative; /* Necessary for game-page, to hide a header nav */
     height: 95%;
     width: 95%;
 
@@ -58,7 +59,7 @@ body,
 /******************************************* */
 /* Page Background images */
 .table-page-bg {
-    background-image: url("./assets/body/bg-table-main.svg");
+    background-image: url("../assets/body/bg-table-main.svg");
 }
 .gradient-page-bg {
     background-image: linear-gradient(#83807d, 
@@ -67,17 +68,15 @@ body,
                                       #969391);
 }
 /******************************************* */
-
-header {
+header nav ul {
     grid-row: 1 / span 2;
     grid-column: 1 / span 12;
     
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: space-evenly; /* Drop down arrow will be aligned at right side. */
     align-items: baseline;
-
-    z-index: 1;
+    align-content: center;
 
     background-image:  linear-gradient(
         45deg, 
@@ -92,22 +91,108 @@ header {
     border-radius: 1.25rem;
 }
 
-header > nav {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-}
-
-header > nav > ul {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    align-items: baseline;
-}
-
 header > nav > ul button {
     background-color: transparent;
     border: none;
+}
+
+.align-top {
+    grid-row: 1 / auto;
+    grid-column: 1 / span 12;
+
+    margin-top: 0.2rem;
+    padding: 0 1rem;
+/* 
+    animation: display-header-nav .5s ease-in-out reverse; */
+    transition: margin-top .5s ease-in-out;
+}
+.align-bottom {
+    grid-row: 11 / auto;
+    grid-column: 1 / span 12;
+    padding: 2rem 1rem;
+    animation: align-header-bottom .5s ease forwards;
+}
+
+@keyframes align-header-bottom {
+    0% {
+        margin: 29rem 1rem 0 1rem;
+    }
+    to {
+        margin: 3rem 1rem 0 1rem;
+    }
+}
+
+/* header {
+    transition: margin-top .5s ease-in-out reverse;
+} */
+.hide-header-nav {
+/*     animation: display-header-nav .5s ease-in-out reverse; */
+    margin-top: -3.2rem;
+}
+.display-header-nav {
+    margin-top: 0.2rem; 
+}
+
+/* @keyframes display-header-nav {
+    from {
+        margin-top: -3.2rem;
+    }
+    to {
+        margin-top: .2rem;   
+    }
+} */
+/*******************************
+Nav display btn
+ */
+ #display-nav {
+    width: 3.5rem;
+    margin-top: -1.5rem;
+    margin-left: 1.5rem;
+    padding: 0;
+
+    border: none;
+    background-color: transparent;
+    transition: scale 0.3s ease;
+}
+/* Arrow */
+#display-nav img {
+    width: 100%;
+    rotate: 180deg;
+    transform: display ;
+}
+.rotate-face-up {
+    animation: display-header-arrow .5s ease-in-out forwards,
+    rotate-header-arrow .5s ease-in-out forwards reverse;
+}
+.rotate-face-down {
+    animation: display-header-arrow .5s ease-in-out forwards,
+    rotate-header-arrow .5s ease-in-out forwards;
+}
+#display-nav:hover {
+    transform: scale(1.05);
+} 
+#display-nav:active {
+    transform: scale(1.1);
+} 
+
+@keyframes display-header-arrow {
+    from {
+        display: none;
+        scale: 0;
+    }
+    
+    to {
+        display: inline-block;
+        scale: 1;
+    }
+}
+
+@keyframes rotate-header-arrow {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(180deg);
+    }
 }
 
 /* ************************ */
@@ -127,7 +212,11 @@ header > nav > ul button {
     border-bottom: 2px solid transparent;
     transition: border-color 0.3s ease, scale 0.3s ease;
 }
-
+/* Sticks border bottom to an active link */
+a[data-active="true"]::after {
+    width: 100%;
+    left: 0; 
+  }
 .nav-item::after {
     /* 
     - "content: ''; "  is required for the pseudo-element to be generated. 
@@ -160,20 +249,9 @@ header > nav > ul button {
     transform: scale(1.1);
 }
 
-.align-top {
-    grid-row: 1 / auto;
-    grid-column: 1 / span 12;
 
-    margin: 0.2rem .4rem 0 .4rem;
-    padding: 0 1rem;
-}
-.align-bottom {
-    grid-row: 11 / auto;
-    grid-column: 1 / span 12;
 
-    margin: 3rem 1rem 0 1rem;
-    padding: 2rem 1rem;
-}
+
 /* Start Game link */
 .game-link-design {
     color: gold;
@@ -189,19 +267,7 @@ header > nav > ul button {
     text-align: center;
 }
 
-/*******************************
-Nav display btn
- */
-#display-nav {
-    width: 3.5rem;
-    padding: 0;
-    border: none;
-    background-color: transparent;
-    transition: scale 0.3s ease;
-}
-#display-nav img {
-    width: 100%;
-}
+
 /****************************** */
 
 main {
@@ -233,6 +299,46 @@ input[name="deck-number"] {
     position: absolute;
 }
 
+
+/* Open/Close Dialog */
+dialog {
+    animation: open-dialog-box 150ms ease-in forwards;
+    }
+    @keyframes open-dialog-box {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+        visibility: hidden; 
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+    }
+    }
+    #close-dialog-animation {
+    animation: close-dialog-box 100ms ease-out forwards;
+    }
+    @keyframes close-dialog-box {
+      0% {
+          opacity: 1;
+          transform: scale(1);
+          visibility: visible;  
+      }
+      100% {
+          opacity: 0;
+          transform: scale(0.5);
+          visibility: hidden; 
+      }
+    }
+    /* 
+    display: flex; makes dialog box always visible.
+    This code ensures that dialog box stays hidden until 'settings' or 'rules' button is clicked.
+    */
+    dialog:not([open]),
+    .hidden {
+    display: none;
+    }
 /* Dialog Box */
 .settings-dialog {
     top: 12%;
@@ -458,6 +564,7 @@ dialog button {
     padding: .5rem 1.2rem;
 }
 
+/* ****************************************************************** */
 
 
 
@@ -485,5 +592,5 @@ dialog button {
 
 
 .hidden {
-    display: none;
+    display: none !important;
 }

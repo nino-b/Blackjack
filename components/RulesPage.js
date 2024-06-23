@@ -1,17 +1,17 @@
+import rulesPage from "bundle-text:../styles/rulesPage.css";
 import BaseComponent from "./BaseComponent.js";
-import URLs from "../data/urls.js";
-import { createEl, addClass } from "../util/domUtils.js";
+import createEl from "../util/DOMUtils/createEl.js";
+import addClass from "../util/DOMUtils/addClass.js";
 
 export default class RulesPage extends BaseComponent {
   constructor() {
     super();
-    this.pathToCSS = URLs.cssURLs.Rules;
+    this.pageStyles = rulesPage;
     this.templateID = 'rules-page-template';
-    this.eventName = 'append_rules_change';
   }
 
   render() {
-    const rules = app.store.rules;
+    const rules = app.rules;
     const ruleSection = this.root.querySelector('#rules-page-container');
 
 
@@ -27,8 +27,7 @@ export default class RulesPage extends BaseComponent {
       this.#createRuleGroupDiv(ruleContainer, ruleGroup);
     });
 
-    const wrappingUp = rules.wrapping_up.final_words;
-    const finalWords = createEl('p', ruleSection, wrappingUp);
+    const finalWords = createEl('p', ruleSection, rules.wrapping_up.final_words);
     addClass(finalWords, 'final-words');
   }
   #createRuleGroupDiv(ruleContainer, ruleGroup) {
@@ -47,10 +46,6 @@ export default class RulesPage extends BaseComponent {
       ruleListParaghraph.appendChild(descriptionText);
     });
     return ruleGroupContainer;
-  }
-  connectedCallback() {
-    super.connectedCallback();
-    this.render();
   }
   disconnectedCallback() {
     // Remove event listener from the search box

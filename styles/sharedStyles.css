@@ -1,0 +1,47 @@
+a {
+  text-decoration: none;
+}
+*,
+*::before,
+*::after {
+box-sizing: border-box;
+}
+* {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Button click */
+button {
+  cursor: pointer;
+}
+button:hover {
+  scale: 1.05;
+}
+button:active {
+  scale: 1.1;
+}
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: .7rem;
+  height: .9rem;
+}
+::-webkit-scrollbar-thumb {
+  background: #686868; 
+  border-radius: 2rem; 
+  border: 3px solid transparent; 
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+::-webkit-scrollbar-thumb:active {
+  background: #2e2e2e; 
+}

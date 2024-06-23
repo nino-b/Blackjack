@@ -1,5 +1,5 @@
+import homePage from "bundle-text:../styles/historyPage.css";
 import BaseComponent from "./BaseComponent.js";
-import URLs from "../data/urls.js";
 
 /**
  * This class defines contents of the 'home-page' custom element.
@@ -14,12 +14,9 @@ import URLs from "../data/urls.js";
 export default class HomePage extends BaseComponent {
   constructor() {
     super();
-    this.pathToCSS = URLs.cssURLs.Home;
+    this.pageStyles = homePage;
     this.templateID = 'home-page-template';
     this.eventName = 'appendhomechange';
-  }
-  connectedCallback() {
-    super.connectedCallback();
   }
 }
 

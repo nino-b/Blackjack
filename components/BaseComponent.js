@@ -1,97 +1,51 @@
-import DialogManager from "../services/DialogManager.js";
-import { dialogSelectors, dialogAttributes } from "../data/domStore.js";
-import { getAllDOMElements } from "../util/domUtils.js";
+import reset from "bundle-text:../styles/reset.css";
+import sharedStyles from "bundle-text:../styles/sharedStyles.css";
+import setUpTemplate from "../util/jsUtils/setUpTemplate.js";
+import setupCSS from "../util/DOMUtils/setupCSS.js";
+
 
 /**
- * This class encapsulates all common features for Web Component classes.
- * It provides a base for creating custom elements with encapsulated CSS, templates, and event handling.
+ * Contains common features for all components. 
+ * Other components will extend from it.
  */
 export default class BaseComponent extends HTMLElement {
   constructor() {
     super();
+    /**
+     * Sets up a shadow DOM, with mode: open (elements outside Shadow DOM can interact with it).
+     */
+    this.root = this.attachShadow({mode: 'open'});
     /** 
-     * @type {ShadowRoot}
-    */
-    this.root = this.attachShadow({mode: "open"});
-    /** 
-     * @type {string | null} - A string that contains path to the CSS file.
-    */
-    this.pathToCSS = null;
-    this.pathToResetCSS = './reset.css';
-    /** 
-     * @type {string | null} - An ID of HTML template tag, which contains template for specific page.
+    * @type {string | null} - An ID of HTML template tag, which contains template for specific page.
     */
     this.templateID = null;
-    /** 
-     * @type {string | null} - The name of an event that will fire up specific page display actions.
+    /**
+    * @type {string | null} - A string that contains page specific styles.
     */
-    this.eventName = null;
+    this.pageStyles = null;
+  }
+  /**
+   * Saves 'this' context of newly created page in a global 'app' object.
+   * This way other functions can interact with newly created page (a Shadow DOM) without overloading Components with other functionalities and adhering SRP.
+   */
+  savePageContext() {
+    app.pageContext = this;
   }
   /** 
-   * Adds styles to the HTML document.
-  */
-  setUpCSS() {
-    this.styles = document.createElement('style');
-    this.root.appendChild(this.styles);
-    this.#applyStyles();
-  }
-  /** 
-   * Asynchronously loads a CSS file.
-  */
-  async #applyStyles() {
-    try {
-      const [ resetCSS, stylesCSS ] = await Promise.all([
-        this.#fetchCSS(this.pathToResetCSS),
-        this.#fetchCSS(this.pathToCSS)
-      ]);
-
-      const styles = document.createElement('style');
-      styles.textContent = `${resetCSS}\n${stylesCSS}`;
-      this.root.appendChild(styles);
-    } catch (error) {
-      console.error('Failed to apply styles:', error);
-    }
-  }
-  async #fetchCSS(url) {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch ${url}`);
-    }
-    return response.text();
-  }
-  /** 
-   * Retrieves a template from HTML and appends it to the Shadow DOM.
-  */
-  setUpTemplate() {
-    const template = document.getElementById(this.templateID);
-    if (template) {
-      const content = template.content.cloneNode(true);
-      this.root.appendChild(content);
-    }
-  }
-  /** 
-   * Creates a global event listener that listens to fire up page rendering code.
-  */
-  setUpEventListener() {
-    window.addEventListener(this.eventName, this.render)
-  }
-  /** 
-   * In each instance, it will be enhanced with 
-   * specific functionalities.
+  * In each instance, it will be enhanced with specific functionalities.
   */
   render() {
     console.log('Base Component Rendered.');
   }
+  /**
+   * A callback function for a HTML Custom Element that will be executed when the element is rendered.
+   * Appends HTML template to the Shadow DOM, adds styles and if there is dynamic data to be rendered, it renders that too.
+   * Saves page context in a global 'app' object.
+   */
   connectedCallback() {
-    this.setUpCSS();
-    this.setUpTemplate();
-    this.setUpEventListener();
-
-    const domRef = getAllDOMElements(dialogSelectors, this.root);
-    const dialogManager = new DialogManager(domRef, dialogAttributes);
-  }
-  disconnectedCallback() {
-    window.removeEventListener(this.eventName, this.render);
+    setUpTemplate(this.root, this.templateID);
+    setupCSS([reset, sharedStyles, this.pageStyles], this.root);
+    this.savePageContext();
+    this.render();
   }
 }

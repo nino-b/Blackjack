@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blackjack</title>
-    <link href="/assets/svg-icons/favicon.svg" rel="icon">
+    <link href="../assets/svg-icons/favicon.svg" rel="icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Georgian:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="reset.css" rel="stylesheet">
-    <link href="index.css" rel="stylesheet">
+    <link href="../styles/reset.css" rel="stylesheet">
+    <link href="../styles/index.css" rel="stylesheet">
     <script src="main.js" type="module" defer></script>
 </head>
 <body>
@@ -19,16 +19,16 @@
                 <nav>
                     <ul>
                         <li>
-                            <a href="/" class="nav-item">Home</a>
+                            <a href="/" class="nav-item" data-active="true">Home</a>
                         </li>
                         <li class="game-li-item">
-                            <a href="/game" class="nav-item game-link">Play</a>
+                            <a href="/game" class="nav-item game-link" data-active="false">Play</a>
                         </li>
                         <li>
-                            <a href="/history" class="nav-item">History</a>
+                            <a href="/history" class="nav-item" data-active="false">History</a>
                         </li>
                         <li>
-                            <a href="/rules" class="nav-item">Rules</a>
+                            <a href="/rules" class="nav-item" data-active="false">Rules</a>
                         </li>
                         <li class="settings-dialog-container" data-id="settings">
                             <button class="nav-item open-dialog-btn" 
@@ -44,12 +44,12 @@
                                 <label for="toggle-sound" 
                                        class="label-sound sound-music">
                     
-                                    <img src="/assets/body/sound_on.svg" 
+                                    <img src="../assets/body/sound_on.svg" 
                                          id="sound-on" 
                                          class="sound-music" 
                                          alt="Sound on">
                     
-                                    <img src="/assets/body/sound_off.svg" 
+                                    <img src="../assets/body/sound_off.svg" 
                                          id="sound-off" 
                                          class="sound-music" 
                                          alt="Sound off">
@@ -63,11 +63,11 @@
                 
                                 <label for="toggle-music" 
                                        class="label-music sound-music">
-                                    <img src="/assets/body/music_on.svg" 
+                                    <img src="../assets/body/music_on.svg" 
                                          id="music-on" 
                                          class="sound-music" 
                                          alt="Music on">
-                                    <img src="/assets/body/music_off.svg"
+                                    <img src="../assets/body/music_off.svg"
                                          id="music-off" 
                                          alt="Music off">
                                     Music
@@ -141,12 +141,12 @@
                             </dialog>
                         </li>
                         <li>
-                            <a href="/about" class="nav-item">About</a>
+                            <a href="/about" class="nav-item" data-active="false">About</a>
                         </li>
                     </ul>
                 </nav>
-                <button id="display-nav" class="hidden">
-                    <img src="./assets/body/drop-down.svg">
+                <button id="display-nav" >
+                    <img src="../assets/body/drop-down.svg" class="rotate-face-up">
                 </button>
             </header>
             <main></main>
@@ -172,9 +172,9 @@
             <h1>History</h1>
             <div class="filter-dialog-container"
                  data-id="table-filter">
-                <button id="filter-table-btn" class="open-dialog-btn">Filter<img src="/assets/body/filter.svg"></button>
+                <button id="filter-table-btn" class="open-dialog-btn" data-id="history-filter">Filter<img src="../assets/body/filter.svg"></button>
 
-                <dialog class="filter-dialog dialog-box">
+                <dialog class="filter-dialog dialog-box" data-id="history-filter">
                     <form method="dialog" id="filter-form">
                         <h2>Filtering Parameters:</h2>
                         <fieldset>
@@ -217,86 +217,14 @@
                 <table id="history-table">
                     <thead>
                         <tr>
-                            <th>
-                                <button>
-                                    Date 
-                                    <div class="reorder" data-order-id="date">
-                                        <div class="original-order">↕️</div>
-                                        <div class="ascending-order" hidden>⬆</div>
-                                        <div class="descending-order" hidden>⬇</div>
-                                    </div>
-                                </button>
-                            </th>
-                            <th>
-                                <button>
-                                    Dealer Hand
-                                    <div class="reorder" data-order-id="dealer-hand">
-                                        <div class="original-order">↕️</div>
-                                        <div class="ascending-order" hidden>⬆</div>
-                                        <div class="descending-order" hidden>⬇</div>
-                                    </div>
-                                </button>
-                            </th>
-                            <th>
-                                <button>
-                                    Your Hand
-                                    <div class="reorder" data-order-id="player-hand">
-                                        <div class="original-order">↕️</div>
-                                        <div class="ascending-order" hidden>⬆</div>
-                                        <div class="descending-order" hidden>⬇</div>
-                                    </div>
-                                </button>
-                            </th>
-                            <th>
-                                <button>
-                                    Game Outcome
-                                    <div class="reorder" data-order-id="game-outcome">
-                                        <div class="original-order">↕️</div>
-                                        <div class="ascending-order" hidden>⬆</div>
-                                        <div class="descending-order" hidden>⬇</div>
-                                    </div>
-                                </button>
-                            </th>
-                            <th>
-                                <button>
-                                    Split Hand
-                                    <div class="reorder" data-order-id="bet">
-                                        <div class="original-order">↕️</div>
-                                        <div class="ascending-order" hidden>⬆</div>
-                                        <div class="descending-order" hidden>⬇</div>
-                                    </div>
-                                </button>
-                            </th>
-                            <th>
-                                <button>
-                                    Bet
-                                    <div class="reorder" data-order-id="bet">
-                                        <div class="original-order">↕️</div>
-                                        <div class="ascending-order" hidden>⬆</div>
-                                        <div class="descending-order" hidden>⬇</div>
-                                    </div>
-                                </button>
-                            </th>
-                            <th>
-                                <button>
-                                    Payout
-                                    <div class="reorder" data-order-id="payout">
-                                        <div class="original-order">↕️</div>
-                                        <div class="ascending-order" hidden>⬆</div>
-                                        <div class="descending-order" hidden>⬇</div>
-                                    </div>
-                                </button>
-                            </th>
-                            <th>
-                                <button>
-                                    Bank
-                                    <div class="reorder" data-order-id="bank">
-                                        <div class="original-order">↕️</div>
-                                        <div class="ascending-order" hidden>⬆</div>
-                                        <div class="descending-order" hidden>⬇</div>
-                                    </div>
-                                </button>
-                            </th>
+                            <th>Date</th>
+                            <th>Dealer Hand</th>
+                            <th>Your Hand</th>
+                            <th>Game Outcome</th>
+                            <th>Split Hand</th>
+                            <th>Bet</th>
+                            <th>Payout</th>
+                            <th>Bank</th>
                         </tr>
                     </thead>
                 </table>
