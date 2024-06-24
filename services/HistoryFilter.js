@@ -1,4 +1,5 @@
-import addClass from "../util/DOMUtils/addClass";
+import addClass from "../util/DOMUtils/addClass"; 
+import queryElement from "../util/DOMUtils/queryElement";
 import removeClass from "../util/DOMUtils/removeClass";
 
 
@@ -7,12 +8,27 @@ export default class HistoryFilter {
     this.root = root;
     this.trList = null;
     this.handleFiltering = this.handleFiltering.bind(this);
+    this.resetFilter = queryElement('#reset-filter', this.root);
+  }
+  listenToResetBtn() {
+    this.resetFilter.addEventListener('click', this.resetRowDisplay.bind(this));
+  }
+  resetRowDisplay() {
+    if (this.trList) {
+      this.trList.forEach(tr => {
+        removeClass(tr, 'hidden');
+      });
+    }
   }
   convertToDate(dateStr) {
     const [day, month, year] = dateStr.split('/').map(Number);
     return new Date(year, month - 1, day);
   }
-  isDateInRange(checkDateStr, startDateStr, endDateStr) {   
+  isDateInRange(checkDateStr, startDateStr, endDateStr) {  
+  /**
+   * '  if (!startDateStr && !endDateStr) return true;  '
+   * Means that Every date entry is correct if user did not specify time range.
+  */ 
     if (!startDateStr && !endDateStr) return true;   
     let startDate = null;
     let endDate = null;
@@ -32,51 +48,38 @@ export default class HistoryFilter {
         return checkDate <= endDate;
       }
     }
-
     return checkDate >= startDate && checkDate <= endDate;
-
+  }
+  filterRow(tr, formData) {
+    let startDate = null;
+    let endDate = null;
+  
+    for (const param in formData) {
+      if (param === 'start-date') {
+        startDate = formData['start-date'];
+        continue;
+      }
+      if (param === 'end-date') {
+        endDate = formData['end-date'];
+        continue;
+      }
+      if ((tr.dataset[param] && tr.dataset[param] === formData[param]) || !tr.dataset[param]) {
+        continue;
+      }
+      addClass(tr, 'hidden');
+      return;
+    }
+    if (!(this.isDateInRange(tr.dataset.date, startDate, endDate))) {
+      addClass(tr, 'hidden');
+    }
   }
   handleFiltering(data) {
     if (!this.trList) {
       this.#getTrList();
     }
-  
-    return this.trList.filter(tr => {
-      if (!tr.dataset.date) {
-        return false;
-      }
-      if (tr.classList.contains('hidden')) {
-        removeClass(tr, 'hidden');
-      }
-  
-      const filters = [
-        { key: 'date', startKey: 'start-date', endKey: 'end-date', check: this.isDateInRange.bind(this) },
-        { key: 'outcome', startKey: 'game-outcome' },
-        { key: 'insurance', startKey: 'insurance-taken' },
-        { key: 'evenMoney', startKey: 'even-money-taken' },
-        { key: 'splitHands', startKey: 'split-hands' }
-      ];
-  
-      return filters.forEach(filter => {
-        const { key, startKey, endKey, check } = filter;
-  
-        if (endKey && (data[startKey] || data[endKey])) {
-          if (!(check(tr.dataset[key], data[startKey], data[endKey]))) {
-/*             console.log('filter', filter)
-            console.log('data', data);
-            console.log('data[startKey]', data[startKey]);
-            console.log('tr.dataset[key]', tr.dataset[key]); */
-            addClass(tr, 'hidden');
-          }
-        }
-
-
-        if (data[startKey] && data[startKey] !== tr.dataset[key]) {
-/*           console.log('check') */
-          addClass(tr, 'hidden');
-        }
-        });
-    });
+    this.trList.forEach(tr => {
+      this.filterRow(tr, data);
+    })
   }
   #getTrList() {
     this.trList = Array.from(this.root.querySelectorAll('tr'));

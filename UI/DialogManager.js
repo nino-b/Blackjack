@@ -54,16 +54,17 @@ class DialogManager {
   */
   openDialog() {
       this.openDialogBtns.forEach(btn => {
-          btn.addEventListener('click', event => {
-              for (const dialogBox of this.dialogBoxes) {
-                  if (dialogBox.dataset.id === (event.target.dataset.id || event.target.parentNode.dataset.id)) {
-                      dialogBox.showModal();
-                      return;
-                  } 
-              }
-              console.warn(`Problem with opening a dialog box: Dialog box was not found.`);;
-          });
+          btn.addEventListener('click', this.handleOpenAction.bind(this));
       });
+  }
+  handleOpenAction(event) {
+    for (const dialogBox of this.dialogBoxes) {
+        if (dialogBox.dataset.id === (event.target.dataset.id || event.target.parentNode.dataset.id)) {
+            dialogBox.showModal();
+            return;
+        } 
+    }
+    console.warn(`Problem with opening a dialog box: Dialog box was not found.`);
   }
 
   /**  
@@ -81,19 +82,20 @@ class DialogManager {
   */
   closeDialog() {
       this.dialogBoxes.forEach(dialog => {
-          dialog.addEventListener('click', event => {
-              const dialogDimensions = event.target.closest('dialog').getBoundingClientRect();
-              if (
-                  event.clientX < dialogDimensions.left ||
-                  event.clientX > dialogDimensions.right ||
-                  event.clientY < dialogDimensions.top ||
-                  event.clientY > dialogDimensions.bottom || 
-                  event.target.dataset.actionType === this.datasetCloseAction
-              ) {
-                  this.#closeDialogBox(event.target);
-              }
-          });
+          dialog.addEventListener('click', this.handleCloseAction.bind(this));
       });
+  }
+  handleCloseAction(event) {
+    const dialogDimensions = event.target.closest('dialog').getBoundingClientRect();
+    if (
+        event.clientX < dialogDimensions.left ||
+        event.clientX > dialogDimensions.right ||
+        event.clientY < dialogDimensions.top ||
+        event.clientY > dialogDimensions.bottom || 
+        event.target.dataset.actionType === this.datasetCloseAction
+    ) {
+        this.closeDialogBox(event.target);
+    }
   }
 
   /** 
@@ -115,7 +117,7 @@ class DialogManager {
    * @note 
    * The timeout duration is proportional of the animation length (2:1 ratio). If you change one of those values, adjust another one accordingly.
   */
-  #closeDialogBox(targetEl) {
+  closeDialogBox(targetEl) {
       if (!(targetEl instanceof HTMLElement)) {
           console.warn(`Problem with closing dialog box: Dialog box or its close button was not found or was not an HTMLElement.`);
           return;
@@ -123,6 +125,8 @@ class DialogManager {
       let dialogBox = null;
       if (targetEl.parentNode.tagName === 'DIALOG') {
           dialogBox = targetEl.parentNode;
+      } else if (targetEl.parentNode.parentNode.tagName === 'DIALOG') {
+        dialogBox = targetEl.parentNode.parentNode;
       } else {
           dialogBox = targetEl
       }
@@ -131,6 +135,14 @@ class DialogManager {
           dialogBox.close();
           dialogBox.id = '';
       }, 200);
+  }
+  removeListeners() {
+    this.openDialogBtns.forEach(btn => {
+        btn.removeEventListener('click', this.handleOpenAction);
+    });
+    this.dialogBoxes.forEach(dialog => {
+        dialog.removeEventListener('click', this.handleCloseAction);
+    });
   }
 }
 

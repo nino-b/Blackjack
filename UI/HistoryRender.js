@@ -1,4 +1,5 @@
 import createEl from "../util/DOMUtils/createEl";
+import addAttributes from "../util/DOMUtils/addAttributes";
 
 /**
  * This class contains functionalities that are necessary to render the history table.
@@ -63,13 +64,15 @@ export default class HistoryRenderer {
     const insuranceOn = hand.bet.insurance ? 'on' : null;
     const evenMoneyOn = hand.payout["even-money"] ? 'on' : null;
 
-    return {
+    const r = {
       datadate: historyEntry.dateTime.date,
-      datasplitHands: splitHandsOn,
+      dataisSplit: splitHandsOn,
       dataoutcome: hand.outcome,
       datainsurance: insuranceOn,
       dataevenMoney: evenMoneyOn,
-    };
+    }
+    console.log('r', r);
+    return r;
   }
 /**
  * Renders history table. 
@@ -87,7 +90,8 @@ export default class HistoryRenderer {
     const table = this.root.getElementById('history-table');
 
     this.history.forEach(entry => {
-      const row = createEl('tr', table, null, this.addDataAttr(entry));
+      const row = createEl('tr', table, null);
+      addAttributes(row, this.addDataAttr(entry));
 
       for (const paramList in entry) {
         if (paramList === 'dateTime') {

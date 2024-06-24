@@ -8,8 +8,9 @@ export default class HistoryFormSubmitHandler {
   constructor(root, callback) {
     this.root = root;
     this.form = null;
+    this.callback = callback;
 
-    this.setupSubmitListener(callback);
+    this.setupSubmitListener();
   }
   /**
    * Sets up event listener for history table's filter button.
@@ -23,21 +24,14 @@ export default class HistoryFormSubmitHandler {
    * and executes a callback function. 
    * If getting the <form> element was not successful, it logs an error message.
    * 
-   * @param {Function} callback - A callback function that will be executed after 'submit' event.
    */
-  setupSubmitListener(callback) {
+  setupSubmitListener() {
     if (!this.form) {
       this.#getForm();
     }
 
     if (this.form) {
-      this.form.addEventListener('submit', event => {
-        event.preventDefault();
-  
-        const data = this.#processData();
-  
-        callback(data);
-      });
+      this.form.addEventListener('submit', this.formSubmitEventCallback.bind(this));
     } else {
       console.error(`Getting Form element from the Shadow DOM was not successful!`);
     }
@@ -48,6 +42,11 @@ export default class HistoryFormSubmitHandler {
    */
   #getForm() {
     this.form = this.root.getElementById('filter-form');
+  }
+  formSubmitEventCallback(event) {
+    event.preventDefault();
+    const data = this.processData();
+    this.callback(data);
   }
   /**
    * A private method that processes the submitted form data.
@@ -63,7 +62,7 @@ export default class HistoryFormSubmitHandler {
    * 
    * @returns {Object} a process data. Keys will match <tr> 'data-' attributes and <tr>s will be filtered by matching 'data-' and this returned object's values.
    */
-  #processData() {
+  processData() {
     const formData = new FormData(this.form);
     const data = {};
 
@@ -73,6 +72,10 @@ export default class HistoryFormSubmitHandler {
       }
       data[key] = value;
     });
+    console.log(data);
     return data;
+  }
+  removeFormListener() {
+    this.form.removeEventListener('submit', this.formSubmitEventCallback);
   }
 }

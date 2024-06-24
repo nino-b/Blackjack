@@ -1,6 +1,84 @@
 const history = [
   {
     dateTime: {
+      date: "07/06/2024",
+      time: "11:25",
+    },
+    dealerHand: {
+      cards: "8♣️ 9♠️"
+    },
+    hand: {
+      cards: "A♥️ J♣️",
+      outcome: "Blackjack",
+      isSplit: "No",
+      bet: {
+        main: "Main: 100",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 250",
+        insurance: null,
+        evenMoney: null,
+      }
+    },
+    bank: {
+      amount: 2650
+    }
+  },
+  {
+    dateTime: {
+      date: "06/06/2024",
+      time: "14:30",
+    },
+    dealerHand: {
+      cards: "8♣️ 9♠️"
+    },
+    hand: {
+      cards: "10♥️ A♦️",
+      outcome: "Blackjack",
+      isSplit: "Yes",
+      bet: {
+        main: "Main: 100",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 250",
+        insurance: null,
+        evenMoney: null,
+      }
+    },
+    bank: {
+      amount: 2500
+    }
+  },
+  {
+    dateTime: {
+      date: "06/06/2024",
+      time: "14:25",
+    },
+    dealerHand: {
+      cards: "8♣️ 9♠️"
+    },
+    hand: {
+      cards: "10♥️ A♣️ ",
+      outcome: "Blackjack",
+      isSplit: "Yes",
+      bet: {
+        main: "Main: 100",
+        insurance: null,
+      },
+      payout: {
+        main: "Main: 250",
+        insurance: null,
+        evenMoney: null,
+      }
+    },
+    bank: {
+      amount: 2350
+    }
+  },
+  {
+    dateTime: {
       date: "05/06/2024",
       time: "11:25",
     },
