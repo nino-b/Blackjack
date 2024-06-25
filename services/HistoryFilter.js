@@ -1,60 +1,44 @@
 import addClass from "../util/DOMUtils/addClass"; 
-import queryElement from "../util/DOMUtils/queryElement";
+import queryElementGroup from "../util/DOMUtils/queryElementGroup";
 import removeClass from "../util/DOMUtils/removeClass";
+import isDateInRange from "../util/jsUtils/isDateInRange";
+import TrDisplayReset from "../UI/TrDisplayReset";
 
 
 export default class HistoryFilter {
-  constructor(root) {
+  constructor(root, form) {
     this.root = root;
-    this.trList = null;
+    this.trList = queryElementGroup('tr', this.root);
     this.handleFiltering = this.handleFiltering.bind(this);
-    this.resetFilter = queryElement('#reset-filter', this.root);
+    
+    this.TrDisplayReset = new TrDisplayReset(this.root, this.trList, form);
   }
-  listenToResetBtn() {
-    this.resetFilter.addEventListener('click', this.resetRowDisplay.bind(this));
-  }
-  resetRowDisplay() {
-    if (this.trList) {
-      this.trList.forEach(tr => {
-        removeClass(tr, 'hidden');
-      });
+  handleFiltering(data) {
+    for (let i = 1; i < this.trList.length; i++) {
+      this.#filterRow(this.trList[i], data);
     }
   }
-  convertToDate(dateStr) {
-    const [day, month, year] = dateStr.split('/').map(Number);
-    return new Date(year, month - 1, day);
-  }
-  isDateInRange(checkDateStr, startDateStr, endDateStr) {  
   /**
-   * '  if (!startDateStr && !endDateStr) return true;  '
-   * Means that Every date entry is correct if user did not specify time range.
-  */ 
-    if (!startDateStr && !endDateStr) return true;   
+   * A private method to hide (add '.hidden' attritbute) to elements that don't meet the criteria.
+   * 
+   * @param {HTMLElement} tr - Table row element that has 'data-' attributer that stores row filtering parameters.
+   * @param {Object} formData - Submitted form values collected as an object.
+   * 
+   * Iterates through each submitted parameter.
+   * If the parameter is date parameter, it saves in an respective variable then to be used to check whether this element's date value is in a specified date range or not.
+   * Compares each parameter to a table row 'data-' attribute that has the same name as form element 
+   * (e.g. '<input type="checkbox" name="isSplit">' the name for this parameter in 'formData' will be 'isSplit' and 
+   * in for 'data-' attribute will be 'data-is-split' which is in js changed into 'dataset.siSplit' camel case datased property. So thise two names match.).
+   * 
+   * If any of those two criteria is met, it stops that iteration and moves to the next one.
+   * If none of those are met, it adds '.hidden' class to the table row element and returns from the function.
+   * If an element's date value is not in a specified date range, it adds '.hidden' class to the table row element and returns from the function.
+   */
+  #filterRow(tr, formData) {
     let startDate = null;
     let endDate = null;
 
-    const checkDate = this.convertToDate(checkDateStr);
-
-    if (startDateStr) {
-      startDate = this.convertToDate(startDateStr);
-
-      if (!endDateStr) {
-        return checkDate >= startDate;
-      }
-    }
-    if (endDateStr) {
-      endDate = this.convertToDate(endDateStr);
-      if (!startDateStr) {
-        return checkDate <= endDate;
-      }
-    }
-    return checkDate >= startDate && checkDate <= endDate;
-  }
-  filterRow(tr, formData) {
-    let startDate = null;
-    let endDate = null;
-  
-    for (const param in formData) {
+    for (const param in formData) { 
       if (param === 'start-date') {
         startDate = formData['start-date'];
         continue;
@@ -63,25 +47,17 @@ export default class HistoryFilter {
         endDate = formData['end-date'];
         continue;
       }
-      if ((tr.dataset[param] && tr.dataset[param] === formData[param]) || !tr.dataset[param]) {
+
+      if (tr.dataset[param] && tr.dataset[param] === formData[param]) {
         continue;
       }
       addClass(tr, 'hidden');
       return;
     }
-    if (!(this.isDateInRange(tr.dataset.date, startDate, endDate))) {
+    if (!(isDateInRange(tr.dataset.date, startDate, endDate))) {
       addClass(tr, 'hidden');
+      return;
     }
-  }
-  handleFiltering(data) {
-    if (!this.trList) {
-      this.#getTrList();
-    }
-    this.trList.forEach(tr => {
-      this.filterRow(tr, data);
-    })
-  }
-  #getTrList() {
-    this.trList = Array.from(this.root.querySelectorAll('tr'));
+    if (tr.classList.contains('hidden')) removeClass(tr, 'hidden');
   }
 }

@@ -1,3 +1,4 @@
+import queryElement from "../util/DOMUtils/queryElement";
 
 /**
  * This class handles submission event of history table's filter button.
@@ -5,45 +6,39 @@
  * @param {ShadowRoot} root - Shadow root for history page.
  */
 export default class HistoryFormSubmitHandler {
-  constructor(root, callback) {
-    this.root = root;
-    this.form = null;
+  constructor(form, callback) {
+    this.form = form;
     this.callback = callback;
 
+    /**
+     * Sets up an event listener for a 'submit' button.
+     */
     this.setupSubmitListener();
   }
   /**
-   * Sets up event listener for history table's filter button.
-   * At first it checks whether <form> is retrieved from the Shadow DOM.
-   * If there is no <form> element, then it loads it.
-   * This lazy loading technique allows us to get <form> element only when it will be necessary.
-   * And if the user won't use filtering function at all, DOM element won't be queried for no reason.
-   * 
-   * If getting <form> element was successful, it sets up an event listener, 
-   * processes data to shape it into the form we want to work with, 
-   * and executes a callback function. 
-   * If getting the <form> element was not successful, it logs an error message.
+   * It sets up an event listener, processes data into an object format, and executes a callback function. 
+   * If the <form> element does not exist, it logs an error message.
    * 
    */
   setupSubmitListener() {
-    if (!this.form) {
-      this.#getForm();
-    }
-
     if (this.form) {
-      this.form.addEventListener('submit', this.formSubmitEventCallback.bind(this));
+      this.form.addEventListener('submit', this.formSubmitCallback.bind(this));
     } else {
       console.error(`Getting Form element from the Shadow DOM was not successful!`);
     }
   }
   /**
-   * A private method that gets <form> element from the Shadow DOM.
-   * @private
+   * Removes an event listener from the form element to avoid memory leaks.
    */
-  #getForm() {
-    this.form = this.root.getElementById('filter-form');
+  removeFormListener() {
+    this.form.removeEventListener('submit', this.formSubmitCallback);
   }
-  formSubmitEventCallback(event) {
+  /**
+   * A callback function for a 'submit' event in a form.
+   * Prevents default behavior of sending data to the server, turns data into an object format and changes values in a preferable format and calls the callback function.
+   * @param {Event} event - The form submission event.
+   */
+  formSubmitCallback(event) {
     event.preventDefault();
     const data = this.processData();
     this.callback(data);
@@ -60,6 +55,8 @@ export default class HistoryFormSubmitHandler {
    * And to filter exact match or a range of time, 
    * we need to compare each value in <td> with submitted data.
    * 
+   * It adds parameters to a 'data' object only if the values exist and are not empty strings (it might be if user chooses 'game-outcome: any' or does not choose a date).
+   * 
    * @returns {Object} a process data. Keys will match <tr> 'data-' attributes and <tr>s will be filtered by matching 'data-' and this returned object's values.
    */
   processData() {
@@ -70,12 +67,8 @@ export default class HistoryFormSubmitHandler {
       if (key === 'start-date' || key === 'end-date') {
         value = value.split('-').reverse().join('/');
       }
-      data[key] = value;
+      if (value) data[key] = value;
     });
-    console.log(data);
     return data;
-  }
-  removeFormListener() {
-    this.form.removeEventListener('submit', this.formSubmitEventCallback);
   }
 }

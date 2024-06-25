@@ -25,7 +25,8 @@ th button,
   border: 1px solid transparent;
   border-radius: 1rem;
   box-shadow: 0 0 .2rem .2rem #5c545035;
-  overflow: hidden;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 table {
   /*   width: 100%; */
@@ -128,3 +129,31 @@ border: 1px solid transparent;
 border-radius: .7rem;
 box-shadow: 0 0 .1rem rgb(45, 44, 44);
 }
+
+#filter-form {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(13, 1fr);
+
+  width: 100%;
+  height: 100%;
+}
+
+#filter-form h2,
+#filter-form fieldset {
+  grid-column: 1 / span auto;
+}
+
+#filter-form h2 {}
+#filter-form fieldset {}
+label[for="game-outcome"] {}
+#game-outcome {}
+label[for="split-hands"] {}
+#split-hands {}
+label[for="insurance-taken"] {}
+#insurance-taken{}
+label[for="even-money-taken"] {}
+#even-money-taken {}
+
+#submit-filter-form {}
+#reset-filter {}

@@ -10,11 +10,39 @@ import addAttributes from "../util/DOMUtils/addAttributes";
  */
 
 export default class HistoryRenderer {
-  constructor(root, history) {
+  constructor(root, table, history) {
     this.root = root;
+    this.table = table;
     this.history = history;
 
     this.renderTable()
+  }
+  /**
+ * Renders history table. 
+ * Uses 'history' object and creates new row for each entry.
+ * Each entry contains data about player's status at that specific moment. 
+ * 
+ * If 'history' object contains some data, that has different keys in the object, 
+ * but needs to be displayed in the same cell, 
+ * each entry is contained in a <div>, for styling (layout) purposes.
+ * Usually that is deeply nested object (object -> in object -> in object),
+ * in case of date and time, three levels are not necessary (object -> in object), 
+ * and that is why I check that specific case initially.
+ */
+  renderTable() {
+    this.history.forEach(entry => {
+      const row = createEl('tr', this.table, null);
+      addAttributes(row, this.addDataAttr(entry));
+
+      for (const paramList in entry) {
+        if (paramList === 'dateTime') {
+          const td = createEl('td', row);
+          this.displayDiv(td, entry[paramList]);
+        } else {
+          this.displayTd(row, entry[paramList]);
+        }
+      }
+    });
   }
 /**
  * If thete should be multiple parameters in the same cell, for styling (layout) purposes, 
@@ -60,47 +88,16 @@ export default class HistoryRenderer {
  */
   addDataAttr(historyEntry) {
     const hand = historyEntry.hand;
-    const splitHandsOn = hand.isSplit ? 'on' : null;
+    const splitHandsOn = hand.isSplit === 'Yes' ? 'on' : null;
     const insuranceOn = hand.bet.insurance ? 'on' : null;
-    const evenMoneyOn = hand.payout["even-money"] ? 'on' : null;
+    const evenMoneyOn = hand.payout.evenMoney ? 'on' : null;
 
-    const r = {
+    return {
       datadate: historyEntry.dateTime.date,
       dataisSplit: splitHandsOn,
       dataoutcome: hand.outcome,
       datainsurance: insuranceOn,
       dataevenMoney: evenMoneyOn,
-    }
-    console.log('r', r);
-    return r;
-  }
-/**
- * Renders history table. 
- * Uses 'history' object and creates new row for each entry.
- * Each entry contains data about player's status at that specific moment. 
- * 
- * If 'history' object contains some data, that has different keys in the object, 
- * but needs to be displayed in the same cell, 
- * each entry is contained in a <div>, for styling (layout) purposes.
- * Usually that is deeply nested object (object -> in object -> in object),
- * in case of date and time, three levels are not necessary (object -> in object), 
- * and that is why I check that specific case initially.
- */
-  renderTable() {
-    const table = this.root.getElementById('history-table');
-
-    this.history.forEach(entry => {
-      const row = createEl('tr', table, null);
-      addAttributes(row, this.addDataAttr(entry));
-
-      for (const paramList in entry) {
-        if (paramList === 'dateTime') {
-          const td = createEl('td', row);
-          this.displayDiv(td, entry[paramList]);
-        } else {
-          this.displayTd(row, entry[paramList]);
-        }
-      }
-    });
+    };
   }
 }

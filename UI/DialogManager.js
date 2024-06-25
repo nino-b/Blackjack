@@ -16,16 +16,6 @@ import queryMultipleEl from "../util/DOMUtils/queryMultipleEl";
  * @param {string} config.datasetCloseAction - The data attribute identifier for dialog's close buttons.
  * @param {string} config.closingAnimation - The name of the closing animation for dialog boxes.
  * 
- * @example
- * Create a new DialogManager with buttons and dialog boxes elements
- * const dialogManager = new DialogManager({
- *     openDialogBtns: document.querySelectorAll('.open-dialog-btn'),
- *     dialogBoxes: document.querySelectorAll('.dialog'),
- *     closeDialogBtns: document.querySelectorAll('.close-dialog-btn')
- * }, {
- *     datasetCloseAction: 'close-dialog',
- *     closingAnimation: 'dialog-closing'
- * });
  */
 class DialogManager {
   constructor({openDialogBtns, dialogBoxes, closeDialogBtns}, {datasetCloseAction, closingAnimation}) {
@@ -41,6 +31,18 @@ class DialogManager {
   }
   /** 
    * Attaches 'click' event listeners to each 'open dialog' button.
+   * Binds 'this' to current context because when an event listener function is executed, 'this' is set to the element an event listener is attached to,
+   * but callback function uses some elements from 'DialogManager' class.
+  */
+  openDialog() {
+      this.openDialogBtns.forEach(btn => {
+          btn.addEventListener('click', this.handleOpenAction.bind(this));
+      });
+  }
+  /**
+   * Open dialog button event listener callback function. 
+   * It is separately written because this function is also used to remove event listener from an element.
+   * 
    * When a button is clicked, it searches for a dialog box with a matching data-id attribute
    * and opens it using the showModal() method. If no matching dialog box is found,
    * a warning is logged to the console.  
@@ -51,12 +53,7 @@ class DialogManager {
    * 4. If a matching dialog box is found, it is opened with showModal(). 
    * The for .. of loop is used because we can return from this loop and not execute warning.
    * 5. If no match is found, logs a warning with the module name indicating the dialog box was not found.
-  */
-  openDialog() {
-      this.openDialogBtns.forEach(btn => {
-          btn.addEventListener('click', this.handleOpenAction.bind(this));
-      });
-  }
+   */
   handleOpenAction(event) {
     for (const dialogBox of this.dialogBoxes) {
         if (dialogBox.dataset.id === (event.target.dataset.id || event.target.parentNode.dataset.id)) {
@@ -69,6 +66,18 @@ class DialogManager {
 
   /**  
    * Attaches click event listeners to each dialog box to handle closing.
+   * Binds 'this' to current context because when an event listener function is executed, 'this' is set to the element an event listener is attached to,
+   * but callback function uses some elements from 'DialogManager' class.
+  */
+  closeDialog() {
+      this.dialogBoxes.forEach(dialog => {
+          dialog.addEventListener('click', this.handleCloseAction.bind(this));
+      });
+  }
+  /**
+   * Close button event listener callback function. 
+   * It is separately written because this function is also used to remove event listener from an element.
+   * 
    * When a click event occurs, it checks if the click is outside the bounds of the dialog box
    * or if the clicked element has a data attribute indicating it should close the dialog (this.datasetCloseAction = 'close-dialog' button).
    * If either condition is met, it calls the private `#closeDialogBox` method to close the dialog.
@@ -79,12 +88,7 @@ class DialogManager {
    * 3. On 'click', calculates closest dialog's position relative to the viewport.
    * 4. Chcks if the 'click' was outside the dialog box's boundaries or clicked element is designated to close the dialog (this.datasetCloseAction = 'close-dialog' button).
    * 5. If either condition is true, invokes the `#closeDialogBox` method with the target element.
-  */
-  closeDialog() {
-      this.dialogBoxes.forEach(dialog => {
-          dialog.addEventListener('click', this.handleCloseAction.bind(this));
-      });
-  }
+   */
   handleCloseAction(event) {
     const dialogDimensions = event.target.closest('dialog').getBoundingClientRect();
     if (
@@ -136,6 +140,9 @@ class DialogManager {
           dialogBox.id = '';
       }, 200);
   }
+  /**
+   * Removes event listeners from the page to avoid memory leaks.
+   */
   removeListeners() {
     this.openDialogBtns.forEach(btn => {
         btn.removeEventListener('click', this.handleOpenAction);
