@@ -106,34 +106,51 @@
                                            value="8">
                                     <label for="deck8">8</label>
                                 </fieldset>
-                                <input type="checkbox" 
-                                       id="soft-17-opt" 
-                                       role="switch" 
-                                       class="toggle">
-                                <label for="soft-17-opt">Dealer hits on soft 17 </label>
-                                <input type="checkbox" 
-                                       id="insurance-opt" 
-                                       role="switch" 
-                                       class="toggle">
-                                <label for="insurance-opt">Insurance </label>
-                                <input type="checkbox" 
-                                       id="even-money-opt" 
-                                       role="switch" 
-                                       class="toggle">
-                                <label for="even-money-opt">Even Money </label>
+
+                                <div class="toggle-container">
+                                    <input type="checkbox" 
+                                    id="soft-17-opt" 
+                                    role="switch" 
+                                    class="toggle">
+                                    <label for="soft-17-opt">Dealer hits on soft 17 </label>
+                                </div>
+
+                                <div class="toggle-container">
+                                    <input type="checkbox" 
+                                    id="insurance-opt" 
+                                    role="switch" 
+                                    class="toggle">
+
+                                    <label for="insurance-opt">Insurance </label>
+                                </div>
+
+                                <div class="toggle-container">
+                                    <input type="checkbox" 
+                                    id="even-money-opt" 
+                                    role="switch" 
+                                    class="toggle">
+
+                                    <label for="even-money-opt">Even Money </label>
+                                </div>
                                 
-                                <input type="checkbox" 
-                                       id="auto-advice-opt" 
-                                       role="switch" 
-                                       class="toggle">
-                                       
-                                <label for="auto-advice-opt">Auto Advice </label>
-                
-                                <input type="checkbox" 
-                                       id="repeat-last-bet-opt" 
-                                       role="switch" 
-                                       class="toggle">
-                                <label for="repeat-last-bet-opt">Repeat Last Bet </label>
+                                <div class="toggle-container">
+                                    <input type="checkbox" 
+                                    id="auto-advice-opt" 
+                                    role="switch" 
+                                    class="toggle">
+        
+                                    <label for="auto-advice-opt">Auto Advice </label>
+                                </div>
+
+                                <div class="toggle-container">
+                                    <input type="checkbox" 
+                                    id="repeat-last-bet-opt" 
+                                    role="switch" 
+                                    class="toggle">
+                                    
+                                    <label for="repeat-last-bet-opt">Repeat Last Bet </label>
+                                </div>
+
                                 <p class="warning-about-settings">Changes in game apply on next deal!</p>
                 
                                 <button class="close-dialog-btn" 
@@ -177,7 +194,7 @@
 
                 <dialog class="filter-dialog dialog-box" data-id="history-filter">
                     <form method="dialog" id="filter-form">
-                        <h2>Filtering A Table:</h2>
+                        <h2>History Filter Parameters</h2>
                         <fieldset>
                             <legend>Time Range:</legend>
                             <div>
@@ -199,19 +216,25 @@
                             <option value="You Lost">You Lost</option>
                             <option value="Push">Push</option>
                         </select>
+                        <div class="toggle-container" id="split-container">
+                            <input type="checkbox" name="isSplit" id="split-hands" class="toggle">
+                            <label for="split-hands">Split Hands</label>
+                        </div>
+                      
+                        <div class="toggle-container" id="insurance-container">
+                            <input type="checkbox" name="insurance" id="insurance-taken" class="toggle">
+                            <label for="insurance-taken">Insurance Taken</label>
+                        </div>
+                      
+                        <div class="toggle-container" id="even-money-container">
+                            <input type="checkbox" name="evenMoney" id="even-money-taken" class="toggle">
+                            <label for="even-money-taken">Even Money Taken</label>
+                        </div>
 
-                        <label for="split-hands">Split Hands: </label>
-                        <input type="checkbox" name="isSplit" id="split-hands" class="toggle">
-
-                        <label for="insurance-taken">Insurance Taken: </label>
-                        <input type="checkbox" name="insurance" id="insurance-taken" class="toggle">
-
-                        <label for="even-money-taken">Even Money Taken: </label>
-                        <input type="checkbox" name="evenMoney" id="even-money-taken" class="toggle">
+                        <button id="reset-filter" data-action-type="close-dialog">Reset</button>
 
                         <button type="submit" id="submit-filter-form" data-action-type="close-dialog">Filter</button>
                     </form>
-                    <button id="reset-filter" data-action-type="close-dialog">Reset</button>
                 </dialog>
             </div>
        

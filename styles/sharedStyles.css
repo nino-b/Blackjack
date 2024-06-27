@@ -87,3 +87,92 @@ dialog {
   .hidden {
   display: none;
   }
+
+  
+/* Special Choices */
+/* Hide checkboxes (boxes itself) */
+.toggle {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.toggle-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle-container label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle-container label::before {
+  content: "";
+  width: 2rem;
+  height: 1rem;
+  background-image: linear-gradient(rgb(228, 173, 173),
+                                    rgb(235, 198, 198),
+                                    rgb(200, 161, 161),
+                                    rgb(173, 125, 125));
+  border-radius: 5rem;
+  margin-right: .8rem;
+  transition: background-color 200ms ease-in-out;
+}
+
+.toggle-container label::after {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: .1rem;
+  width: .9rem;
+  height: .9rem;
+
+  background-color: rgb(201, 27, 27);
+  background-image: linear-gradient(rgb(206, 2, 2), 
+                                    rgb(195, 19, 19), 
+                                    rgb(185, 11, 11), 
+                                    rgb(167, 9, 9));
+  box-shadow: 0px 0px 2.5px 0px rgb(201, 27, 27);
+  border-radius: 5rem;
+
+  color:  rgb(235, 209, 209);
+  content: "\2715"; /* Uses a Unicode escape sequence to display a specific character: '✕' */
+  font-size: .5rem;
+
+  transition: background-color 200ms ease-in-out, transform 200ms ease-in-out;
+}
+
+input[type="checkbox"].toggle:checked + label::before {
+  background-image: linear-gradient(rgba(186, 237, 196, 0.896),
+                                    rgba(215, 243, 214, 0.916),
+                                    rgba(174, 216, 174, 0.937),
+                                    rgba(135, 185, 142, 0.979));
+}
+
+input[type="checkbox"].toggle:checked + label::after {
+  content: "\2713";
+  transform: translateX(100%);
+  background-image: linear-gradient(rgb(9, 163, 17), 
+                                    rgb(22, 180, 54), 
+                                    rgb(14, 158, 38), 
+                                    rgb(9, 122, 18));
+  box-shadow: 0 0 2.5px 0 rgb(47, 139, 59);
+}
+
+input[type="checkbox"].toggle:disabled + label {
+  color: #777;
+}
+
+input[type="checkbox"].toggle:disabled + label::before {
+  background-color: #CCC;
+}
+
+input[type="checkbox"].toggle:disabled + label::after {
+  background-color: #777;
+}

@@ -94,15 +94,8 @@ td {
 /* Filter Dialog */
 /* General */
 label[for="game-outcome"],
-#game-outcome,
-label[for="even-money-taken"],
-label[for="insurance-taken"] {
+#game-outcome{
   align-self: center;
-}
-
-#insurance-taken,
-#even-money-taken {
-  width: 1.5rem;
 }
 
 #end-date,
@@ -121,39 +114,93 @@ label[for="insurance-taken"] {
   width: 20rem;
   margin: 0;
 
-  background-image: linear-gradient(rgb(126, 85, 85),
-                                    rgb(165, 134, 134),
-                                    rgb(167, 128, 128),
-                                    rgb(111, 76, 76));
-border: 1px solid transparent;
-border-radius: .7rem;
-box-shadow: 0 0 .1rem rgb(45, 44, 44);
+  background-image: linear-gradient(rgb(56, 37, 37),
+                                    rgba(61, 34, 34, 0.833),
+                                    rgba(80, 58, 58, 0.847),
+                                    rgba(41, 21, 21, 0.884));
+  border: 1px solid transparent;
+  border-radius: .7rem;
+  box-shadow: 0 0 1rem rgb(45, 44, 44);
 }
 
 #filter-form {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(13, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  gap: .5rem;
 
   width: 100%;
   height: 100%;
+  color: rgb(255, 242, 242);
 }
+
 
 #filter-form h2,
-#filter-form fieldset {
-  grid-column: 1 / span auto;
+#filter-form fieldset,
+label[for="game-outcome"],
+#split-container,
+#insurance-container,
+#even-money-container,
+#reset-filter {
+  grid-column: 1 / span 6;
 }
 
-#filter-form h2 {}
-#filter-form fieldset {}
-label[for="game-outcome"] {}
-#game-outcome {}
-label[for="split-hands"] {}
-#split-hands {}
-label[for="insurance-taken"] {}
-#insurance-taken{}
-label[for="even-money-taken"] {}
-#even-money-taken {}
+#filter-form fieldset input[type="date"],
+#game-outcome {
+  background-color: rgb(63, 32, 32);
+  color: rgb(255, 242, 242);
+}
 
-#submit-filter-form {}
-#reset-filter {}
+#filter-form h2 {
+  grid-row: 1;
+  margin: auto;
+  font-size: 1.2rem;
+  font-weight: bold;
+/*   text-shadow: 0 0 1.6rem rgb(214, 213, 213);
+ */}
+
+#filter-form fieldset {
+  grid-row: 2 / span 2;
+
+  display: flex;
+  flex-flow: row wrap;
+  gap: .3rem;
+}
+#filter-form fieldset legend {
+  margin-bottom: .4rem;
+}
+#game-outcome {
+  grid-column: 1 / span 3;
+  grid-row: 4;
+  margin-right: 1.5rem;
+}
+label[for="game-outcome"] {
+  grid-column: 4 / span 3;
+  grid-row: 4;
+}
+
+#split-container {
+  grid-row: 5;
+}
+#insurance-container {
+  grid-row: 6;
+}
+#even-money-container {
+  grid-row: 7;
+}
+#reset-filter,
+#submit-filter-form {
+  border: 1px solid transparent;
+  border-radius: .5rem;
+  background-color: rgb(34, 14, 14);
+  color: rgb(255, 242, 242);
+}
+#reset-filter {
+  grid-column: 1 / span 2;
+  grid-row: 8;
+}
+#submit-filter-form {
+  grid-column: 5 / span 2;
+  grid-row: 9;
+  padding: .3rem .6rem;
+}

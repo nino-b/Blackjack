@@ -67,13 +67,24 @@ export default class TrDisplayReset {
    */
   #resetFormElements() {
     this.formChildren.forEach(child => {
-      if (child.type === 'checkbox' && child.checked) {
-        child.checked = false;
-      } else if (child.type === 'date' && child.value !== '') {
-        child.value = '';
-      } else if (child.tagName === 'SELECT' && child.selectedIndex !== null) {
-        child.selectedIndex = 0;
+      if (child.tagName === 'DIV') {
+        console.log(child.tagName);
+        child.childNodes.forEach(childNode => this.#resetValues(childNode));
       }
+      this.#resetValues(child);
     });
+  }
+  /**
+  * Resets element values to their initial values.
+  */
+  #resetValues(el) {
+    console.log('hi');
+    if (el.type === 'checkbox' && el.checked) {
+      el.checked = false;
+    } else if (el.type === 'date' && el.value !== '') {
+      el.value = '';
+    } else if (el.tagName === 'SELECT' && el.selectedIndex !== null) {
+      el.selectedIndex = 0;
+    }
   }
 }

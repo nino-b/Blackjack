@@ -102,8 +102,7 @@ header > nav > ul button {
 
     margin-top: 0.2rem;
     padding: 0 1rem;
-/* 
-    animation: display-header-nav .5s ease-in-out reverse; */
+
     transition: margin-top .5s ease-in-out;
 }
 .align-bottom {
@@ -122,25 +121,12 @@ header > nav > ul button {
     }
 }
 
-/* header {
-    transition: margin-top .5s ease-in-out reverse;
-} */
 .hide-header-nav {
-/*     animation: display-header-nav .5s ease-in-out reverse; */
     margin-top: -3.2rem;
 }
 .display-header-nav {
     margin-top: 0.2rem; 
 }
-
-/* @keyframes display-header-nav {
-    from {
-        margin-top: -3.2rem;
-    }
-    to {
-        margin-top: .2rem;   
-    }
-} */
 /*******************************
 Nav display btn
  */
@@ -196,7 +182,7 @@ Nav display btn
 }
 
 /* ************************ */
-/* Trick: underline widening effect on hover */
+/* Technique: underline widening effect on hover */
 .nav-item {
     /* 
     - Establish the element as a reference point for absoloutely positioned child.
@@ -433,73 +419,6 @@ input[type="radio"]:checked + label {
     }
 }
 
-/* Special Choices */
-/* toggle checkboxe - slider */
-input[type="checkbox"].toggle + label {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-input[type="checkbox"].toggle + label::before {
-    content: "";
-    width: 2rem;
-    height: 1rem;
-    background-image: linear-gradient(rgb(228, 173, 173),
-                                      rgb(235, 198, 198),
-                                      rgb(200, 161, 161),
-                                      rgb(173, 125, 125));
-    border-radius: 5rem;
-    margin-right: .8rem;
-}
-input[type="checkbox"].toggle + label::after {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:  rgb(235, 209, 209);
-    content: "\2715";
-    font-size: .5rem;
-    left: .1rem;
-    width: .9rem;
-    height: .9rem;
-    background-color: rgb(201, 27, 27);
-    background-image: linear-gradient(rgb(206, 2, 2), 
-                                      rgb(195, 19, 19), 
-                                      rgb(185, 11, 11), 
-                                      rgb(167, 9, 9));
-    box-shadow: 0px 0px 2.5px 0px rgb(201, 27, 27);
-    border-radius: 5rem;
-    transition: 200ms ease-in-out;
-}
-input[type="checkbox"].toggle:checked + label::before {
-    background-image: linear-gradient(rgba(186, 237, 196, 0.896),
-                                      rgba(215, 243, 214, 0.916),
-                                      rgba(174, 216, 174, 0.937),
-                                      rgba(135, 185, 142, 0.979));
-}
-input[type="checkbox"].toggle:checked + label::after {
-    left: .9rem;
-    background-image: linear-gradient(rgb(9, 163, 17), 
-                                      rgb(22, 180, 54), 
-                                      rgb(14, 158, 38), 
-                                      rgb(9, 122, 18));
-    box-shadow: 0 0 2.5px 0 rgb(47, 139, 59);
-    animation: check-fade 400ms ease-in-out forwards;
-}
-@keyframes check-fade {
-    0% {
-        opacity: 1;
-        content: "\2715";
-    }
-    50% {
-        opacity: 0;
-        content: "\2715";
-    }
-    100% {
-        opacity: 1;
-        content: "\2713";
-    }
-}
 
 /* Settings' Comment */
 .warning-about-settings {
