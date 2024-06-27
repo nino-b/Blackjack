@@ -40,6 +40,7 @@
                                 <input type="checkbox" 
                                        id="toggle-sound" 
                                        class="toggle-sound-music sound-music" 
+                                       name="toggle-sound"
                                        aria-label="Toggle sound">
                 
                                 <label for="toggle-sound" 
@@ -60,6 +61,7 @@
                                 <input type="checkbox" 
                                        id="toggle-music" 
                                        class="toggle-sound-music sound-music" 
+                                       name="toggle-music"
                                        aria-label="Toggle music">
                 
                                 <label for="toggle-music" 
@@ -79,30 +81,30 @@
                 
                                     <input type="radio" 
                                            id="deck1" 
-                                           name="deck-number" 
+                                           name="deck-count" 
                                            value="1">
                                     <label for="deck1">1</label>
                                     <input type="radio" 
                                            id="deck2" 
-                                           name="deck-number" 
+                                           name="deck-count" 
                                            value="2" checked>
                                     <label for="deck2">2</label>
                 
                                     <input type="radio" 
                                            id="deck4" 
-                                           name="deck-number" 
+                                           name="deck-count" 
                                            value="4">
                                     <label for="deck4"> 4</label>
                 
                                     <input type="radio" 
                                            id="deck6" 
-                                           name="deck-number" 
+                                           name="deck-count" 
                                            value="6">
                                     <label for="deck6"> 6</label>
                 
                                     <input type="radio" 
                                            id="deck8" 
-                                           name="deck-number" 
+                                           name="deck-count" 
                                            value="8">
                                     <label for="deck8">8</label>
                                 </fieldset>
@@ -111,7 +113,9 @@
                                     <input type="checkbox" 
                                     id="soft-17-opt" 
                                     role="switch" 
-                                    class="toggle">
+                                    name="soft-17-opt"
+                                    class="toggle" checked>
+
                                     <label for="soft-17-opt">Dealer hits on soft 17 </label>
                                 </div>
 
@@ -119,7 +123,8 @@
                                     <input type="checkbox" 
                                     id="insurance-opt" 
                                     role="switch" 
-                                    class="toggle">
+                                    name="insurance-opt"
+                                    class="toggle" checked>
 
                                     <label for="insurance-opt">Insurance </label>
                                 </div>
@@ -128,7 +133,8 @@
                                     <input type="checkbox" 
                                     id="even-money-opt" 
                                     role="switch" 
-                                    class="toggle">
+                                    name="even-money-opt"
+                                    class="toggle" checked>
 
                                     <label for="even-money-opt">Even Money </label>
                                 </div>
@@ -137,6 +143,7 @@
                                     <input type="checkbox" 
                                     id="auto-advice-opt" 
                                     role="switch" 
+                                    name="auto-advice-opt"
                                     class="toggle">
         
                                     <label for="auto-advice-opt">Auto Advice </label>
@@ -146,7 +153,8 @@
                                     <input type="checkbox" 
                                     id="repeat-last-bet-opt" 
                                     role="switch" 
-                                    class="toggle">
+                                    name="repeat-last-bet-opt"
+                                    class="toggle" checked>
                                     
                                     <label for="repeat-last-bet-opt">Repeat Last Bet </label>
                                 </div>
@@ -174,17 +182,21 @@
     <!-- ------------------------------------------------------- -->
     <!-- ------------------------------------------------------- -->
     
-    
-    <template id="home-page-template"> <!-- + - -->
+
+    <!-- + - -->
+    <template id="home-page-template"> 
         <div id="home-container"></div>
     </template>
     
 
     <template id="game-page-template">
-        <section id="game-page-container"></section>
+        <section id="game-page-container">
+            <canvas></canvas>
+        </section>
     </template>
     
 
+    <!-- + - -->
     <template id="history-page-template">
         <section id="history-page-container">
             <h1>History</h1>
@@ -257,8 +269,8 @@
         </section>
     </template>
     
-    
-    <template id="rules-page-template"> <!-- + -->
+    <!-- + -->
+    <template id="rules-page-template"> 
         <section id="rules-page-container"></section>
     </template>
     
@@ -266,11 +278,5 @@
     <template id="about-page-template">
         <section id="about-page-container"></section>
     </template>
-
-
-    <template id="account-page-template">
-        <section id="account-page-container"></section>
-    </template>
- 
 </body>
 </html>

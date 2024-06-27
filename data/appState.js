@@ -19,6 +19,15 @@ app.pageContext = null;
  * Saves settings parameter values. This way specific settings are globally accessable (e.g. we save animation settings in event listener callback and use newest values in a page Component).
  */
 app.settings = {};
-app.settings.animations = null;
+app.settings.gameSettings = {
+  "deck-count": 2,
+  "soft-17-opt": true,
+  "insurance-opt": true,
+  "even-money-opt": true,
+  "auto-advice-opt": false,
+  "repeat-last-bet-opt": true,
+};
+
+app.deckStore = [];
 
 export default app;

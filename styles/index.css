@@ -133,7 +133,7 @@ Nav display btn
  #display-nav {
     width: 3.5rem;
     margin-top: -1.5rem;
-    margin-left: 1.5rem;
+    margin-left: .5rem;
     padding: 0;
 
     border: none;
@@ -142,7 +142,7 @@ Nav display btn
 }
 /* Arrow */
 #display-nav img {
-    width: 100%;
+    width: 90%;
     rotate: 180deg;
     transform: display ;
 }
@@ -279,7 +279,7 @@ input[type="radio"]:focus-visible + label {
 /* Hide checkboxes (boxes itself) */
 input[type="checkbox"].toggle,
 input[type="checkbox"].toggle-sound-music,
-input[name="deck-number"] {
+input[name="deck-count"] {
     opacity: 0;
     pointer-events: none;
     position: absolute;

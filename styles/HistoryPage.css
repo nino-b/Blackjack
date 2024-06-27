@@ -29,13 +29,12 @@ th button,
   overflow-y: hidden;
 }
 table {
-  /*   width: 100%; */
-    border-collapse: collapse; /* Ensure no double borders */
-    background-image: linear-gradient(rgba(151, 131, 131, 0.811), 
-                                      rgba(203, 181, 181, 0.782), 
-                                      rgba(176, 151, 151, 0.742), 
-                                      rgba(150, 124, 124, 0.763));
-    text-shadow: 0 .2rem .2rem #5c545072;
+  border-collapse: collapse; /* Ensure no double borders */
+  background-image: linear-gradient(rgba(151, 131, 131, 0.811), 
+                                    rgba(203, 181, 181, 0.782), 
+                                    rgba(176, 151, 151, 0.742), 
+                                    rgba(150, 124, 124, 0.763));
+  text-shadow: 0 .2rem .2rem #5c545072;
 }
 
 /* Table Head */
@@ -81,7 +80,7 @@ td {
   border-radius: .5rem;
   background-image: linear-gradient(rgb(83, 54, 54),
                                     rgb(156, 121, 121),
-                                    rgb(152, 112, 112),
+                                    rgb(126, 90, 90),
                                     rgb(68, 45, 45));
   font-size: 1rem;
   transition: scale 0.3s ease;
