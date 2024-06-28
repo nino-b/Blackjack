@@ -1,0 +1,194 @@
+/* 
+        <section id="game-page-container">
+            <section id="pre-game-page-setup">
+                <div id="pre-game-page-html"></div>
+                <h2>
+                    Choose Number of Hands and Place Bets
+                </h2>
+                <div id="hand-1">
+                    <button id="last-chip"></button>
+                    <output id="hand-1-bet"></output>
+                </div>
+                <div id="hand-2">
+                    <button id="last-chip"></button>
+                    <output id="hand-2-bet"></output>
+                </div>
+                <div id="hand-3">
+                    <button id="last-chip"></button>
+                    <output id="hand-3-bet"></output>
+                </div>
+
+                <button id="deal">Deal</button>
+
+                <div id="chip-bank-container">
+                    <div id="bank-container">
+                        <h3>Bank:</h3>
+                        <span id="bank">2500<spanp>
+                    </div>
+                    <div id="chip-container">
+                        <button class="chip" id="chip-5" data-value="5" ><img src="../assets/svg-chips/chip 5.svg"></button>
+                        <button class="chip" id="chip-25" data-value="25" ><img src="../assets/svg-chips/chip 25.svg"></button>
+                        <button class="chip" id="chip-100" data-value="100" ><img src="../assets/svg-chips/chip 100.svg"></button>
+                        <button class="chip" id="chip-500" data-value="500" ><img src="../assets/svg-chips/chip 500.svg"></button>
+                        <button class="chip" id="chip-1000" data-value="1000" ><img src="../assets/svg-chips/chip 1000.svg"></button>
+                    </div>
+                </div>            
+                <canvas id="pre-game-page-canvas"></canvas>
+            </section>
+*/
+
+
+
+
+
+
+
+#game-page-container,
+#pre-game-page-container,
+#pre-game-page-html,
+#pre-game-page-canvas,
+.chip img {
+  width: 100%;
+  height: 100%;
+}
+
+
+#pre-game-page-container {
+  position: relative;
+/*   background-image: radial-gradient(rgba(23, 53, 30, 0.767), 
+                                    rgba(27, 74, 44, 0.826), 
+                                    rgba(16, 55, 25, 0.408),
+                                    rgba(0, 255, 60, 0.014),
+                                    rgba(0, 255, 60, 0.014)); */
+}
+
+
+#pre-game-page-html {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+
+/* Page Heading */
+#pre-game-page-html h2 {
+  width: 60%;
+  height: 5rem;
+  text-align: center;
+  align-content: center;
+
+  background-image: linear-gradient(rgba(40, 40, 81, 0.932),
+  rgb(66, 66, 98),
+  rgb(54, 54, 88));
+  border: qpx solid transparent;
+  border-radius: .6rem;
+  box-shadow: 0 0 1rem black;
+  color: white;
+  font-size: 1.3rem;
+}
+
+
+/* Chip and Bank Container */
+#chip-bank-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+
+  width: 65%;
+  height: 22%;
+  margin-bottom: 1rem;
+}
+
+/* Chip */
+#chip-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 1rem 0.2rem;
+  background-image: linear-gradient(rgba(40, 40, 81, 0.932),
+                                    rgb(66, 66, 98),
+                                    rgb(54, 54, 88));
+  border: 1px solid transparent;
+  border-radius: .7rem;
+  box-shadow: 0 0 1rem rgb(26, 26, 53);
+}
+.chip {
+  width: 4rem;
+  height: 4rem;
+  padding: 0;
+  margin: 0;
+
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  box-shadow: 0 0 1rem rgb(20, 57, 27);
+
+  cursor: pointer;
+  transition: transform .5s ease;
+}
+
+.chip:hover {
+  transform: scale(1.025);
+}
+.chip:active {
+  transform: scale(1.05);
+}
+
+/* Bank */
+#bank-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: .2rem .2rem .2rem .5rem;
+  border: 1px solid black;
+  background-image: linear-gradient(rgb(25, 25, 48),
+                                    rgb(45, 45, 71),
+                                    rgb(25, 25, 48));
+  border: 1px solid transparent;
+  border-radius: .45rem;
+}
+#bank-container h3,
+#bank  {
+  padding-right: .3rem;
+}
+#bank-container h3 {
+  color: rgb(249, 255, 69);
+}
+#bank {
+  padding: .5rem;
+  border: 1px solid transparent;
+  border-radius: .45rem;
+  background-image: linear-gradient(black,
+                                    rgb(32, 32, 32),
+                                    black);
+  color: gold;
+}
+
+
+/* Deal Button */
+
+
+#deal {
+  padding: 1.3rem 2.6rem;
+  border: .01px solid rgb(55, 122, 190);
+  border-radius: .7rem;
+  background-image: linear-gradient(rgb(8, 53, 112),
+                                    rgb(3, 73, 171),
+                                    rgb(5, 76, 176),
+                                    rgb(5, 45, 119));
+  box-shadow: 0 0 1rem rgb(132, 138, 188);
+
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+

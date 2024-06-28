@@ -1,10 +1,12 @@
-import gamePage from "bundle-text:../styles/historyPage.css";
+import gamePage from "bundle-text:../styles/GamePage.css";
 import BaseComponent from "./BaseComponent.js";
 
-export default class RulesPage extends BaseComponent {
+export default class GamePage extends BaseComponent {
   constructor() {
     super();
     this.pageStyles = gamePage;
     this.templateID = 'game-page-template';
   }
 }
+
+customElements.define('game-page', GamePage);

@@ -47,7 +47,7 @@ const RULES = {
         },
         {
           label: "Split:",
-          description: " If you have two cards of the same value, you can split them into two separate hands. You can have at most four hands at a time with exception of Aces, where you can have maximum two hands.",
+          description: " If you have two cards of the same value, you can split them into two separate hands. You can have at most four hands at a time with exception of Aces, where you can have maximum two hands. If you split Aces, then one card is dealt to each hand and you can't draw any more cards. If you split Aces and you get dealt a card with the value of 10, it is considered as a regular win (not Blackjack).",
         },
       ],
     },
@@ -82,7 +82,7 @@ const RULES = {
       group_items: [
         {
           label: "Blackjack:",
-          description: " If your first two cards are an Ace and a 10-point card (10, Jack, Queen, King), you have Blackjack! This pays 3 to 2.",
+          description: " If your initial two cards are an Ace and a 10-point card (10, Jack, Queen, King), you have Blackjack! This pays 3 to 2.",
         },
         {
           label: "Beat the Dealer:",

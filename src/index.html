@@ -191,7 +191,44 @@
 
     <template id="game-page-template">
         <section id="game-page-container">
-            <canvas></canvas>
+            <section id="pre-game-page-container">
+                <canvas id="pre-game-page-canvas"></canvas>
+                <section id="pre-game-page-html">
+                    <h2>
+                        Choose Number of Hands and Place Bets
+                    </h2>
+                    <div id="hands-container">
+                        <div id="hand-1">
+                            <button id="last-chip"></button>
+                            <output id="hand-1-bet"></output>
+                        </div>
+                        <div id="hand-2">
+                            <button id="last-chip"></button>
+                            <output id="hand-2-bet"></output>
+                        </div>
+                        <div id="hand-3">
+                            <button id="last-chip"></button>
+                            <output id="hand-3-bet"></output>
+                        </div>
+                    </div>
+    
+                    <button id="deal">Deal</button>
+    
+                    <div id="chip-bank-container">
+                        <div id="bank-container">
+                            <h3>Bank:</h3>
+                            <span id="bank">2500<spanp>
+                        </div>
+                        <div id="chip-container">
+                            <button class="chip" id="chip-5" data-value="5" ><img src="../assets/svg-chips/chip 5.svg"></button>
+                            <button class="chip" id="chip-25" data-value="25" ><img src="../assets/svg-chips/chip 25.svg"></button>
+                            <button class="chip" id="chip-100" data-value="100" ><img src="../assets/svg-chips/chip 100.svg"></button>
+                            <button class="chip" id="chip-500" data-value="500" ><img src="../assets/svg-chips/chip 500.svg"></button>
+                            <button class="chip" id="chip-1000" data-value="1000" ><img src="../assets/svg-chips/chip 1000.svg"></button>
+                        </div>
+                    </div>  
+                </section>          
+            </section>
         </section>
     </template>
     

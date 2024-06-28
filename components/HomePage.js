@@ -16,7 +16,6 @@ export default class HomePage extends BaseComponent {
     super();
     this.pageStyles = homePage;
     this.templateID = 'home-page-template';
-    this.eventName = 'appendhomechange';
   }
 }
 

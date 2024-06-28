@@ -14,4 +14,5 @@ import settings from "../services/Settings.js";
 import HomePage from "../components/HomePage.js";
 import RulesPage from "../components/RulesPage.js";
 import HistoryPage from "../components/HistoryPage.js";
+import GamePage from "../components/GamePage.js";
 
