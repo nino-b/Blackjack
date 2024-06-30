@@ -32,7 +32,11 @@ class DeckManager {
       [this.deckStore[i], this.deckStore[j]] = [this.deckStore[j], this.deckStore[i]];
     }
   }
-  dealCard() {
+  /**
+   * Retrieves a card from a 'deckStore' (a deck of cards) by removing one card from an array of card objects.
+   * @returns A card object, popped out of the deck of cards.
+   */
+  getCard() {
     return this.deckStore.pop();
   }
 }

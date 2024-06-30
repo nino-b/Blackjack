@@ -5,7 +5,6 @@ import RULES from "./rules";
  */
 
 window.app = {};
-
 app.rules = RULES;
 
 /**
@@ -29,5 +28,16 @@ app.settings.gameSettings = {
 };
 
 app.deckStore = [];
+app.initialHands = {};
+
+/**
+ * activeHandNode will store reference to the activated hand-activator button.
+ */
+app.activeHandNode = null;
+
+
+
+
+
 
 export default app;

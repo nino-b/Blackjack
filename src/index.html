@@ -198,18 +198,30 @@
                         Choose Number of Hands and Place Bets
                     </h2>
                     <div id="hands-container">
-                        <div id="hand-1">
-                            <button id="last-chip"></button>
-                            <output id="hand-1-bet"></output>
+                        <div class="hand-container">
+                            <button class="activate-hand" data-id="hand-1" data-action="activate-hand"></button>
+                            <div class="bet-container">
+                                <button data-id="hand-1" data-action="remove-last-bet"></button>
+                                <output data-id="hand-1"></output>
+                            </div>
                         </div>
-                        <div id="hand-2">
-                            <button id="last-chip"></button>
-                            <output id="hand-2-bet"></output>
+
+                        <div class="hand-container" id="hand-container-2">
+                            <button class="activate-hand" data-id="hand-2" data-action="activate-hand"></button>
+                            <div class="bet-container">
+                                <button data-id="hand-2" data-action="remove-last-bet"></button>
+                                <output data-id="hand-2"></output>
+                            </div>
                         </div>
-                        <div id="hand-3">
-                            <button id="last-chip"></button>
-                            <output id="hand-3-bet"></output>
+
+                        <div class="hand-container">
+                            <button class="activate-hand" data-id="hand-3" data-action="activate-hand"></button>
+                            <div class="bet-container">
+                                <button data-id="hand-3" data-action="remove-last-bet"></button>
+                                <output data-id="hand-3"></output>
+                            </div>
                         </div>
+
                     </div>
     
                     <button id="deal">Deal</button>

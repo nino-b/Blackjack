@@ -144,7 +144,6 @@ Nav display btn
 #display-nav img {
     width: 90%;
     rotate: 180deg;
-    transform: display ;
 }
 .rotate-face-up {
     animation: display-header-arrow .5s ease-in-out forwards,

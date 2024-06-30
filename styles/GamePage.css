@@ -1,44 +1,3 @@
-/* 
-        <section id="game-page-container">
-            <section id="pre-game-page-setup">
-                <div id="pre-game-page-html"></div>
-                <h2>
-                    Choose Number of Hands and Place Bets
-                </h2>
-                <div id="hand-1">
-                    <button id="last-chip"></button>
-                    <output id="hand-1-bet"></output>
-                </div>
-                <div id="hand-2">
-                    <button id="last-chip"></button>
-                    <output id="hand-2-bet"></output>
-                </div>
-                <div id="hand-3">
-                    <button id="last-chip"></button>
-                    <output id="hand-3-bet"></output>
-                </div>
-
-                <button id="deal">Deal</button>
-
-                <div id="chip-bank-container">
-                    <div id="bank-container">
-                        <h3>Bank:</h3>
-                        <span id="bank">2500<spanp>
-                    </div>
-                    <div id="chip-container">
-                        <button class="chip" id="chip-5" data-value="5" ><img src="../assets/svg-chips/chip 5.svg"></button>
-                        <button class="chip" id="chip-25" data-value="25" ><img src="../assets/svg-chips/chip 25.svg"></button>
-                        <button class="chip" id="chip-100" data-value="100" ><img src="../assets/svg-chips/chip 100.svg"></button>
-                        <button class="chip" id="chip-500" data-value="500" ><img src="../assets/svg-chips/chip 500.svg"></button>
-                        <button class="chip" id="chip-1000" data-value="1000" ><img src="../assets/svg-chips/chip 1000.svg"></button>
-                    </div>
-                </div>            
-                <canvas id="pre-game-page-canvas"></canvas>
-            </section>
-*/
-
-
-
 
 
 
@@ -55,11 +14,10 @@
 
 #pre-game-page-container {
   position: relative;
-/*   background-image: radial-gradient(rgba(23, 53, 30, 0.767), 
-                                    rgba(27, 74, 44, 0.826), 
-                                    rgba(16, 55, 25, 0.408),
-                                    rgba(0, 255, 60, 0.014),
-                                    rgba(0, 255, 60, 0.014)); */
+  background-image: radial-gradient(rgba(24, 24, 44, 0.76),
+                                    rgba(45, 45, 72, 0.715),
+                                    rgba(32, 32, 56, 0.681));
+  box-shadow: 0 0 3rem 3rem rgba(32, 32, 56, 0.681);
 }
 
 
@@ -79,18 +37,124 @@
 /* Page Heading */
 #pre-game-page-html h2 {
   width: 60%;
-  height: 5rem;
+  padding: 1rem;
   text-align: center;
   align-content: center;
 
-  background-image: linear-gradient(rgba(40, 40, 81, 0.932),
-  rgb(66, 66, 98),
-  rgb(54, 54, 88));
+  background-image: linear-gradient(rgb(65, 65, 105),
+                                    rgb(88, 88, 125),
+                                    rgb(65, 65, 114));
   border: qpx solid transparent;
-  border-radius: .6rem;
-  box-shadow: 0 0 1rem black;
+  border-radius: 2rem;
+  box-shadow: 0 0 1rem rgb(14, 19, 41);
   color: white;
   font-size: 1.3rem;
+}
+
+
+/* Choose number of hands and bets */
+
+/* Hands Container */
+
+#hands-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  
+  width: 100%;
+  height: 100%;
+  margin-bottom: 1rem;
+}
+
+.hand-container {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+}
+#hand-container-2 {
+  margin-top: 4rem;
+}
+.activate-hand {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgb(242, 210, 28);
+  border-radius: 50%;
+  background-image: radial-gradient(rgb(35, 157, 149),
+                                    rgb(14, 65, 54));
+
+}
+.activated-hand {
+  box-shadow: 0 0 1rem rgb(110, 168, 167);
+}
+
+
+.bet-container {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+  
+  border: .1rem dashed rgb(0, 221, 255);
+  border-radius: 50%;
+  background-image: radial-gradient(rgb(51, 204, 207), 
+                                    rgb(43, 146, 167), 
+                                    rgb(16, 82, 92),
+                                    rgb(0, 217, 255));
+}
+[data-action="remove-last-bet"] {
+  position: absolute; /* Relatively positioned is '.hand-container' */
+  top: 26%;
+  left: 26%;
+  width: 3.5rem;
+  height: 3.5rem;
+
+  background-image: linear-gradient(rgb(11, 149, 180), 
+                                    rgb(63, 181, 231), 
+                                    rgb(31, 129, 159));
+  border: 1px solid goldenrod;
+  border-radius: 50%;
+  box-shadow: 0 0 1rem rgb(7, 69, 101);
+}
+.bet-container output {
+  position: absolute;
+  display: inline-block;
+  bottom: -10%;
+  left: 9%;
+  width: 6rem;
+  height: 1.8rem;
+
+  border: 1px solid goldenrod;
+  border-radius: 1rem;
+  background-image: linear-gradient(rgb(4, 84, 102), 
+                                    rgb(25, 104, 137), 
+                                    rgb(31, 129, 159));
+                                    
+  background-image: radial-gradient(rgb(33, 44, 63),
+                                    rgb(29, 38, 66));
+}
+/* ************************************************************** */
+
+
+/* Deal Button */
+
+
+#deal {
+  padding: 1.3rem 2.6rem;
+  border: .01px solid lime;
+  border-radius: .7rem;
+  background-image: linear-gradient(green,
+                                    rgb(16, 186, 16),
+                                    rgb(13, 182, 13),
+                                    green);
+  box-shadow: 0 0 1rem rgb(9, 144, 9);
+
+  color: white;
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
 
@@ -112,9 +176,9 @@
   justify-content: space-evenly;
   width: 100%;
   padding: 1rem 0.2rem;
-  background-image: linear-gradient(rgba(40, 40, 81, 0.932),
-                                    rgb(66, 66, 98),
-                                    rgb(54, 54, 88));
+  background-image: linear-gradient(rgba(24, 24, 44, 0.849),
+                                    rgba(45, 45, 72, 0.881),
+                                    rgba(32, 32, 56, 0.868));
   border: 1px solid transparent;
   border-radius: .7rem;
   box-shadow: 0 0 1rem rgb(26, 26, 53);
@@ -149,11 +213,12 @@
   align-items: center;
   padding: .2rem .2rem .2rem .5rem;
   border: 1px solid black;
-  background-image: linear-gradient(rgb(25, 25, 48),
+  background-image: linear-gradient(rgb(30, 30, 58),
                                     rgb(45, 45, 71),
-                                    rgb(25, 25, 48));
+                                    rgb(31, 31, 60));
   border: 1px solid transparent;
   border-radius: .45rem;
+  font-size: 1.2rem;
 }
 #bank-container h3,
 #bank  {
@@ -172,23 +237,5 @@
   color: gold;
 }
 
-
-/* Deal Button */
-
-
-#deal {
-  padding: 1.3rem 2.6rem;
-  border: .01px solid rgb(55, 122, 190);
-  border-radius: .7rem;
-  background-image: linear-gradient(rgb(8, 53, 112),
-                                    rgb(3, 73, 171),
-                                    rgb(5, 76, 176),
-                                    rgb(5, 45, 119));
-  box-shadow: 0 0 1rem rgb(132, 138, 188);
-
-  color: white;
-  font-size: 1.4rem;
-  font-weight: bold;
-}
 
 
