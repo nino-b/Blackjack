@@ -197,50 +197,53 @@
                     <h2>
                         Choose Number of Hands and Place Bets
                     </h2>
-                    <div id="hands-container">
-                        <div class="hand-container">
-                            <button class="activate-hand" data-id="hand-1" data-action="activate-hand"></button>
-                            <div class="bet-container">
-                                <button data-id="hand-1" data-action="remove-last-bet"></button>
-                                <output data-id="hand-1"></output>
+                    <div id="pre-game-page-html-styling">
+                        <button id="deal">Deal</button>
+    
+                        <div id="chip-bank-container">
+                            <div id="bank-container">
+                                <h3>Bank:</h3>
+                                <span id="bank">2500<spanp>
                             </div>
-                        </div>
-
-                        <div class="hand-container" id="hand-container-2">
-                            <button class="activate-hand" data-id="hand-2" data-action="activate-hand"></button>
-                            <div class="bet-container">
-                                <button data-id="hand-2" data-action="remove-last-bet"></button>
-                                <output data-id="hand-2"></output>
+                            <div id="chip-container">
+                                <button class="chip" id="chip-5" data-value="5" ><img src="../assets/svg-chips/chip 5.svg"></button>
+                                <button class="chip" id="chip-25" data-value="25" ><img src="../assets/svg-chips/chip 25.svg"></button>
+                                <button class="chip" id="chip-100" data-value="100" ><img src="../assets/svg-chips/chip 100.svg"></button>
+                                <button class="chip" id="chip-500" data-value="500" ><img src="../assets/svg-chips/chip 500.svg"></button>
+                                <button class="chip" id="chip-1000" data-value="1000" ><img src="../assets/svg-chips/chip 1000.svg"></button>
                             </div>
-                        </div>
-
-                        <div class="hand-container">
-                            <button class="activate-hand" data-id="hand-3" data-action="activate-hand"></button>
-                            <div class="bet-container">
-                                <button data-id="hand-3" data-action="remove-last-bet"></button>
-                                <output data-id="hand-3"></output>
-                            </div>
-                        </div>
-
+                        </div>  
                     </div>
-    
-                    <button id="deal">Deal</button>
-    
-                    <div id="chip-bank-container">
-                        <div id="bank-container">
-                            <h3>Bank:</h3>
-                            <span id="bank">2500<spanp>
-                        </div>
-                        <div id="chip-container">
-                            <button class="chip" id="chip-5" data-value="5" ><img src="../assets/svg-chips/chip 5.svg"></button>
-                            <button class="chip" id="chip-25" data-value="25" ><img src="../assets/svg-chips/chip 25.svg"></button>
-                            <button class="chip" id="chip-100" data-value="100" ><img src="../assets/svg-chips/chip 100.svg"></button>
-                            <button class="chip" id="chip-500" data-value="500" ><img src="../assets/svg-chips/chip 500.svg"></button>
-                            <button class="chip" id="chip-1000" data-value="1000" ><img src="../assets/svg-chips/chip 1000.svg"></button>
-                        </div>
-                    </div>  
                 </section>          
             </section>
+            <!--  -->
+            <div id="hands-container">
+                <div class="hand-container">
+                    <button class="activate-hand" data-id="hand-1" data-action="activate-hand"></button>
+                    <div class="bet-container">
+                        <button data-id="hand-1" data-action="remove-last-bet"></button>
+                        <output data-id="hand-1"></output>
+                    </div>
+                </div>
+
+                <div class="hand-container">
+                    <button class="activate-hand" data-id="hand-2" data-action="activate-hand"></button>
+                    <div class="bet-container">
+                        <button data-id="hand-2" data-action="remove-last-bet"></button>
+                        <output data-id="hand-2"></output>
+                    </div>
+                </div>
+
+                <div class="hand-container">
+                    <button class="activate-hand" data-id="hand-3" data-action="activate-hand"></button>
+                    <div class="bet-container">
+                        <button data-id="hand-3" data-action="remove-last-bet"></button>
+                        <output data-id="hand-3"></output>
+                    </div>
+                </div>
+            </div>
+
+            <!--  -->
         </section>
     </template>
     

@@ -37,6 +37,9 @@ export default class BaseComponent extends HTMLElement {
   render() {
     console.log('Base Component Rendered.');
   }
+  queryElements() {}
+  setupPageListeners() {}
+  removePageListeners() {}
   /**
    * A callback function for a HTML Custom Element that will be executed when the element is rendered.
    * Appends HTML template to the Shadow DOM, adds styles and if there is dynamic data to be rendered, it renders that too.
@@ -47,5 +50,10 @@ export default class BaseComponent extends HTMLElement {
     setupCSS([reset, sharedStyles, this.pageStyles], this.root);
     this.savePageContext();
     this.render();
+    this.queryElements();
+    this.setupPageListeners();
+  }
+  disconnectedCallback() {
+    this.removePageListeners();
   }
 }
