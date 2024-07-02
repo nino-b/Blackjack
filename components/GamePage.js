@@ -11,15 +11,16 @@ export default class GamePage extends BaseComponent {
     this.templateID = 'game-page-template';
   }
   queryElements() {
-    this.handsContainer = queryElement('#hands-container', this.root);
+    this.handContainer = queryElement('#hand-container', this.root);
+    this.bettingSpotList = Array.from(this.handContainer.children);
     this.chipContainer = queryElement('#chip-container', this.root);
   }
   setupPageListeners() {
-    this.handsContainer.addEventListener('click', handSetupHandler);
+    this.handContainer.addEventListener('click', handSetupHandler);
     this.chipContainer.addEventListener('click', bettingHandler);
   }
   removePageListeners() {
-    this.handsContainer.removeEventListener('click', handSetupHandler);
+    this.handContainer.removeEventListener('click', handSetupHandler);
     this.chipContainer.removeEventListener('click', bettingHandler);
   }
 }

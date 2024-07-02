@@ -5,17 +5,19 @@ import HandManager from "../gameServices/HandManager";
  * Sets up initial hands.
  */
 
-function setUpInitialHand(event, app) {    
-  const id = event.target.dataset.id;
+function setUpInitialHand(event, app) { 
+  const bettingContainer = event.target.closest('.betting-spot-container');   
+  const id = bettingContainer.dataset.id;
 
   if (!app.initialHands[id]) {
     app.initialHands[id] = {
       hand: new HandManager(),
       chipList: [],
+      id: id
     };
   } 
-  app.activeHand = app.initialHands[id].hand;
-  app.activeHandNode = event.target;
+  app.activeHand = app.initialHands[id];
+  app.activeHandNode = bettingContainer;
 }
 
 
