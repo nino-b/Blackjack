@@ -13,11 +13,13 @@ canvas,
   position: relative;
 }
 .pre-game-view {
+  justify-content: space-between;
   background-image: radial-gradient(rgba(24, 24, 44, 0.76),
                                     rgba(45, 45, 72, 0.715),
                                     rgba(32, 32, 56, 0.681));
   box-shadow: 0 0 3rem 3rem rgba(32, 32, 56, 0.681);
 }
+
 /* Game Interface Container */
 #game-interface-container {
   position: absolute;
@@ -29,9 +31,9 @@ canvas,
   
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
   align-items: center;
 }
+
 /* Page Heading */
 #betting-instruction {
   width: 60%;
@@ -47,6 +49,22 @@ canvas,
   box-shadow: 0 0 1rem rgb(14, 19, 41);
   color: white;
   font-size: 1.3rem;
+  transition: box-shadow 0.5s ease;
+}
+
+.betting-instruction-attention {
+  animation: attention .8s ease-in-out;
+}
+@keyframes attention {
+  0% {
+    box-shadow: 0 0 1rem rgb(14, 19, 41);
+  }
+  50% {
+    box-shadow: 0 0 1rem white;
+  }
+  100% {
+    box-shadow: 0 0 1rem rgb(14, 19, 41);
+  }
 }
 
 /* Hands Container */
@@ -58,9 +76,33 @@ canvas,
   align-content: center;
   
   width: 100%;
-  height: auto;
   padding: 0 1rem 0 1rem;
-  align-self: flex-end;
+}
+
+/* Betting Spots */
+
+.betting-spot-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 11rem;
+  height: 11rem;
+  border: .1rem solid rgb(255, 213, 0);
+  border-radius: 50%;
+  background-image: radial-gradient(crimson, 
+                                    maroon);
+  box-shadow: 0 0 .7rem rgb(65, 4, 4);
+  cursor: pointer;
+  transition: scale .3s ease;
+}
+.betting-spot-container:hover {
+  transform: scale(1.025);
+  box-shadow: 0 0 .7rem rgb(255, 184, 184);
+}
+.betting-spot-container:active,
+.activated-hand {
+  transform: scale(1.05);
+  box-shadow: 0 0 .7rem rgb(255, 184, 184);
 }
 
 .bet-container {
@@ -112,101 +154,6 @@ canvas,
 .betting-spot-container[data-id="hand-2"] {
   margin-top: 3rem;
 }
-.betting-spot-container {
-  scale: 0.6;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Betting Spots */
-
-.betting-spot-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 11rem;
-  height: 11rem;
-  border: .1rem solid rgb(255, 213, 0);
-  border-radius: 50%;
-  background-image: radial-gradient(crimson, 
-                                    maroon);
-  box-shadow: 0 0 .7rem rgb(65, 4, 4);
-  cursor: pointer;
-  transition: scale .3s ease;
-}
-.betting-spot-container:hover {
-  transform: scale(1.025);
-  box-shadow: 0 0 .7rem rgb(255, 184, 184);
-}
-.betting-spot-container:active,
-.activated-hand {
-  transform: scale(1.05);
-  box-shadow: 0 0 .7rem rgb(255, 184, 184);
-}
-
-
-.bet-container {
-  z-index: 0;
-}
-/* Choose number of hands and bets */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ************************************************************** */
-
 
 /* Deal Button */
 
@@ -306,6 +253,104 @@ canvas,
                                     black);
   color: gold;
 }
+
+/* ****************************** */
+/* In game */
+.container-game-view {
+  justify-content: flex-end;
+  background-image: none;
+  box-shadow: none;
+}
+.betting-spot-container-game-view {
+  scale: 0.6;
+}
+
+/* Game Actions Container */
+#game-actions-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#game-actions-container button {
+  padding: .7rem 1.4rem;
+  margin: 0 .5rem.3rem .5rem;
+  border: 1px solid goldenrod;
+  border-radius: .6rem;
+  background-image: linear-gradient(rgb(105, 98, 81), 
+                                    rgb(194, 162, 162));
+  box-shadow: 0 0 .5rem rgb(31, 21, 6);
+  font-size: 1.1rem;
+}
+
+.bank-container-game-view {
+  position: absolute;
+  top: 0%;
+  right: 3%;
+  border-color: gold;
+  box-shadow: 0 0 0.5rem rgba(255, 217, 0, 0.223);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ************************************************************** */
+
+
+
 
 
 

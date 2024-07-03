@@ -191,19 +191,10 @@
 
     <template id="game-page-template">
         <section id="game-page-container">
-            <div id="game-interface-container"  > 
-                <h2 id="betting-instruction" data-view="pre-game" hidden>
+            <div id="game-interface-container" class="pre-game-view" > 
+                <h2 id="betting-instruction" data-view="pre-game">
                     Choose Number of Hands and Place Bets
                 </h2>
-                <div id="game-actions-container" data-view="game" >
-                    <button data-action="insurance">Insurance</button>
-                    <button data-action="stand">Stand</button>
-                    <button data-action="even-money">Even Money</button>
-    
-                    <button data-action="double-down">Double Down</button>
-                    <button data-action="hit">hit</button>
-                    <button data-action="split">Split</button>
-                </div>
                 <div id="hand-container">
                     <div class="betting-spot-container" data-id="hand-1" data-action="activate-hand">
                         <div class="bet-container"  data-action="activate-hand">
@@ -224,14 +215,22 @@
                         </div>
                     </div>
                 </div>
-
-                <button id="deal" data-view="pre-game" hidden>Deal</button>
+                <div id="game-actions-container" data-view="game" hidden>
+                    <button data-action="insurance">Insurance</button>
+                    <button data-action="stand">Stand</button>
+                    <button data-action="even-money">Even Money</button>
+    
+                    <button data-action="double-down">Double Down</button>
+                    <button data-action="hit">Hit</button>
+                    <button data-action="split">Split</button>
+                </div>
+                <button id="deal" data-view="pre-game">Deal</button>
                 <div id="chip-bank-container">
                     <div id="bank-container">
                         <h3>Bank:</h3>
-                        <span id="bank">2500<span>
+                        <span id="bank">10000<span>
                     </div>
-                    <div id="chip-container" data-view="pre-game" hidden>
+                    <div id="chip-container" data-view="pre-game">
                         <button class="chip" id="chip-5" data-value="5" ><img src="../assets/svg-chips/chip 5.svg"></button>
                         <button class="chip" id="chip-25" data-value="25" ><img src="../assets/svg-chips/chip 25.svg"></button>
                         <button class="chip" id="chip-100" data-value="100" ><img src="../assets/svg-chips/chip 100.svg"></button>
