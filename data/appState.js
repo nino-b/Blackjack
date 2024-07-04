@@ -1,4 +1,6 @@
 import RULES from "./rules";
+import HandManager from "../game/gameServices/HandManager";
+import setActiveHandShadow from "../game/gameUI/setActiveHandShadow";
 
 /**
  * Central storage for the app's state.
@@ -30,9 +32,32 @@ class App {
 
     this.initialHands = {};
     this.activeHand = null;
-    this.activeHandNode = null;
 
     this.deckStore = [];
+  }
+  setUpInitialHand(bettingContainer) {
+    const id = bettingContainer.dataset.id;
+  
+    if (!this.initialHands[id]) {
+      this.initialHands[id] = {
+        hand: new HandManager(),
+        chipList: [],
+        id: id,
+        node: bettingContainer,
+      };
+    } 
+    this.activeHand = this.initialHands[id];
+  }
+  setGameStartingHand() {
+    for (const initialHand in this.initialHands) {
+      const currentHand = this.initialHands[initialHand];
+
+      if (currentHand.hand.bet > 0) {
+        this.activeHand = currentHand;
+        setActiveHandShadow(this.pageContext.elementReferences.bettingSpotList, this.activeHand.node);
+        return true;
+      }
+    }
   }
 }
 

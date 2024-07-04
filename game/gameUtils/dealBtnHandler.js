@@ -1,3 +1,4 @@
+import showAttentionOnRules from "../gameUI/showAttentionOnRules";
 import setupGameUI from "../gameUI/setupGameUI";
 
 /**
@@ -14,7 +15,13 @@ import setupGameUI from "../gameUI/setupGameUI";
 
 
 export default function dealBtnHandler() {
-  setupGameUI(this.pageContext.elementReferences);
+  const elementReferences = this.pageContext.elementReferences;
+  const canStart = this.setGameStartingHand();
+  if (!canStart) {
+    showAttentionOnRules(elementReferences.bettingInstruction);
+    return;
+  }
+  setupGameUI(elementReferences);
   // TO DO
-  // SET UP GAME
+  //setupGame(.);
 }

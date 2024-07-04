@@ -18,7 +18,7 @@ export default function queryGamePageElements() {
     bankContainer: queryElement('#bank-container', gameInterfaceContainer),
     bankUI: null,
     handContainer: queryElement('#hand-container', gameInterfaceContainer),
-    bettingSpotList: [],
+    bettingSpotList: null,
     gameActionsContainer: queryElement('#game-actions-container', gameInterfaceContainer),
   };
 

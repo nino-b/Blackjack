@@ -52,8 +52,8 @@ canvas,
   transition: box-shadow 0.5s ease;
 }
 
-.betting-instruction-attention {
-  animation: attention .8s ease-in-out;
+.attention {
+  animation: attention .6s ease-in-out;
 }
 @keyframes attention {
   0% {
@@ -222,6 +222,10 @@ canvas,
   transform: scale(1.05);
 }
 
+
+
+
+
 /* Bank */
 #bank-container {
   display: flex;
@@ -290,7 +294,7 @@ canvas,
   top: 0%;
   right: 3%;
   border-color: gold;
-  box-shadow: 0 0 0.5rem rgba(255, 217, 0, 0.223);
+  box-shadow: 0 0 0.5rem rgba(255, 217, 0, 0.342);
 }
 
 
