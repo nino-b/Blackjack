@@ -48,9 +48,9 @@ export default class BaseComponent extends HTMLElement {
   connectedCallback() {
     setUpTemplate(this.root, this.templateID);
     setupCSS([reset, sharedStyles, this.pageStyles], this.root);
+    this.queryElements();
     this.savePageContext();
     this.render();
-    this.queryElements();
     this.setupPageListeners();
   }
   disconnectedCallback() {

@@ -1,14 +1,19 @@
 import historyPage from "bundle-text:../styles/HistoryPage.css";
 
 import BaseComponent from "./BaseComponent.js";
-import history from "../data/history.js";
+import HistoryRenderer from "../UI/HistoryRender.js";
 import HistoryFilter from "../services/HistoryFilter.js";
 import HistoryFormSubmitHandler from "../services/HistoryFormSubmitHandler.js";
-import HistoryRenderer from "../UI/HistoryRender.js";
 import { DialogManager } from "../UI/dialogManager.js";
 import { dialogSelectors, dialogAttributes } from "../data/domStore.js";
 import queryMultipleEl from "../util/DOMUtils/queryMultipleEl.js";
 import queryElement from "../util/DOMUtils/queryElement.js";
+
+import createScrollHistoryLoader from "../data/indexedDB/setupScrollHistoryLoader.js";
+import loadEntriesFromIndexedDB from "../data/indexedDB/dataLoading.js";
+import blackjackDBPromise from "../data/indexedDB/indexedDBSetup.js";
+
+
 
 
 /**
@@ -29,16 +34,41 @@ export default class HistoryPage extends BaseComponent {
     /**
      * @type {Array} - History Array that has entries from each game.
      */
-    this.history = history;
+    this.blackjackDB = null;
     this.table = null;
     this.form = null
   }
   /**
-   * Queries page-specific dialog elements and adds dialog manager functions to the page-specific elements.
-   */
-  addDialogManager() {
+  * Queries page-specific dialog elements and adds dialog manager functions to the page-specific elements.
+  */
+  async addDialogManager() {
     const dialogDOMRef = queryMultipleEl(dialogSelectors, this.root);
     this.dialogManager = new DialogManager(dialogDOMRef, dialogAttributes);
+  }
+
+  queryElements() {
+    this.table = queryElement('#history-table', this.root);
+    this.form = queryElement('#filter-form', this.root);
+  }
+  setupPageListeners() {
+    this.scrollHistoryLoader = createScrollHistoryLoader(this.blackjackDB, this.historyRenderer.renderTable);
+    window.addEventListener('scroll', this.scrollHistoryLoader.bind(this));
+  }
+  /**
+   * Removes page-specific event listeners to avoid memory leaks.
+  */
+  removePageListeners() {
+    window.removeEventListener('scroll', this.scrollHistoryLoader);
+    this.dialogManager.removeListeners();
+    this.historyFilter.TrDisplayReset.removeListener();
+    this.historyFormSubmitHandler.removeFormListener()
+  }
+
+  async render() {
+    this.historyRenderer = new HistoryRenderer(this.root, this.table);
+    await loadEntriesFromIndexedDB(this.blackjackDB, entry => {
+      this.historyRenderer.renderTable(entry);
+    });    
   }
   /**
    * A function that will be executed when the page is created.
@@ -50,24 +80,25 @@ export default class HistoryPage extends BaseComponent {
    * 
    * Adds filtering functionalities and submit listener to the filter form.
    */
-  connectedCallback() {
+  async connectedCallback() {
     super.connectedCallback();
 
-    this.table = queryElement('#history-table', this.root);
-    this.form = queryElement('#filter-form', this.root)
-    this.historyTable = new HistoryRenderer(this.root, this.table, this.history);
-    this.addDialogManager();
+    this.queryElements();
 
-    this.historyFilter = new HistoryFilter(this.root, this.form);
-    this.historyFormSubmitHandler = new HistoryFormSubmitHandler(this.form, this.historyFilter.handleFiltering);
+    // Open the IndexedDB asynchronously
+    try {
+      this.blackjackDB = await blackjackDBPromise();
+      await this.render();
+      this.setupPageListeners();
+      this.addDialogManager();
+      this.historyFilter = new HistoryFilter(this.root, this.form);
+      this.historyFormSubmitHandler = new HistoryFormSubmitHandler(this.form, this.historyFilter.handleFiltering);
+    } catch (error) {
+      console.error('Error opening IndexedDB:', error);
+    }
   }
-  /**
-   * Removes page-specific event listeners to avoid memory leaks.
-   */
   disconnectedCallback() {
-    this.dialogManager.removeListeners();
-    this.historyFilter.TrDisplayReset.removeListener();
-    this.historyFormSubmitHandler.removeFormListener()
+    this.removePageListeners();
   }
 }
 

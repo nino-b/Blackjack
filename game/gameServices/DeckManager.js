@@ -1,10 +1,17 @@
-
+import app from "../../data/appState";
 
 
 class DeckManager {
   constructor(deckCount, deckStore) {
     this.deckCount = deckCount;
     this.deckStore = deckStore;
+  }
+  /**
+   * Retrieves a card from a 'deckStore' (a deck of cards) by removing one card from an array of card objects.
+   * @returns A card object, popped out of the deck of cards.
+   */
+  getCard() {
+    return this.deckStore.pop();
   }
   createAndShuffleDecks() {
     for (let i = 0; i < this.deckCount; i++) {
@@ -31,13 +38,6 @@ class DeckManager {
       const j = Math.floor(Math.random() * (i + 1));
       [this.deckStore[i], this.deckStore[j]] = [this.deckStore[j], this.deckStore[i]];
     }
-  }
-  /**
-   * Retrieves a card from a 'deckStore' (a deck of cards) by removing one card from an array of card objects.
-   * @returns A card object, popped out of the deck of cards.
-   */
-  getCard() {
-    return this.deckStore.pop();
   }
 }
 

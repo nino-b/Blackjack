@@ -10,12 +10,12 @@ import addAttributes from "../util/DOMUtils/addAttributes";
  */
 
 export default class HistoryRenderer {
-  constructor(root, table, history) {
+  constructor(root, table) {
     this.root = root;
     this.table = table;
-    this.history = history;
+/*     this.history = history; */
 
-    this.renderTable()
+/*     this.renderTable() */
   }
   /**
  * Renders history table. 
@@ -29,20 +29,18 @@ export default class HistoryRenderer {
  * in case of date and time, three levels are not necessary (object -> in object), 
  * and that is why I check that specific case initially.
  */
-  renderTable() {
-    this.history.forEach(entry => {
-      const row = createEl('tr', this.table, null);
-      addAttributes(row, this.addDataAttr(entry));
+  renderTable(entry) {
+    const row = createEl('tr', this.table, null);
+    addAttributes(row, this.addDataAttr(entry));
 
-      for (const paramList in entry) {
-        if (paramList === 'dateTime') {
-          const td = createEl('td', row);
-          this.displayDiv(td, entry[paramList]);
-        } else {
-          this.displayTd(row, entry[paramList]);
-        }
+    for (const paramList in entry) {
+      if (paramList === 'dateTime') {
+        const td = createEl('td', row);
+        this.displayDiv(td, entry[paramList]);
+      } else {
+        this.displayTd(row, entry[paramList]);
       }
-    });
+    }
   }
 /**
  * If thete should be multiple parameters in the same cell, for styling (layout) purposes, 
