@@ -12,7 +12,7 @@
     "url": "git+https://github.com/nino-b/Blackjack.git"
   },
   "keywords": [
-    "'blackjack\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[\u001b\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[D\u001b[D\u001b[D\u001b[D"
+    "'blackjack"
   ],
   "author": "Nino Burtchuladze",
   "license": "ISC",
@@ -26,7 +26,10 @@
   },
   "extends": "@parcel/config-default",
   "transformers": {
-    "*.css": ["@parcel/transformer-inline-string", "..."]
+    "*.css": [
+      "@parcel/transformer-inline-string",
+      "..."
+    ]
   },
   "reporters": [
     "...",

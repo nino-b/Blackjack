@@ -15,7 +15,7 @@ export default class HistoryRenderer {
     this.table = table;
 /*     this.history = history; */
 
-/*     this.renderTable() */
+/*     this.renderTable() / renderEntry */
   }
   /**
  * Renders history table. 
@@ -29,7 +29,7 @@ export default class HistoryRenderer {
  * in case of date and time, three levels are not necessary (object -> in object), 
  * and that is why I check that specific case initially.
  */
-  renderTable(entry) {
+  renderEntry(entry) {
     const row = createEl('tr', this.table, null);
     addAttributes(row, this.addDataAttr(entry));
 

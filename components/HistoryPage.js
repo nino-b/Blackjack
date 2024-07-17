@@ -9,9 +9,10 @@ import { dialogSelectors, dialogAttributes } from "../data/domStore.js";
 import queryMultipleEl from "../util/DOMUtils/queryMultipleEl.js";
 import queryElement from "../util/DOMUtils/queryElement.js";
 
+
+import BlackjackDBAccessor from "../data/indexedDB/openIndexedDB.js";
+import { fetchBatch } from "../util/jsUtils/IndexedDBLibrary.js";
 import createScrollHistoryLoader from "../data/indexedDB/setupScrollHistoryLoader.js";
-import loadEntriesFromIndexedDB from "../data/indexedDB/dataLoading.js";
-import blackjackDBPromise from "../data/indexedDB/indexedDBSetup.js";
 
 
 
@@ -34,7 +35,7 @@ export default class HistoryPage extends BaseComponent {
     /**
      * @type {Array} - History Array that has entries from each game.
      */
-    this.blackjackDB = null;
+    this.BlackjackDBAccessor = BlackjackDBAccessor;
     this.table = null;
     this.form = null
   }
@@ -51,7 +52,7 @@ export default class HistoryPage extends BaseComponent {
     this.form = queryElement('#filter-form', this.root);
   }
   setupPageListeners() {
-    this.scrollHistoryLoader = createScrollHistoryLoader(this.blackjackDB, this.historyRenderer.renderTable);
+    this.scrollHistoryLoader = createScrollHistoryLoader(this.BlackjackDBAccessor, this.historyRenderer.renderEntry);
     window.addEventListener('scroll', this.scrollHistoryLoader.bind(this));
   }
   /**
@@ -65,10 +66,8 @@ export default class HistoryPage extends BaseComponent {
   }
 
   async render() {
-    this.historyRenderer = new HistoryRenderer(this.root, this.table);
-    await loadEntriesFromIndexedDB(this.blackjackDB, entry => {
-      this.historyRenderer.renderTable(entry);
-    });    
+    this.historyRenderer = new HistoryRenderer(this.root, this.table); // +
+    await fetchBatch(this.BlackjackDBAccessor, this.historyRenderer.renderEntry);  
   }
   /**
    * A function that will be executed when the page is created.
@@ -80,15 +79,14 @@ export default class HistoryPage extends BaseComponent {
    * 
    * Adds filtering functionalities and submit listener to the filter form.
    */
-  async connectedCallback() {
+  connectedCallback() {
     super.connectedCallback();
 
     this.queryElements();
 
     // Open the IndexedDB asynchronously
     try {
-      this.blackjackDB = await blackjackDBPromise();
-      await this.render();
+      this.render();
       this.setupPageListeners();
       this.addDialogManager();
       this.historyFilter = new HistoryFilter(this.root, this.form);
@@ -97,9 +95,9 @@ export default class HistoryPage extends BaseComponent {
       console.error('Error opening IndexedDB:', error);
     }
   }
-  disconnectedCallback() {
+/*   disconnectedCallback() {
     this.removePageListeners();
-  }
+  } */
 }
 
 customElements.define('history-page', HistoryPage);
