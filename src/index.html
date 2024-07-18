@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blackjack</title>
-    <link href="../assets/svg-icons/favicon.svg" rel="icon">
+    <link href="../src/assets/svg-icons/favicon.svg" rel="icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Georgian:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="../styles/reset.css" rel="stylesheet">
-    <link href="../styles/index.css" rel="stylesheet">
-    <link href="../styles/sharedStyles.css" rel="stylesheet">
+    <link href="../src/styles/reset.css" rel="stylesheet">
+    <link href="../src/styles/index.css" rel="stylesheet">
+    <link href="../src/styles/sharedStyles.css" rel="stylesheet">
     <script src="main.js" type="module" defer></script>
 </head>
 <body>
@@ -46,12 +46,12 @@
                                 <label for="toggle-sound" 
                                        class="label-sound sound-music">
                     
-                                    <img src="../assets/body/sound_on.svg" 
+                                    <img src="../src/assets/body/sound_on.svg" 
                                          id="sound-on" 
                                          class="sound-music" 
                                          alt="Sound on">
                     
-                                    <img src="../assets/body/sound_off.svg" 
+                                    <img src="../src/assets/body/sound_off.svg" 
                                          id="sound-off" 
                                          class="sound-music" 
                                          alt="Sound off">
@@ -66,11 +66,11 @@
                 
                                 <label for="toggle-music" 
                                        class="label-music sound-music">
-                                    <img src="../assets/body/music_on.svg" 
+                                    <img src="../src/assets/body/music_on.svg" 
                                          id="music-on" 
                                          class="sound-music" 
                                          alt="Music on">
-                                    <img src="../assets/body/music_off.svg"
+                                    <img src="../src/assets/body/music_off.svg"
                                          id="music-off" 
                                          alt="Music off">
                                     Music
@@ -172,7 +172,7 @@
                     </ul>
                 </nav>
                 <button id="display-nav" >
-                    <img src="../assets/body/drop-down.svg" class="rotate-face-up">
+                    <img src="../src/assets/body/drop-down.svg" class="rotate-face-up">
                 </button>
             </header>
             <main></main>
@@ -216,13 +216,12 @@
                     </div>
                 </div>
                 <div id="game-actions-container" data-view="game" hidden>
-                    <button data-action="insurance">Insurance</button>
-                    <button data-action="stand">Stand</button>
-                    <button data-action="even-money">Even Money</button>
-    
-                    <button data-action="double-down">Double Down</button>
                     <button data-action="hit">Hit</button>
-                    <button data-action="split">Split</button>
+                    <button data-action="stand">Stand</button>
+                    <button data-action="double-down">Double Down</button>
+                    <button data-action="split">Split</button>                    
+                    <button data-action="insurance">Insurance</button>
+                    <button data-action="even-money">Even Money</button>
                 </div>
                 <button id="deal" data-view="pre-game">Deal</button>
                 <div id="chip-bank-container">
@@ -231,11 +230,11 @@
                         <span id="bank">10000<span>
                     </div>
                     <div id="chip-container" data-view="pre-game">
-                        <button class="chip" id="chip-5" data-value="5" ><img src="../assets/svg-chips/chip 5.svg"></button>
-                        <button class="chip" id="chip-25" data-value="25" ><img src="../assets/svg-chips/chip 25.svg"></button>
-                        <button class="chip" id="chip-100" data-value="100" ><img src="../assets/svg-chips/chip 100.svg"></button>
-                        <button class="chip" id="chip-500" data-value="500" ><img src="../assets/svg-chips/chip 500.svg"></button>
-                        <button class="chip" id="chip-1000" data-value="1000" ><img src="../assets/svg-chips/chip 1000.svg"></button>
+                        <button class="chip" id="chip-5" data-value="5" ><img src="../src/assets/svg-chips/chip 5.svg"></button>
+                        <button class="chip" id="chip-25" data-value="25" ><img src="../src/assets/svg-chips/chip 25.svg"></button>
+                        <button class="chip" id="chip-100" data-value="100" ><img src="../src/assets/svg-chips/chip 100.svg"></button>
+                        <button class="chip" id="chip-500" data-value="500" ><img src="../src/assets/svg-chips/chip 500.svg"></button>
+                        <button class="chip" id="chip-1000" data-value="1000" ><img src="../src/assets/svg-chips/chip 1000.svg"></button>
                     </div>
                 </div>  
             </div>
@@ -250,7 +249,7 @@
             <h1>History</h1>
             <div class="filter-dialog-container"
                  data-id="table-filter">
-                <button id="filter-table-btn" class="open-dialog-btn" data-id="history-filter">Filter<img src="../assets/body/filter.svg"></button>
+                <button id="filter-table-btn" class="open-dialog-btn" data-id="history-filter">Filter<img src="../src/assets/body/filter.svg"></button>
 
                 <dialog class="filter-dialog dialog-box" data-id="history-filter">
                     <form method="dialog" id="filter-form">
