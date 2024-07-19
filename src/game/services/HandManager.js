@@ -1,8 +1,6 @@
 
 
 
-
-
 export default class HandManager {
   constructor() {
     this.cards = [];

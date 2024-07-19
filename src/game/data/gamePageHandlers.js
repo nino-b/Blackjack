@@ -1,4 +1,4 @@
-import handContainerHandler from "../util/handContainerHandler";
+import handContainerHandler from "../util/handleHandContainerClick";
 import chipContainerHandler from "../util/chipContainerHandler";
 import dealBtnHandler from "../util/dealBtnHandler";
 import gameActionsContainerHandler from "../util/gameActionsContainerHandler";
