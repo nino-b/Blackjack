@@ -1,4 +1,4 @@
-const RULES = {
+const rules = {
   introduction: {
     introduction_heading: "How to Play Blackjack",
     introduction_paragraph: "Welcome to Blackjack! The goal of the game is to beat the dealer by having a hand value closest to 21 without going over. Here's how to play:",
@@ -104,4 +104,4 @@ const RULES = {
   }
 };
 
-export default RULES;
+export default rules;

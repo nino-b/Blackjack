@@ -12,7 +12,7 @@ import queryElement from "../util/DOMUtils/queryElement.js";
 
 import BlackjackDBAccessor from "../game/data/openIndexedDB.js";
 import { fetchBatch } from "../util/jsUtils/IndexedDBLibrary.js";
-import scrollHistoryLoader from "../UI/scrollHistoryLoader.js";
+import loadHistoryOnScrollCreator from "../UI/loadHistoryOnScroll.js";
 
 
 
@@ -52,14 +52,14 @@ export default class HistoryPage extends BaseComponent {
     this.form = queryElement('#filter-form', this.root);
   }
   setupPageListeners() {
-    this.scrollHistoryLoader = scrollHistoryLoader(this.BlackjackDBAccessor, this.historyRenderer.renderEntry);
-    window.addEventListener('scroll', this.scrollHistoryLoader.bind(this));
+    this.loadHistoryOnScroll = loadHistoryOnScrollCreator(this.BlackjackDBAccessor, this.historyRenderer.renderEntry);
+    window.addEventListener('scroll', this.loadHistoryOnScroll.bind(this));
   }
   /**
    * Removes page-specific event listeners to avoid memory leaks.
   */
   removePageListeners() {
-    window.removeEventListener('scroll', this.scrollHistoryLoader);
+    window.removeEventListener('scroll', this.loadHistoryOnScroll);
     this.dialogManager.removeListeners();
     this.historyFilter.TrDisplayReset.removeListener();
     this.historyFormSubmitHandler.removeFormListener()

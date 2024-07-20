@@ -1,7 +1,7 @@
 'use strict';
 
 import router from "./services/Router.js";
-import app from "./data/appState.js";
+import app from "./data/App.js";
 import { dialogManager } from "./UI/dialogManager.js";
 import navDisplayBtnListener from "./UI/navDisplayBtnListener.js";
 import settings from "./services/Settings.js";

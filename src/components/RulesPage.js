@@ -2,8 +2,10 @@ import rulesPage from "bundle-text:../styles/rulesPage.css";
 import BaseComponent from "./BaseComponent.js";
 import createEl from "../util/DOMUtils/createEl.js";
 import addClass from "../util/DOMUtils/addClass.js";
+import rules from "../data/rules.js";
 
 export default class RulesPage extends BaseComponent {
+  static rules = rules;
   constructor() {
     super();
     this.pageStyles = rulesPage;
@@ -11,7 +13,7 @@ export default class RulesPage extends BaseComponent {
   }
 
   render() {
-    const rules = app.rules;
+    const rules = RulesPage.rules;
     const ruleSection = this.root.querySelector('#rules-page-container');
 
 
@@ -46,9 +48,6 @@ export default class RulesPage extends BaseComponent {
       ruleListParaghraph.appendChild(descriptionText);
     });
     return ruleGroupContainer;
-  }
-  disconnectedCallback() {
-    // Remove event listener from the search box
   }
 }
 

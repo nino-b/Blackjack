@@ -189,6 +189,7 @@ export function set(key, value, customStore) {
 
 export function fetchBatch(customStore, callback) {
   const fetchNextBatch = fetchBatchWrapper();
+
   return customStore('readonly', store => {
     fetchNextBatch(store, callback);
     return promisifyRequest(store.transaction);

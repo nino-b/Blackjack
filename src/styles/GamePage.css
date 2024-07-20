@@ -301,9 +301,13 @@ canvas,
 
 
 
+/* Inactive Spot */
 
+.inactive-spot {
+  transform: scale(.5);
+}
 
-
+ 
 
 
 

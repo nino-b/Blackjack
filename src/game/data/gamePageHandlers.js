@@ -1,14 +1,14 @@
-import handContainerHandler from "../util/handleHandContainerClick";
-import chipContainerHandler from "../util/chipContainerHandler";
-import dealBtnHandler from "../util/dealBtnHandler";
+import handContainerClickHandler from "../util/handContainerClickHandler";
+import chipContainerClickHandler from "../util/chipContainerClickHandler";
+import dealBtnClickHandler from "../util/dealBtnClickHandler";
 import gameActionsContainerHandler from "../util/gameActionsContainerHandler";
 
 
 
 const gamePageHandlers = {
-  handContainer: handContainerHandler,
-  chipContainer: chipContainerHandler,
-  dealBtn: dealBtnHandler,
+  handContainer: handContainerClickHandler,
+  chipContainer: chipContainerClickHandler,
+  dealBtn: dealBtnClickHandler,
   gameActionsContainer: gameActionsContainerHandler,
  }
 

@@ -13,9 +13,10 @@ export default class HandCoordinator {
    * @param {HTMLElement} betSpotContainerNode - The betting spot container node.
    * @returns {Object} - The hand template object.
    */
-  static #createHandTemplate(id, betSpotContainerNode) {
+  static #createHandTemplate(id, betSpotContainerNode, isDealer = false) {
     return {
       hand: new HandManager(),
+      isDealer: isDealer,
       chipValueList: [],
       id: id,
       betSpotContainerNode: betSpotContainerNode,
@@ -29,7 +30,10 @@ export default class HandCoordinator {
    * 'app' is directly passed because we need live reference to the 'app.pageContext', because it's values are reassigned, and to always have correct reference, we need to pass the whole object.
    */
   constructor(app) {
-    this.playerHandList = {};
+    this.dealerHand = null;
+    this.playerHandList = {
+      dealer: HandCoordinator.#createHandTemplate(null, null, true),
+    };
     this.activeHand = null;
     this.app = app;
   }
@@ -63,6 +67,15 @@ export default class HandCoordinator {
       throw new Error('Betting spot list not available in page context.');
     }
     setActiveHandShadow(bettingSpotList, this.activeHand.betSpotContainerNode);
+  }
+  removeEmptyHands() {
+    for (const handObj in this.playerHandList) {
+      const hand = this.playerHandList[handObj];
+
+      if (!hand.isDealer && hand.hand.bet <= 0) {
+        delete this.playerHandList[handObj];
+      }
+    }
   }
 }
 
