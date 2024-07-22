@@ -13,10 +13,10 @@
  * @param {boolean} [addListener=true] - Flag indicating whether to add or remove event listeners.
  */
 
-export default function manageEventListeners(elementReferences, gamePageHandlers, context, addListener = true) {
+export default function manageEventListeners(elementReferences, gamePageHandlers, addListener = true) {
   if (addListener) {
     for (const element in gamePageHandlers) {
-      elementReferences[element].addEventListener('click', gamePageHandlers[element].bind(context));
+      elementReferences[element].addEventListener('click', gamePageHandlers[element]);
     }
   } else {
     for (const element in gamePageHandlers) {

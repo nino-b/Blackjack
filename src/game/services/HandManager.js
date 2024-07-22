@@ -10,12 +10,11 @@ export default class HandManager {
   /**
    * Updates a bet for this specific hand instance.
    */
-  updateBet(amount, addToBet = true) {
+  updateBet(amount) {
     if (!amount) {
       console.error("Error in 'updateBet(amount)': Missing 'amount' argument or user clicked outside the button area (event delegation - listener is attached on the parent). Cannot update the bet.");
     }
-    if (addToBet) this.bet += amount;
-    else this.bet -= amount;
+    this.bet += amount;
   }
   /**
    * Adds card object to the 'cards' array.

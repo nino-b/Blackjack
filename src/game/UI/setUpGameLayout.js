@@ -14,7 +14,7 @@ import toggleProperty from "../../util/DOMUtils/toggleProperty";
  * @param {HTMLElement[]} elementReferences.bettingSpotList - A list of betting spot elements.
  */
 
-export default function setupGameUI(elementReferences) {
+export default function setUpGameLayout(elementReferences) {
   const { preGameElements, gameActionsContainer, bankContainer, gameInterfaceContainer, bettingSpotList } = elementReferences;
 
   preGameElements.forEach(el => toggleProperty(el, 'hidden'));

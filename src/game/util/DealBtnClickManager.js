@@ -1,25 +1,35 @@
 import showAttentionOnRules from "../UI/showAttentionOnRules";
-import setupGameUI from "../UI/setupGameUI";
+import setUpGameLayout from "../UI/setupGameLayout";
 
 
 
-class DealBtnClickManager {
+/* class DealBtnClickManager {
   constructor(app) {
     this.app = app;
+    this.initialHandManager = app.initialHandManager;
+    this.handCoordinator = app.handCoordinator;
   }
-  dealBtnClickHandler() {
-    const elementReferences = this.pageContext.elementReferences;
-    const canStart = this.setGameStartingHand();
+
+} */
+
+
+function dealBtnClickHandlerCreator(app) {
+  return function() {
+    const elementReferences = app.pageContext.elementReferences;
+    const canStart = app.initialHandManager.canStartTheGame();
     if (!canStart) {
       showAttentionOnRules(elementReferences.bettingInstruction);
       return;
     }
-    setupGameUI(elementReferences);
+    setUpGameLayout(elementReferences);
     // TO DO
     //setupGame(.);
   }
 }
 
+
+const dealBtnClickHandler = dealBtnClickHandlerCreator(app);
+export default dealBtnClickHandler;
 
 
 

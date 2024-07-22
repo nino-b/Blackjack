@@ -5,7 +5,7 @@ import removeClass from "../../util/DOMUtils/removeClass";
 
 /**
  * This function temporarily adds white box shadow around betting rules on game page, 
- * so user can understand that you can't start the game without placing a bet.
+ * so the user can understand that you can't start the game without placing a bet.
  */
 export default function showAttentionOnRules(bettingInstruction) {
   const attentionClass = 'attention';

@@ -151,7 +151,7 @@ canvas,
   color: rgb(40, 13, 13);
 }
 
-.betting-spot-container[data-id="hand-2"] {
+.betting-spot-container[data-id="2"] {
   margin-top: 3rem;
 }
 

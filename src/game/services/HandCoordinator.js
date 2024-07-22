@@ -1,88 +1,57 @@
 import HandManager from "./HandManager";
-import setActiveHandShadow from "../UI/setActiveHandShadow";
 
 
-/**
- * HandCoordinator class to manage player hands and active hand state.
- */
 export default class HandCoordinator {
-  /**
-   * Private static method to create a hand template.
-   * 
-   * @param {string} id - The hand ID.
-   * @param {HTMLElement} betSpotContainerNode - The betting spot container node.
-   * @returns {Object} - The hand template object.
-   */
-  static #createHandTemplate(id, betSpotContainerNode, isDealer = false) {
-    return {
-      hand: new HandManager(),
-      isDealer: isDealer,
-      chipValueList: [],
-      id: id,
-      betSpotContainerNode: betSpotContainerNode,
-    }
-  }
-  /**
-   * Constructor for the HandCoordinator class.
-   * 
-   * 
-   * @param {Object} app - The application context.
-   * 'app' is directly passed because we need live reference to the 'app.pageContext', because it's values are reassigned, and to always have correct reference, we need to pass the whole object.
-   */
-  constructor(app) {
-    this.dealerHand = null;
-    this.playerHandList = {
-      dealer: HandCoordinator.#createHandTemplate(null, null, true),
-    };
+  constructor(initialHandManager) {
+    this.initialHandManager = initialHandManager;
+    this.handList = {};
     this.activeHand = null;
-    this.app = app;
   }
-  /**
-   * Sets up the initial hand for a betting container.
-   * 
-   * @param {HTMLElement} bettingContainer - The betting container element.
-   */
-  setUpInitialHand(bettingContainer) {
-    const id = bettingContainer.dataset.id;
-  
-    if (!this.playerHandList[id]) {
-      this.playerHandList[id] = HandCoordinator.#createHandTemplate(id, bettingContainer);
-    } 
-    this.activeHand = this.playerHandList[id];
-  }
-  /**
-   * Sets the game starting hand by finding the first hand with a bet.
-   */
-  setGameStartingHand() {
-    if (this.activeHand.bet === 0) {
-      for (const initialHand in this.playerHandList) {
-        if (initialHand.bet > 0) {
-          this.activeHand = initialHand;
-          break;
-        }
+  initializeHands() {
+    if (entryCount === 0) {
+      console.warn(`To start the game, player should have at least one hand.`);
+      return;
+    }
+
+    this.handList['dealer'] = this.#initializeHand();
+
+    /**
+     * The goal of this code is to initialize and save initial hands in ascending order of their 'data-id' values.
+     * This way when I will work with them, I will always have the same sequence of hands: dealer, hand 1, hand 2, hand 3.
+     * Doesn't matter if the user first bets on the hand 3 and then hand 1, or omits the hand 1. 
+     * The sequence will always go in ascending order (after starting from dealer's hand). 
+     */
+    const maxNumberOfHands = 3;
+    for (let i = 1; i <= maxNumberOfHands; i++) {
+      const initialHand = this.initialHandManager[i];
+      if (initialHand) {
+        this.handList[initialHand.id] = this.#initializeHand(initialHand.bet);
       }
     }
-    const { bettingSpotList } = this.app.pageContext.elementReferences;
-    if (!bettingSpotList) {
-      throw new Error('Betting spot list not available in page context.');
-    }
-    setActiveHandShadow(bettingSpotList, this.activeHand.betSpotContainerNode);
   }
-  removeEmptyHands() {
-    for (const handObj in this.playerHandList) {
-      const hand = this.playerHandList[handObj];
+  #initializeHand(bet = null) {
+    const hand = new HandManager();
 
-      if (!hand.isDealer && hand.hand.bet <= 0) {
-        delete this.playerHandList[handObj];
+    if (bet) {
+      hand.updateBet(handObj.bet);
+    }
+    return hand;
+  }
+  setGameStartingHand() {
+    /**
+     * I want active hand to be set to the leftmost hand,
+     * which will be in the 'this.handList' as the second element,
+     * because the first one is always the dealer's hand.
+     */
+    let count = 0;
+
+    for (const hand in this.handList) {
+      count++;
+      if (count === 2) {
+        this.activeHand = this.handList[hand];
+        return;
       }
     }
   }
 }
-
-
-
-
-
-
-
 

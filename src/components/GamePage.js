@@ -30,7 +30,7 @@ export default class GamePage extends BaseComponent {
   connectedCallback() {
     super.connectedCallback();
     this.elementReferences = queryGamePageElements.call(this);
-    manageEventListeners(this.elementReferences, this.gamePageHandlers, this.appState);
+    manageEventListeners(this.elementReferences, this.gamePageHandlers);
 
   }
   disconnectedCallback() {

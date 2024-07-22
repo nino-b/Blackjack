@@ -1,6 +1,6 @@
-import removeBet from "./removeBet";
-import removeChip from "../UI/removeChip";
+import changeBgImg from "../UI/changeBgImg";
 import updateOutput from "../UI/updateOutput";
+import setActiveHandShadow from "../UI/setActiveHandShadow";
 
 
 
@@ -10,10 +10,15 @@ class HandContainerClickManager {
    * Some of the parameters we access on the 'app' object are reassigned values on some conditions. 
    * To keep track of correct references to those elements, we directly access them from the methods.
    * 
-   * @param {Object} app - The main application object containing the current state and references.
+   * -------------------------------------------------------------------------------
+   * -------------
+   * -------------
    */
   constructor(app) {
     this.app = app;
+    this.initialHandManager = app.initialHandManager;
+    this.handCoordinator = app.handCoordinator;
+    this.handContainerClickHandler = this.handContainerClickHandler.bind(this);
   }
   /**
    * Handles click events on a hand container element.
@@ -38,10 +43,10 @@ class HandContainerClickManager {
   
     const targetDataset = event.target.dataset;
     const removeLastBet = 'remove-last-bet';
-    const activeHand = app.handCoordinator.activeHand;
+    const activeHand = this.initialHandManager.activeHand;
   
     if (targetDataset.action === removeLastBet && ((activeHand && activeHand.id === targetDataset.id))) {
-      this.#handleRemoveLastBet(event.target, app.handCoordinator);
+      this.#handleRemoveLastBet(event.target, this.initialHandManager);
     }
     else if (targetDataset.handSelector) {
       const bettingContainer = event.target.closest('.betting-spot-container');  
@@ -53,23 +58,27 @@ class HandContainerClickManager {
    * Handles the removal of the last bet associated with the active hand.
    *
    * @param {HTMLElement} target - The target element that triggered the action.
-   * @param {Object} handCoordinator - The hand coordinator context object containing the hand state and methods.
+   * @param {Object} initialHandManager - The initial hand manager object containing the hand state and methods.
    * @throws {Error} Throws an error if the target element is not a valid HTMLElement or if context or active hand is missing.
    */
-  #handleRemoveLastBet(target, handCoordinator) {
+  #handleRemoveLastBet(target, initialHandManager) {
     if (!(target instanceof HTMLElement)) {
       throw new Error('Invalid target element provided.');
     }
-  
-    if (!handCoordinator || !handCoordinator.activeHand) {
+    if (!initialHandManager || !initialHandManager.activeHand) {
       throw new Error('Invalid context or missing active hand coordinator.');
     }
-  
-    const activeHand = handCoordinator.activeHand;
-  
-    removeBet(handCoordinator);
-    removeChip(target, activeHand.chipList);
-    updateOutput(target.nextElementSibling, handCoordinator);
+
+    const activeHand = initialHandManager.activeHand;
+    const chipList = activeHand.chipList;
+    initialHandManager.removeLastChip(activeHand);
+
+    if (chipList.length > 0) {
+      changeBgImg(target, chipList[chipList.length - 1]);
+    } else {
+      changeBgImg(target);
+    }
+    updateOutput(target.nextElementSibling, activeHand.bet);
   }
   /**
    * Handles the selection of a hand.
@@ -87,11 +96,10 @@ class HandContainerClickManager {
       throw new Error('Invalid or empty bettingSpotList provided.');
     }
   
-    this.setUpInitialHand(bettingContainer);
+    this.initialHandManager.setUpInitialHand(bettingContainer);
     setActiveHandShadow(bettingSpotList, bettingContainer);
   }
 }
-
 
 
 

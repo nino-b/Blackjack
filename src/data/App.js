@@ -1,5 +1,43 @@
-import RULES from "./rules";
 import HandCoordinator from "../game/services/HandCoordinator";
+import InitialHandManager from "../game/services/InitialHandManager";
+
+class App {
+  constructor() {
+    this.pageContext = null;
+    this.initialHandManager = new InitialHandManager();
+    this.handCoordinator = new HandCoordinator(this.initialHandManager);
+  }
+}
+
+const app = new App();
+window.app = app;
+
+export default app;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // /**
 //  * Central storage for the app's state.
@@ -46,46 +84,3 @@ import HandCoordinator from "../game/services/HandCoordinator";
 // 
 // 
 // export default app;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class App {
-  constructor() {
-    this.pageContext = null;
-    this.handCoordinator = new HandCoordinator(this);
-  }
-}
-
-const app = new App();
-window.app = app;
-
-export default app;

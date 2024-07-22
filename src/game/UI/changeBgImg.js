@@ -35,7 +35,7 @@ const bgImages = {
  * @param {number} [chipValue=null] - An optional parameter - the value of the chip which determines the background image.
  * @param {Object.<number, string>} [imageList=bgImages] - An optional object mapping chip values to image URLs.
  */
-export default function addBgImg(node, chipValue = null, imageList = bgImages) {
+export default function changeBgImg(node, chipValue = null, imageList = bgImages) {
   if (chipValue) {
     const imageUrl = imageList[chipValue];
     node.style.backgroundImage = `url('${imageUrl}')`; 
