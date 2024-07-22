@@ -1,5 +1,3 @@
-import updateBettingUI from "../UI/updateBettingUI";
-
 
 /**
  * Handles chip container events to update the active hand's bet and chip list, and updates the UI accordingly.
@@ -12,7 +10,7 @@ import updateBettingUI from "../UI/updateBettingUI";
  * @param {Function} initialHandManager.updateChipsAndBet - Method to update chips and bet.
  * @returns {Function} chipContainerClickHandler - The click handler for the chip container.
  */
-function chipContainerClickHandlerCreator(initialHandManager) {
+function chipContainerClickHandlerCreator(initialHandManager, bettingUIManager) {
   /**
    * Handles click events on the chip container.
    *
@@ -29,10 +27,10 @@ function chipContainerClickHandlerCreator(initialHandManager) {
     }
 
     initialHandManager.updateChipsAndBet(value, activeHand);
-    updateBettingUI(betContainer, activeHand.bet, value);
+    bettingUIManager.setLastChipImgAndOutput(betContainer, activeHand.bet, value);
   }
 }
 
   
-const chipContainerClickHandler = chipContainerClickHandlerCreator(app.initialHandManager);
+const chipContainerClickHandler = chipContainerClickHandlerCreator(app.initialHandManager, app.bettingUIManager);
 export default chipContainerClickHandler;

@@ -24,7 +24,7 @@ export default class HandCoordinator {
     const maxNumberOfHands = 3;
     for (let i = 1; i <= maxNumberOfHands; i++) {
       const initialHand = this.initialHandManager[i];
-      if (initialHand) {
+      if (initialHand && initialHand.bet > 0) {
         this.handList[initialHand.id] = this.#initializeHand(initialHand.bet);
       }
     }
@@ -38,6 +38,7 @@ export default class HandCoordinator {
     return hand;
   }
   setGameStartingHand() {
+    console.log('setGameStartingHand this', this.handList);
     /**
      * I want active hand to be set to the leftmost hand,
      * which will be in the 'this.handList' as the second element,

@@ -1,5 +1,3 @@
-import changeBgImg from "../UI/changeBgImg";
-import updateOutput from "../UI/updateOutput";
 import setActiveHandShadow from "../UI/setActiveHandShadow";
 
 
@@ -18,6 +16,7 @@ class HandContainerClickManager {
     this.app = app;
     this.initialHandManager = app.initialHandManager;
     this.handCoordinator = app.handCoordinator;
+    this.bettingUIManager = app.bettingUIManager;
     this.handContainerClickHandler = this.handContainerClickHandler.bind(this);
   }
   /**
@@ -40,17 +39,19 @@ class HandContainerClickManager {
     if (!event.target || !event.target.dataset) {
       throw new Error('Event target or dataset is missing.');
     }
-  
+    const bettingContainer = event.target.closest('.betting-spot-container');  
+    if (bettingContainer.classList.contains('inactive-spot')) {
+      return;
+    }
+    
+    const removeLastBet = 'remove-last-bet';  
     const targetDataset = event.target.dataset;
-    const removeLastBet = 'remove-last-bet';
     const activeHand = this.initialHandManager.activeHand;
   
     if (targetDataset.action === removeLastBet && ((activeHand && activeHand.id === targetDataset.id))) {
       this.#handleRemoveLastBet(event.target, this.initialHandManager);
     }
     else if (targetDataset.handSelector) {
-      const bettingContainer = event.target.closest('.betting-spot-container');  
-
       this.#handleHandSelection(bettingContainer, app.pageContext.elementReferences.bettingSpotList);
     }
   }
@@ -74,11 +75,11 @@ class HandContainerClickManager {
     initialHandManager.removeLastChip(activeHand);
 
     if (chipList.length > 0) {
-      changeBgImg(target, chipList[chipList.length - 1]);
+      this.bettingUIManager.changeBgImg(target, chipList[chipList.length - 1]);
     } else {
-      changeBgImg(target);
+      this.bettingUIManager.changeBgImg(target);
     }
-    updateOutput(target.nextElementSibling, activeHand.bet);
+    this.bettingUIManager.updateOutput(target.nextElementSibling, activeHand.bet);
   }
   /**
    * Handles the selection of a hand.

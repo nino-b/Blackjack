@@ -1,11 +1,14 @@
 import HandCoordinator from "../game/services/HandCoordinator";
 import InitialHandManager from "../game/services/InitialHandManager";
+import { BettingUIManager, bgImages } from "../game/UI/BettingUIManager";
+
 
 class App {
   constructor() {
     this.pageContext = null;
     this.initialHandManager = new InitialHandManager();
     this.handCoordinator = new HandCoordinator(this.initialHandManager);
+    this.bettingUIManager = new BettingUIManager(this, bgImages);
   }
 }
 

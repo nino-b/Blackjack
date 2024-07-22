@@ -1,6 +1,5 @@
 import showAttentionOnRules from "../UI/showAttentionOnRules";
-import setUpGameLayout from "../UI/setupGameLayout";
-
+import gameUISetupManager from "../UI/GameUISetupManager";
 
 
 /* class DealBtnClickManager {
@@ -21,7 +20,9 @@ function dealBtnClickHandlerCreator(app) {
       showAttentionOnRules(elementReferences.bettingInstruction);
       return;
     }
-    setUpGameLayout(elementReferences);
+    const activeHandList = app.handCoordinator.handList;
+    app.handCoordinator.setGameStartingHand();
+    gameUISetupManager.setUpPageElements(elementReferences, activeHandList);
     // TO DO
     //setupGame(.);
   }
