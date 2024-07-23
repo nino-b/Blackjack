@@ -48,6 +48,7 @@ export default class InitialHandManager {
     }
     const chipVal = hand.chipList.pop();
     hand.bet -= chipVal;
+    return chipVal;
   }
   canStartTheGame() {
     for (const handObj in this.initialHands) {

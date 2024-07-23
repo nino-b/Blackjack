@@ -15,13 +15,15 @@ import gameUISetupManager from "../UI/GameUISetupManager";
 function dealBtnClickHandlerCreator(app) {
   return function() {
     const elementReferences = app.pageContext.elementReferences;
+    const { bettingInstruction, bettingSpotList } = elementReferences;
+
     const canStart = app.initialHandManager.canStartTheGame();
     if (!canStart) {
-      showAttentionOnRules(elementReferences.bettingInstruction);
+      showAttentionOnRules(bettingInstruction);
       return;
     }
     const activeHandList = app.handCoordinator.handList;
-    app.handCoordinator.setGameStartingHand();
+    app.handCoordinator.setUpHands(bettingSpotList);
     gameUISetupManager.setUpPageElements(elementReferences, activeHandList);
     // TO DO
     //setupGame(.);

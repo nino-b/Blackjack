@@ -12,7 +12,8 @@ export default class GamePage extends BaseComponent {
     this.pageStyles = gamePage;
     this.templateID = 'game-page-template';
     this.gamePageHandlers = gamePageHandlers;
-    this.appState = app;
+    this.elementReferences = null;
+    this.app = app;
 
     /**
      * gameInterfaceContainer - 
@@ -27,9 +28,16 @@ export default class GamePage extends BaseComponent {
      * gameActionsContainer -
     */
   }
+  render() {
+    const amount = this.app.bankManager.getBank();
+    if (this.elementReferences) {
+      this.elementReferences.bankUI.textContent = amount;
+    }
+  }
   connectedCallback() {
     super.connectedCallback();
     this.elementReferences = queryGamePageElements.call(this);
+    this.render();
     manageEventListeners(this.elementReferences, this.gamePageHandlers);
 
   }

@@ -305,6 +305,7 @@ canvas,
 
 .inactive-spot {
   transform: scale(.5);
+  pointer-events: none;
 }
 
  

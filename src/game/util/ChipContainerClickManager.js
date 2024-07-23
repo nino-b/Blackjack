@@ -10,7 +10,7 @@
  * @param {Function} initialHandManager.updateChipsAndBet - Method to update chips and bet.
  * @returns {Function} chipContainerClickHandler - The click handler for the chip container.
  */
-function chipContainerClickHandlerCreator(initialHandManager, bettingUIManager) {
+function chipContainerClickHandlerCreator(initialHandManager, bettingUIManager, app) {
   /**
    * Handles click events on the chip container.
    *
@@ -28,9 +28,13 @@ function chipContainerClickHandlerCreator(initialHandManager, bettingUIManager) 
 
     initialHandManager.updateChipsAndBet(value, activeHand);
     bettingUIManager.setLastChipImgAndOutput(betContainer, activeHand.bet, value);
+
+    const amount = app.bankManager.updateBank(value, false);
+    const bank = app.pageContext.elementReferences.bankUI;
+    app.bettingUIManager.updateOutput(bank, amount);
   }
 }
 
   
-const chipContainerClickHandler = chipContainerClickHandlerCreator(app.initialHandManager, app.bettingUIManager);
+const chipContainerClickHandler = chipContainerClickHandlerCreator(app.initialHandManager, app.bettingUIManager, app);
 export default chipContainerClickHandler;

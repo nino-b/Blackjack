@@ -1,5 +1,6 @@
 import HandCoordinator from "../game/services/HandCoordinator";
 import InitialHandManager from "../game/services/InitialHandManager";
+import BankManager from "../game/services/BankManager";
 import { BettingUIManager, bgImages } from "../game/UI/BettingUIManager";
 
 
@@ -9,6 +10,7 @@ class App {
     this.initialHandManager = new InitialHandManager();
     this.handCoordinator = new HandCoordinator(this.initialHandManager);
     this.bettingUIManager = new BettingUIManager(this, bgImages);
+    this.bankManager = new BankManager();
   }
 }
 

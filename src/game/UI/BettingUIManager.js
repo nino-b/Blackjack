@@ -1,3 +1,5 @@
+import { REMOVE_LAST_BET } from '../../data/constants';
+
 import chip5 from '../../assets/svg-chips/chip 5.svg';
 import chip25 from '../../assets/svg-chips/chip 25.svg';
 import chip100 from '../../assets/svg-chips/chip 100.svg';
@@ -45,7 +47,7 @@ class BettingUIManager {
       const imageUrl = this.bgImageList[chipValue];
       node.style.backgroundImage = `url('${imageUrl}')`; 
     } else {
-      node.style.backgroundImage = bgImageList.noBet;
+      node.style.backgroundImage = this.bgImageList.noBet;
     }
   }
   /**
@@ -54,8 +56,8 @@ class BettingUIManager {
    * @param {HTMLElement} outputEl - The output element whose text content will be updated.
    * @param {number} bet - The bet value of the active hand.
    */
-  updateOutput(outputEl, bet) {
-    outputEl.textContent = bet;
+  updateOutput(outputEl, amount) {
+    outputEl.textContent = amount;
   }
   /**
    * Updates the UI to reflect the current bet and chip list.
@@ -82,13 +84,20 @@ class BettingUIManager {
     const betContainerChildren = Array.from(betContainer.children);
   
     betContainerChildren.forEach(node => {
-      if (node.dataset.action === 'remove-last-bet') {
+      if (node.dataset.action === REMOVE_LAST_BET) {
         this.changeBgImg(node, chipValue);
       }
       else {
         this.updateOutput(node, bet)
       }
     });
+  }
+  removeChip(target, chipList) {
+    if (chipList.length > 0) {
+      this.changeBgImg(target, chipList[chipList.length - 1]);
+    } else {
+      this.changeBgImg(target);
+    }
   }
 }
 

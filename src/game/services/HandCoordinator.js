@@ -1,4 +1,6 @@
 import HandManager from "./HandManager";
+import setActiveHandShadow from "../UI/setActiveHandShadow";
+import showAttentionOnRules from "../UI/showAttentionOnRules";
 
 
 export default class HandCoordinator {
@@ -6,9 +8,22 @@ export default class HandCoordinator {
     this.initialHandManager = initialHandManager;
     this.handList = {};
     this.activeHand = null;
+    this.activeHandNode = null;
+    this.keys = null;
+    this.keyIndex = 0;
+  }
+  setUpHands(bettingSpotList) {
+    if (!this.initialHandManager.canStartTheGame()) {
+      showAttentionOnRules(this.app.pageContext.elementReferences.bettingInstruction);
+      return false;
+    }
+    this.initializeHands();
+    this.switchActiveHands();
+    setActiveHandShadow(bettingSpotList, this.activeHandNode);
   }
   initializeHands() {
-    if (entryCount === 0) {
+    const handCount = Object.keys(this.initialHandManager.initialHands).length;
+    if (handCount === 0) {
       console.warn(`To start the game, player should have at least one hand.`);
       return;
     }
@@ -23,7 +38,7 @@ export default class HandCoordinator {
      */
     const maxNumberOfHands = 3;
     for (let i = 1; i <= maxNumberOfHands; i++) {
-      const initialHand = this.initialHandManager[i];
+      const initialHand = this.initialHandManager.initialHands[i];
       if (initialHand && initialHand.bet > 0) {
         this.handList[initialHand.id] = this.#initializeHand(initialHand.bet);
       }
@@ -33,26 +48,25 @@ export default class HandCoordinator {
     const hand = new HandManager();
 
     if (bet) {
-      hand.updateBet(handObj.bet);
+      hand.updateBet(bet);
     }
     return hand;
   }
-  setGameStartingHand() {
-    console.log('setGameStartingHand this', this.handList);
+  switchActiveHands() {
     /**
      * I want active hand to be set to the leftmost hand,
      * which will be in the 'this.handList' as the second element,
      * because the first one is always the dealer's hand.
+     * 
+     * This is why keyIndex = 0 initially.
+     * 
+     * Note: In JS objects numeric keysare stored at the top (before string keys) in ascending order.
      */
-    let count = 0;
+    const keys = Object.keys(this.handList);
 
-    for (const hand in this.handList) {
-      count++;
-      if (count === 2) {
-        this.activeHand = this.handList[hand];
-        return;
-      }
-    }
+    this.activeHand = this.handList[keys[this.keyIndex]];
+    this.activeHandNode = this.initialHandManager.initialHands[keys[this.keyIndex]].betSpotContainerNode;
+    this.keyIndex++;
   }
 }
 
