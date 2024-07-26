@@ -1,3 +1,4 @@
+import bettingUIManager from "../UI/BettingUIManager";
 
 /**
  * Handles chip container events to update the active hand's bet and chip list, and updates the UI accordingly.
@@ -5,19 +6,11 @@
  * Value of 'activeHand' property is reassigned values on some conditions. 
  * To keep track of correct references to those elements, we directly access them from the methods.
  * 
- * @param {Object} initialHandManager - The manager responsible for handling initial hand operations.
- * @param {Object} initialHandManager.activeHand - The current active hand object.
- * @param {Function} initialHandManager.updateChipsAndBet - Method to update chips and bet.
- * @returns {Function} chipContainerClickHandler - The click handler for the chip container.
  */
-function chipContainerClickHandlerCreator(initialHandManager, bettingUIManager, app) {
-  /**
-   * Handles click events on the chip container.
-   *
-   * @param {Event} event - The click event object.
-   */
+function chipContainerClickHandlerCreator({ updateChipsAndBet, getActiveHand }, { setLastChipImgAndOutput, updateOutput }, { updateBank }, pageContext) {
+
   return function chipContainerClickHandler(event) {
-    const activeHand = initialHandManager.activeHand;
+    const activeHand = getActiveHand();
     const betContainer = activeHand.betSpotContainerNode.firstElementChild;
   
     const value = Number(event.target.parentNode.dataset.value);
@@ -26,15 +19,16 @@ function chipContainerClickHandlerCreator(initialHandManager, bettingUIManager, 
       return;
     }
 
-    initialHandManager.updateChipsAndBet(value, activeHand);
-    bettingUIManager.setLastChipImgAndOutput(betContainer, activeHand.bet, value);
+    updateChipsAndBet(value, activeHand);
+    setLastChipImgAndOutput(betContainer, activeHand.bet, value);
 
-    const amount = app.bankManager.updateBank(value, false);
-    const bank = app.pageContext.elementReferences.bankUI;
-    app.bettingUIManager.updateOutput(bank, amount);
+    const amount = updateBank(value, false);
+    const bank = pageContext.elementReferences.bankUI;
+    updateOutput(bank, amount);
   }
 }
 
+const { initialHandManager, bankManager, pageContext } = app;
   
-const chipContainerClickHandler = chipContainerClickHandlerCreator(app.initialHandManager, app.bettingUIManager, app);
+const chipContainerClickHandler = chipContainerClickHandlerCreator(initialHandManager, bettingUIManager, bankManager, pageContext);
 export default chipContainerClickHandler;

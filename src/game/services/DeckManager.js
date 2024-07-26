@@ -1,4 +1,5 @@
-import app from "../../data/appState";
+import app from "../../data/App";
+import { DECK_COUNT } from "../../data/constants";
 
 
 class DeckManager {
@@ -41,8 +42,9 @@ class DeckManager {
   }
 }
 
+const deckCount = app.settings.gameSettings[DECK_COUNT];
+const deckStore = app.deckStore;
 
-
-const deckManager = new DeckManager(app.settings.gameSettings["deck-count"], app.deckStore);
+const deckManager = new DeckManager(deckCount, deckStore);
 
 export default deckManager;

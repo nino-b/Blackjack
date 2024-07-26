@@ -1,4 +1,5 @@
 import setActiveHandShadow from "../UI/setActiveHandShadow";
+import bettingUIManager from "../UI/BettingUIManager";
 import { BETTING_SPOT_CONTAINER, REMOVE_LAST_BET, INACTIVE_SPOT } from "../../data/constants";
 
 
@@ -13,12 +14,13 @@ class HandContainerClickManager {
    * -------------
    * -------------
    */
-  constructor(app) {
-    this.app = app;
-    this.initialHandManager = app.initialHandManager;
-    this.handCoordinator = app.handCoordinator;
-    this.bettingUIManager = app.bettingUIManager;
-    this.bankManager = app.bankManager;
+  constructor(handCoordinator, initialHandManager, bankManager, bettingUIManager) {
+    this.initialHandManager = initialHandManager;
+    this.handCoordinator = handCoordinator;
+    this.bankManager = bankManager;
+
+    this.bettingUIManager = bettingUIManager;
+
     this.handContainerClickHandler = this.handContainerClickHandler.bind(this);
   }
   /**
@@ -46,7 +48,7 @@ class HandContainerClickManager {
 
     // Means that HandManager() hands are already created and game has started.
     // And user is just clicking on the hands
-    //
+    
     // TO DO
     // Implement automatic hand switching when user finishes a hand.
     const createdHandList = Object.keys(this.handCoordinator.handList);
@@ -110,8 +112,8 @@ class HandContainerClickManager {
 }
 
 
-
-const handContainerClickManager = new HandContainerClickManager(app);
+const { handCoordinator, initialHandManager, bankManager } = app;
+const handContainerClickManager = new HandContainerClickManager(handCoordinator, initialHandManager, bankManager, bettingUIManager);
 
 export default handContainerClickManager;
 

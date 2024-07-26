@@ -1,16 +1,31 @@
+import Settings from "../services/Settings";
 import HandCoordinator from "../game/services/HandCoordinator";
 import InitialHandManager from "../game/services/InitialHandManager";
 import BankManager from "../game/services/BankManager";
-import { BettingUIManager, bgImages } from "../game/UI/BettingUIManager";
+import GameManager from "../game/services/GameManager";
 
 
 class App {
   constructor() {
+   /**
+    * Saves 'this' context of newly created page in the global property, so other functions can interact with a page Shadow DOM.
+    * Otherwise it is harder to interact with a newly created page's Shadow DOM.
+    * E.g. we can turn on and off animations for that page.
+    */
     this.pageContext = null;
+    this.settings = new Settings();
     this.initialHandManager = new InitialHandManager();
     this.handCoordinator = new HandCoordinator(this.initialHandManager);
-    this.bettingUIManager = new BettingUIManager(this, bgImages);
     this.bankManager = new BankManager();
+    this.gameManager = new GameManager();
+  }
+  /**
+   * Because 'this.pageContext' always gets its value reassigned, 
+   * this function ensures that we always get current values,
+   * and we can explicitly pass context getter function, instead of passing 'app'.
+   */
+  getPageContext() {
+    return this.pageContext;
   }
 }
 

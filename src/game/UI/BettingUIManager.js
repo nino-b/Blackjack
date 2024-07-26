@@ -29,11 +29,8 @@ const bgImages = {
 
 
 
-
-
 class BettingUIManager {
-  constructor(app, bgImageList) {
-    this.app = app;
+  constructor(bgImageList) {
     this.bgImageList = bgImageList;
   }
   /**
@@ -103,4 +100,7 @@ class BettingUIManager {
 
 
 
-export { BettingUIManager, bgImages }
+const bettingUIManager = new BettingUIManager(bgImages);
+
+
+export default bettingUIManager;

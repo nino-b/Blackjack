@@ -1,45 +1,31 @@
 import showAttentionOnRules from "../UI/showAttentionOnRules";
 import gameUISetupManager from "../UI/GameUISetupManager";
+import cardDealManager from "../services/CardDealManager";
 
 
-/* class DealBtnClickManager {
-  constructor(app) {
-    this.app = app;
-    this.initialHandManager = app.initialHandManager;
-    this.handCoordinator = app.handCoordinator;
-  }
-
-} */
-
-
-function dealBtnClickHandlerCreator(app) {
+function dealBtnClickHandlerCreator(app, activeHandList, setUpHands, canStartTheGame) {
   return function() {
     const elementReferences = app.pageContext.elementReferences;
     const { bettingInstruction, bettingSpotList } = elementReferences;
 
-    const canStart = app.initialHandManager.canStartTheGame();
+    const canStart = canStartTheGame();
     if (!canStart) {
       showAttentionOnRules(bettingInstruction);
       return;
     }
-    const activeHandList = app.handCoordinator.handList;
-    app.handCoordinator.setUpHands(bettingSpotList);
+    setUpHands(bettingSpotList);
     gameUISetupManager.setUpPageElements(elementReferences, activeHandList);
-    // TO DO
-    //setupGame(.);
+    cardDealManager.initialDeal();
+
+    console.log(activeHandList);
   }
 }
 
 
-const dealBtnClickHandler = dealBtnClickHandlerCreator(app);
+const activeHandList = app.handCoordinator.handList;
+const setUpHands = app.handCoordinator.setUpHands;
+const canStartTheGame = app.initialHandManager.canStartTheGame;
+const dealBtnClickHandler = dealBtnClickHandlerCreator(app, activeHandList, setUpHands, canStartTheGame);
+
+
 export default dealBtnClickHandler;
-
-
-
-/**
- * A 'Deal' button click handler.
- * 
- * 'setGameStartingHand' - Calls the function that checks whether user place a bet (returns a boolean).
- * If user did not place a bet, 'setGameStartingHand' returns false and the function calls UI function to display attention sign on the rules that are on the game page.
- * Otherwise it sets up game view and logic.
- */

@@ -20,6 +20,7 @@ export default class HandCoordinator {
     this.initializeHands();
     this.switchActiveHands();
     setActiveHandShadow(bettingSpotList, this.activeHandNode);
+    console.log('Hand setup finished. Hands in the game:', this.handList);
   }
   initializeHands() {
     const handCount = Object.keys(this.initialHandManager.initialHands).length;

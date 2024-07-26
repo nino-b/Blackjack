@@ -56,6 +56,9 @@ export default class InitialHandManager {
     }
     return false;
   }
+  getActiveHand() {
+    return this.activeHand;
+  }
 }
 
 

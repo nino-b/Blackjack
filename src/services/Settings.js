@@ -5,21 +5,16 @@ import queryElement from "../util/DOMUtils/queryElement"
  * Class representing game settings management.
  */
 export default class Settings {
-  /**
-   * Creates an instance of Settings.
-   * @param {Object} gameSettings - Initial game settings object.
-   */
-  constructor(gameSettings) {
-    /**
-     * The settings dialog element.
-     * @type {HTMLElement}
-     */
+  constructor() {
     this.settingsDialog = queryElement('.settings-dialog');
-    /**
-     * The game settings object.
-     * @type {Object}
-     */
-    this.gameSettings = gameSettings;
+    this.gameSettings = {
+      "deck-count": 2,
+      "soft-17-opt": true,
+      "insurance-opt": true,
+      "even-money-opt": true,
+      "auto-advice-opt": false,
+      "repeat-last-bet-opt": true,
+     };
 
     this.addSettingsListener();
   }
