@@ -3,15 +3,15 @@ import { DECK_COUNT } from "../../data/constants";
 
 
 class DeckManager {
-  constructor(deckCount, deckStore) {
+  constructor(deckCount) {
     this.deckCount = deckCount;
-    this.deckStore = deckStore;
+    this.deckStore = [];
   }
   /**
    * Retrieves a card from a 'deckStore' (a deck of cards) by removing one card from an array of card objects.
    * @returns A card object, popped out of the deck of cards.
    */
-  getCard() {
+  getCard = () => {
     return this.deckStore.pop();
   }
   createAndShuffleDecks() {
@@ -43,8 +43,7 @@ class DeckManager {
 }
 
 const deckCount = app.settings.gameSettings[DECK_COUNT];
-const deckStore = app.deckStore;
 
-const deckManager = new DeckManager(deckCount, deckStore);
+const deckManager = new DeckManager(deckCount);
 
 export default deckManager;

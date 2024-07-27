@@ -12,8 +12,9 @@ export default class GamePage extends BaseComponent {
     this.pageStyles = gamePage;
     this.templateID = 'game-page-template';
     this.gamePageHandlers = gamePageHandlers;
-    this.elementReferences = null;
-    this.app = app;
+
+    const { bankManager, setGameSessionManager } = app;
+    this.bankManager = bankManager;
 
     /**
      * gameInterfaceContainer - 
@@ -27,9 +28,10 @@ export default class GamePage extends BaseComponent {
      * preGameElements - 
      * gameActionsContainer -
     */
+    this.elementReferences = null;
   }
   render() {
-    const amount = this.app.bankManager.getBank();
+    const amount = this.bankManager.getBank();
     if (this.elementReferences) {
       this.elementReferences.bankUI.textContent = amount;
     }

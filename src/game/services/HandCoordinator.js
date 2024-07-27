@@ -1,29 +1,26 @@
 import HandManager from "./HandManager";
 import setActiveHandShadow from "../UI/setActiveHandShadow";
-import showAttentionOnRules from "../UI/showAttentionOnRules";
 
 
 export default class HandCoordinator {
-  constructor(initialHandManager) {
-    this.initialHandManager = initialHandManager;
+  constructor({ initialHands, canStartTheGame }, getPageContext) {
+    this.initialHands = initialHands;
+    this.canStartTheGame = canStartTheGame;
+    this.getPageContext = getPageContext;
+
     this.handList = {};
     this.activeHand = null;
     this.activeHandNode = null;
     this.keys = null;
     this.keyIndex = 0;
   }
-  setUpHands(bettingSpotList) {
-    if (!this.initialHandManager.canStartTheGame()) {
-      showAttentionOnRules(this.app.pageContext.elementReferences.bettingInstruction);
-      return false;
-    }
+  setUpHands = (bettingSpotList) => {
     this.initializeHands();
     this.switchActiveHands();
     setActiveHandShadow(bettingSpotList, this.activeHandNode);
-    console.log('Hand setup finished. Hands in the game:', this.handList);
   }
   initializeHands() {
-    const handCount = Object.keys(this.initialHandManager.initialHands).length;
+    const handCount = Object.keys(this.initialHands).length;
     if (handCount === 0) {
       console.warn(`To start the game, player should have at least one hand.`);
       return;
@@ -39,7 +36,7 @@ export default class HandCoordinator {
      */
     const maxNumberOfHands = 3;
     for (let i = 1; i <= maxNumberOfHands; i++) {
-      const initialHand = this.initialHandManager.initialHands[i];
+      const initialHand = this.initialHands[i];
       if (initialHand && initialHand.bet > 0) {
         this.handList[initialHand.id] = this.#initializeHand(initialHand.bet);
       }
@@ -66,8 +63,11 @@ export default class HandCoordinator {
     const keys = Object.keys(this.handList);
 
     this.activeHand = this.handList[keys[this.keyIndex]];
-    this.activeHandNode = this.initialHandManager.initialHands[keys[this.keyIndex]].betSpotContainerNode;
+    this.activeHandNode = this.initialHands[keys[this.keyIndex]].betSpotContainerNode;
     this.keyIndex++;
+  }
+  getHandList = () => {
+    return this.handList;
   }
 }
 

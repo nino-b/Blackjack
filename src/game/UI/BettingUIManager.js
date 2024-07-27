@@ -39,7 +39,7 @@ class BettingUIManager {
    * @param {HTMLElement} node - The DOM node to which the background image will be added.
    * @param {number} [chipValue=null] - An optional parameter - the value of the chip which determines the background image.
    */
-  changeBgImg(node, chipValue = null) {
+  changeBgImg = (node, chipValue = null) => {
     if (chipValue) {
       const imageUrl = this.bgImageList[chipValue];
       node.style.backgroundImage = `url('${imageUrl}')`; 
@@ -53,7 +53,7 @@ class BettingUIManager {
    * @param {HTMLElement} outputEl - The output element whose text content will be updated.
    * @param {number} bet - The bet value of the active hand.
    */
-  updateOutput(outputEl, amount) {
+  updateOutput = (outputEl, amount) => {
     outputEl.textContent = amount;
   }
   /**
@@ -77,7 +77,7 @@ class BettingUIManager {
    * @param {number} bet - The amount of total bet.
    * @param {number} chipValue - The value of the chip to add.
    */
-  setLastChipImgAndOutput(betContainer, bet, chipValue) {
+  setLastChipImgAndOutput = (betContainer, bet, chipValue) => {
     const betContainerChildren = Array.from(betContainer.children);
   
     betContainerChildren.forEach(node => {
@@ -89,7 +89,7 @@ class BettingUIManager {
       }
     });
   }
-  removeChip(target, chipList) {
+  removeChip = (target, chipList) => {
     if (chipList.length > 0) {
       this.changeBgImg(target, chipList[chipList.length - 1]);
     } else {

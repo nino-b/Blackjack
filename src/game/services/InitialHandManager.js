@@ -20,7 +20,7 @@ export default class InitialHandManager {
    * 
    * @param {HTMLElement} bettingContainer - The betting container element.
    */
-  setUpInitialHand(bettingContainer) {
+  setUpInitialHand = (bettingContainer) => {
     const id = bettingContainer.dataset.id;
   
     if (!this.initialHands[id]) {
@@ -28,7 +28,7 @@ export default class InitialHandManager {
     } 
     this.activeHand = this.initialHands[id];
   }
-  updateChipsAndBet(value, hand) {
+  updateChipsAndBet = (value, hand) => {
     if (!value) {
       throw new Error(`Missing argument: value. Can't update chip list and a bet.`);
     }
@@ -38,25 +38,25 @@ export default class InitialHandManager {
     hand.chipList.push(value);
     hand.bet += value;
   }
-  removeLastChip(hand) {
-    if (!hand) {
+  removeLastChip = () => {
+    if (!this.activeHand) {
       throw new Error(`Missing argument: !hand. Can't remove chip from unknown hand.`);
     }
-    if (hand.chipList.length === 0) {
+    if (this.activeHand.chipList.length === 0) {
       console.warn(`No chips left to remove.`);
       return;
     }
-    const chipVal = hand.chipList.pop();
-    hand.bet -= chipVal;
+    const chipVal = this.activeHand.chipList.pop();
+    this.activeHand.bet -= chipVal;
     return chipVal;
   }
-  canStartTheGame() {
+  canStartTheGame = () => {
     for (const handObj in this.initialHands) {
       if (this.initialHands[handObj].bet > 0) return true;
     }
     return false;
   }
-  getActiveHand() {
+  getActiveHand = () => {
     return this.activeHand;
   }
 }

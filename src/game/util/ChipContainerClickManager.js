@@ -7,9 +7,10 @@ import bettingUIManager from "../UI/BettingUIManager";
  * To keep track of correct references to those elements, we directly access them from the methods.
  * 
  */
-function chipContainerClickHandlerCreator({ updateChipsAndBet, getActiveHand }, { setLastChipImgAndOutput, updateOutput }, { updateBank }, pageContext) {
+function chipContainerClickHandlerCreator({ initialHandManager }, { setLastChipImgAndOutput, updateOutput }, { updateBank }, getPageContext) {
 
   return function chipContainerClickHandler(event) {
+    const { updateChipsAndBet, getActiveHand } = initialHandManager;
     const activeHand = getActiveHand();
     const betContainer = activeHand.betSpotContainerNode.firstElementChild;
   
@@ -23,12 +24,13 @@ function chipContainerClickHandlerCreator({ updateChipsAndBet, getActiveHand }, 
     setLastChipImgAndOutput(betContainer, activeHand.bet, value);
 
     const amount = updateBank(value, false);
-    const bank = pageContext.elementReferences.bankUI;
+    const bank = getPageContext().elementReferences.bankUI;
     updateOutput(bank, amount);
   }
 }
 
-const { initialHandManager, bankManager, pageContext } = app;
+const { gameSessionManager, bankManager, getPageContext } = app;
+
   
-const chipContainerClickHandler = chipContainerClickHandlerCreator(initialHandManager, bettingUIManager, bankManager, pageContext);
+const chipContainerClickHandler = chipContainerClickHandlerCreator(gameSessionManager, bettingUIManager, bankManager, getPageContext);
 export default chipContainerClickHandler;

@@ -1,6 +1,5 @@
 import Settings from "../services/Settings";
-import HandCoordinator from "../game/services/HandCoordinator";
-import InitialHandManager from "../game/services/InitialHandManager";
+import GameSessionManager from "../game/services/GameSessionManager";
 import BankManager from "../game/services/BankManager";
 import GameManager from "../game/services/GameManager";
 
@@ -14,17 +13,17 @@ class App {
     */
     this.pageContext = null;
     this.settings = new Settings();
-    this.initialHandManager = new InitialHandManager();
-    this.handCoordinator = new HandCoordinator(this.initialHandManager);
     this.bankManager = new BankManager();
     this.gameManager = new GameManager();
+
+    this.gameSessionManager = new GameSessionManager();
   }
   /**
    * Because 'this.pageContext' always gets its value reassigned, 
    * this function ensures that we always get current values,
    * and we can explicitly pass context getter function, instead of passing 'app'.
    */
-  getPageContext() {
+  getPageContext = () => {
     return this.pageContext;
   }
 }

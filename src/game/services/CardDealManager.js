@@ -3,22 +3,24 @@ import deckManager from "./DeckManager";
 
 
 class CardDealManager {
-  constructor(handList, initialHandManager) {
-    this.handList = handList;
-    this.initialHandManager = initialHandManager;
+  constructor() {
   }
-  initialDeal() {
+  initialDeal(handList) {
     for (let i = 0; i < 2; i++) {
-      for (const handObj in this.handList) {
+      for (const handObj in handList) {
         const card = deckManager.getCard();
-        this.handList[handObj].hand.cards.push(card);
+        handList[handObj].hand.cards.push(card);
       }
     }
+  }
+  dealCard(handObj) {
+    const card = deckManager.getCard();
+    handList[handObj].hand.cards.push(card);
   }
 }
 
 
-const cardDealManager = new CardDealManager(app.handCoordinator.handList, app.initialHandManager);
+const cardDealManager = new CardDealManager();
 
 export default cardDealManager;
 

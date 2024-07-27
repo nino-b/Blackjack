@@ -9,16 +9,16 @@ import toggleProperty from "../../util/DOMUtils/toggleProperty";
 
 
 class GameUISetupManager {
-  constructor(app) {
-    this.app = app;
-    this.setUpPageElements = this.setUpPageElements.bind(this);
+  constructor(getPageContext, { handCoordinator }) {
+    this.getPageContext = getPageContext;
+    this.handCoordinator = handCoordinator;
   }
-  setUpPageElements() {
-    const { preGameElements, gameActionsContainer, bankContainer, gameInterfaceContainer, bettingSpotList } = this.app.pageContext.elementReferences;
+  setUpPageElements = () => {
+    const { preGameElements, gameActionsContainer, bankContainer, gameInterfaceContainer, bettingSpotList } = this.getPageContext().elementReferences;
 
     this.toggleVisibility(preGameElements, gameActionsContainer);
     this.toggleGamePageView(bankContainer, gameInterfaceContainer);
-    this.toggleBetSoptStyles(bettingSpotList, app.handCoordinator.handList);
+    this.toggleBetSoptStyles(bettingSpotList, this.handCoordinator.handList);
   }
   toggleVisibility(preGameElements, gameActionsContainer) {
     preGameElements.forEach(el => toggleProperty(el, 'hidden'));
@@ -44,9 +44,9 @@ class GameUISetupManager {
   }
 }
 
+const { getPageContext, gameSessionManager } = app;
 
-
-const gameUISetupManager = new GameUISetupManager(app);
+const gameUISetupManager = new GameUISetupManager(getPageContext, gameSessionManager);
 
 export default gameUISetupManager;
 

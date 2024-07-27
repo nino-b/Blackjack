@@ -14,14 +14,21 @@ class HandContainerClickManager {
    * -------------
    * -------------
    */
-  constructor(handCoordinator, initialHandManager, bankManager, bettingUIManager) {
-    this.initialHandManager = initialHandManager;
-    this.handCoordinator = handCoordinator;
-    this.bankManager = bankManager;
+  constructor(setActiveHandShadow, bettingUIManager, getPageContext, bankManager, { initialHandManager, handCoordinator}) {
+    
+    this.setActiveHandShadow = setActiveHandShadow;
+    this.getPageContext = getPageContext;
 
-    this.bettingUIManager = bettingUIManager;
+    this.updateBank = bankManager.updateBank;
 
-    this.handContainerClickHandler = this.handContainerClickHandler.bind(this);
+    this.removeChip = bettingUIManager.removeChip;
+    this.updateOutput = bettingUIManager.updateOutput;
+
+    this.getActiveHand = initialHandManager.getActiveHand;
+    this.setUpInitialHand = initialHandManager.setUpInitialHand;
+    this.removeLastChip = initialHandManager.removeLastChip;
+
+    this.getHandList = handCoordinator.getHandList;
   }
   /**
    * Handles click events on a hand container element.
@@ -39,7 +46,7 @@ class HandContainerClickManager {
    * @param {Event} event - The click event object.
    * @throws {Error} Throws an error if event target or dataset is missing.
    */
-  handContainerClickHandler(event) {
+  handContainerClickHandler = (event) => {
     const target = event.target;
     if (!target || !target.dataset) {
       throw new Error('Event target or dataset is missing.');
@@ -48,10 +55,10 @@ class HandContainerClickManager {
 
     // Means that HandManager() hands are already created and game has started.
     // And user is just clicking on the hands
-    
+    //
     // TO DO
     // Implement automatic hand switching when user finishes a hand.
-    const createdHandList = Object.keys(this.handCoordinator.handList);
+    const createdHandList = Object.keys(this.getHandList());
     if (createdHandList.length > 0) return;
 
 
@@ -61,15 +68,35 @@ class HandContainerClickManager {
     if (bettingContainer.classList.contains(INACTIVE_SPOT)) return;
 
     
-    const activeHand = this.initialHandManager.activeHand;
-    const { bankUI, bettingSpotList } = app.pageContext.elementReferences;
+    const activeHand = this.getActiveHand();
+    const { bankUI, bettingSpotList } = this.getPageContext().elementReferences;
 
     if (target.dataset.action === REMOVE_LAST_BET && ((activeHand && activeHand.id === target.dataset.id))) {
-      this.#handleRemoveLastBet(target, activeHand, bankUI);
+      const { chipList, bet } = activeHand;
+      this.#handleRemoveLastBet(target, chipList, bankUI);
     }
     else if (target.dataset.handSelector) {
       this.#handleHandSelection(bettingContainer, bettingSpotList);
     }
+  }
+  /**
+   * Handles the removal of the last bet associated with the active hand.
+   *
+   * @param {HTMLElement} target - The target element that triggered the action.
+   * @param {Object} initialHandManager - The initial hand manager object containing the hand state and methods.
+   * @throws {Error} Throws an error if the target element is not a valid HTMLElement or if context or active hand is missing.
+   */
+  #handleRemoveLastBet(target, chipList, bankUI) {
+    if (!(target instanceof HTMLElement)) {
+      throw new Error('Invalid target element provided.');
+    }
+    const lastChip = this.removeLastChip();
+    this.removeChip(target, chipList);
+    const bet = this.getActiveHand().bet;
+    this.updateOutput(target.nextElementSibling, bet);
+
+    const bank = this.updateBank(lastChip);
+    this.updateOutput(bankUI, bank);
   }
   /**
    * Handles the selection of a hand.
@@ -87,33 +114,15 @@ class HandContainerClickManager {
       throw new Error('Invalid or empty bettingSpotList provided.');
     }
   
-    this.initialHandManager.setUpInitialHand(bettingContainer);
-    setActiveHandShadow(bettingSpotList, bettingContainer);
-  }
-  /**
-   * Handles the removal of the last bet associated with the active hand.
-   *
-   * @param {HTMLElement} target - The target element that triggered the action.
-   * @param {Object} initialHandManager - The initial hand manager object containing the hand state and methods.
-   * @throws {Error} Throws an error if the target element is not a valid HTMLElement or if context or active hand is missing.
-   */
-  #handleRemoveLastBet(target, activeHand, bankUI) {
-    if (!(target instanceof HTMLElement)) {
-      throw new Error('Invalid target element provided.');
-    }
-    const chipList = activeHand.chipList;
-    const lastChip = this.initialHandManager.removeLastChip(activeHand);
-    this.bettingUIManager.removeChip(target, chipList);
-    this.bettingUIManager.updateOutput(target.nextElementSibling, activeHand.bet);
-
-    const bank = this.bankManager.updateBank(lastChip);
-    this.bettingUIManager.updateOutput(bankUI, bank);
+    this.setUpInitialHand(bettingContainer);
+    this.setActiveHandShadow(bettingSpotList, bettingContainer);
   }
 }
 
 
-const { handCoordinator, initialHandManager, bankManager } = app;
-const handContainerClickManager = new HandContainerClickManager(handCoordinator, initialHandManager, bankManager, bettingUIManager);
+const { getPageContext, gameSessionManager, bankManager } = app;
+
+const handContainerClickManager = new HandContainerClickManager(setActiveHandShadow, bettingUIManager, getPageContext, bankManager, gameSessionManager);
 
 export default handContainerClickManager;
 

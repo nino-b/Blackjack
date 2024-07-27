@@ -17,12 +17,21 @@ class Card {
     Q: patterns.drawPatternOfKQ,
     K: patterns.drawPatternOfKQ
   }
+  static handPositions = {
+    1: [x, y],
+    2: [x, y], // needs positions
+    3: [x, y],
+    dealer: [x, y]
+  }
   constructor(suit, rank, x, y, ctx) {
     this.suit = suit;
     this.rank = rank;
     this.color = null;
     this.x = x;
     this.y = y;
+
+    this.vx = 2; // Velocity in x direction
+    this.vy = 2; // Velocity in y direction
     this.ctx = ctx;
 
     if (this.suit === ('spades' || 'clubs')) {
@@ -30,6 +39,20 @@ class Card {
     } else {
       this.color = 'red';
     }
+  }
+  animate() {
+    // Clear the canvas
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+
+    // Update card position
+    this.x += this.vx;
+    this.y += this.vy;
+
+    // Draw the card at the new position
+    this.createCard();
+
+    // Request the next frame
+    requestAnimationFrame(() => this.animate());
   }
   createCard() {
     this.#drawRect();
@@ -106,4 +129,39 @@ class Card {
     
     this.ctx.restore();
   }
+}
+
+
+
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas(); // Initial call to set up canvas
+
+function resizeCanvas() {
+  // Get device pixel ratio
+  const dpr = window.devicePixelRatio || 1;
+  
+  // Calculate new canvas width and height
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+  
+  // Set CSS size to match the new canvas size
+  canvas.style.width = `${window.innerWidth}px`;
+  canvas.style.height = `${window.innerHeight}px`;
+  
+  // Scale the canvas context to account for the device pixel ratio
+  ctx.scale(dpr, dpr);
+  
+  // Redraw content
+  drawContent();
+}
+
+function drawContent() {
+  drawRect();
+  addValues();
+  drawSuits0(ctx, 0, 0, '♠️', 'black');
 }
